@@ -11,13 +11,27 @@
 ## Architecture
 <p align="center">
     <a href="#">
-        <img alt="Architecture Workflow" src="https://i.imgur.com/VZWuMt2.png">
+        <img alt="Architecture Workflow" src="https://i.imgur.com/8TEpVZk.png">
     </a>
 </p>
 
 ## Usage
-1. `docker compose up --build`
+1. `make up`
 2. visit `http://localhost:8666/v1/ping` for uvicorn server, or `http://localhost` for nginx server
+3. Backend, JSON based web API based on OpenAPI: `http://localhost/v1/`
+4. Automatic interactive documentation with Swagger UI (from the OpenAPI backend): `http://localhost/docs`
+
+## Backend local development, additional details
+
+### General workflow
+
+By default, the dependencies are managed with [Poetry](https://python-poetry.org/), go there and install it.
+
+From `./{{ cookiecutter.backend_container_name }}/` you can install all the dependencies with:
+
+```console
+$ poetry install
+```
 
 ## Nginx
 ```yml

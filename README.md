@@ -20,9 +20,9 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 ```
 
 ## Features
-* **Docker & Docker Compose** integration and optimization for local development. Optimized bundles using build stages and Poetry.
+* **Docker & Docker Compose** integration and optimization for local development. Fast bundles using build stages and Poetry.
 * **Production ready** Python web server using Uvicorn
-* Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> {{ cookiecutter.backend_container_name }}:
+* Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a>:
     * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
     * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
     * **Easy**: Designed to be easy to use and learn. Less time reading docs.
@@ -51,4 +51,13 @@ The input variables, with their default values (some auto generated) are:
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `nginx_container_name`: The name of the nginx web server container. Default `nginx`
 * `doctl_version`: The version name of [DigitalOcean Command Line Interface](https://docs.digitalocean.com/reference/doctl/) to use. Default `1.92.0`
-* `github_username`: The username of the GitHub user. Used for badge display in [README](/%7B%7Bcookiecutter.project_slug%7D%7D/README.md)
+* `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
+
+
+## More Details
+After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can view it [here](/%7B%7B%20cookiecutter.project_slug%20%7D%7D/README.md)
+
+## Acknowledgements
+[tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project
+[jonra](https://github.com/jonra1993/fastapi-alembic-sqlmodel-async) for the Alembic/SQLModel knowledge
+[nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hax
