@@ -11,7 +11,8 @@ on:
 
 jobs:
   create-release:
-    permissions: write-all
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: checkout

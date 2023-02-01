@@ -38,6 +38,7 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 * **AsyncPG** Database interface library designed specifically for PostgreSQL and Python/asyncio.
 * **Redis** In-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker.
 * **Continuous Integration/Deployment** modular GitHub Actions to lint, build, test, and deploy to cloud
+* **pre-commit** hooks to maintain code quality
 
 ## Input Variables
 The generator (cookiecutter) will ask you for some data, you might want to have at hand before generating the project.
@@ -58,6 +59,6 @@ The input variables, with their default values (some auto generated) are:
 After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can view it [here](/%7B%7B%20cookiecutter.project_slug%20%7D%7D/README.md)
 
 ## Acknowledgements
-[tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project
-[jonra](https://github.com/jonra1993/fastapi-alembic-sqlmodel-async) for the Alembic/SQLModel knowledge
-[nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hax
+- [tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project
+- [jonra](https://github.com/jonra1993/fastapi-alembic-sqlmodel-async) for the Alembic/SQLModel knowledge
+- [nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hax

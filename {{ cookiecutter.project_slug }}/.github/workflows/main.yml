@@ -26,7 +26,8 @@ jobs:
     uses: ./.github/workflows/unit-tests.yml
 
   create-release:
-    permissions: write-all
+    permissions:
+      contents: write
     needs: [lint]
     runs-on: ubuntu-latest
     steps:

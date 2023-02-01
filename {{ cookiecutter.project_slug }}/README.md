@@ -24,6 +24,7 @@
 ## Backend local development, additional details
 
 ### General workflow
+See the [Makefile](/Makefile) to view available commands.
 
 By default, the dependencies are managed with [Poetry](https://python-poetry.org/), go there and install it.
 
@@ -34,6 +35,8 @@ $ poetry install
 ```
 
 ## Nginx
+The Nginx webserver acts like a web proxy, or load balancer rather. Incoming requests can get proxy passed to various upstreams eg. `/:service1:8001,/static:service2:8002`
+
 ```yml
 volumes:
   proxydata-vol:
