@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "1.0.0"
+description = "Base project for building fastapi backends"
+authors = ["nickatnight <nickkelly.858@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+asyncpraw = "^7.5.0"
+alembic = "^1.8.1"
+asyncpg = "^0.26.0"
+fastapi = "^0.81.0"
+psycopg2-binary = "^2.9.3"
+sqlmodel = "^0.0.8"
+uvicorn = "^0.18.3"
+r-dogecoin-bot = { git = "https://github.com/nickatnight/r-dogecoin-bot", tag = "0.1.4" }
+
+[tool.poetry.dev-dependencies]
+black = "22.6.0"
+flake8 = "5.0.4"
+isort = "5.12.0"
+pytest = "6.2.3"
+pytest-cov = "2.12.0"
+
+[tool.isort]
+multi_line_output = 3
+lines_after_imports = 2
+line_length = 88
+include_trailing_comma = true
+sections = 'FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER'
+
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+extend-exclude = '''
+(
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+)
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,21 @@
+---
+
+name: pull-request
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  build:
+    needs: [lint]
+    uses: ./.github/workflows/build.yml
+  
+  unit-tests:
+    needs: [build]
+    uses: ./.github/workflows/unit-tests.yml

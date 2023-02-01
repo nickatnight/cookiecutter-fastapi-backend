@@ -1,0 +1,39 @@
+---
+
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: ../{{ cookiecutter.backend_container_name }}
+      dockerfile: ./Dockerfile
+      args:
+        env: "test"
+    command: |
+        bash -c "
+        while !</dev/tcp/db-test/5432; do sleep 1; done;
+        pytest --cov-report=xml:/data/coverage.xml --cov=src/ ."
+    environment:
+      - PYTHONUNBUFFERED=0
+      - PROJECT_NAME=test
+      - VERSION=v2
+      - DEVELOPER=nickatnight
+      - ENV=test
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=db-test
+    volumes:
+      - /data:/data  # to access coverage.xml
+
+  db-test:
+    image: postgres:14.1-alpine
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=db-test

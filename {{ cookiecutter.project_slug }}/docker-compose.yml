@@ -1,0 +1,61 @@
+version: '3'
+
+volumes:
+  base-data:
+  {{ cookiecutter.db_container_name }}-data:
+  {{ cookiecutter.nginx_container_name }}-data:
+  redis-data:
+
+services:
+  {{ cookiecutter.db_container_name }}:
+    image: postgres:14.1-alpine
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - '5431:5432'
+    volumes:
+      - {{ cookiecutter.db_container_name }}-data:/var/lib/postgresql/data
+
+  {{ cookiecutter.backend_container_name }}:
+    restart: always
+    env_file:
+      - .env
+    build:
+      context: ./{{ cookiecutter.backend_container_name }}
+      dockerfile: ./Dockerfile
+      args:
+        env: ${ENV}
+    ports:
+      - "8666:8000"
+    command: |
+        bash -c "
+        while !</dev/tcp/{{ cookiecutter.db_container_name }}/5432; do sleep 1; done;
+        uvicorn src.main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    depends_on:
+      - {{ cookiecutter.db_container_name }}
+    environment:
+      - PYTHONUNBUFFERED=0
+    volumes:
+      - base-data:/data
+      - ./{{ cookiecutter.backend_container_name }}/:/code
+
+  {{ cookiecutter.nginx_container_name }}:
+    restart: always
+    ports:
+      - "0.0.0.0:80:80"
+    env_file:
+      - .env
+    build:
+      context: ./{{ cookiecutter.nginx_container_name }}
+      dockerfile: ./Dockerfile
+    volumes:
+        - {{ cookiecutter.nginx_container_name }}-data:/etc/letsencrypt
+
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - "6479:6379"
+    volumes:
+      - redis-data:/data

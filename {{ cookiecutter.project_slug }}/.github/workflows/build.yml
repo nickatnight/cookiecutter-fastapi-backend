@@ -1,0 +1,44 @@
+---
+
+name: build
+
+on: [workflow_call]  # allow this workflow to be called from other workflows
+
+jobs:
+  build_{{ cookiecutter.backend_container_name }}:
+    runs-on: ubuntu-latest
+    name: Build {{ cookiecutter.backend_container_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        {% raw %}
+        with:
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+        {% endraw %}
+      - name: Build {{ cookiecutter.backend_container_name }}
+        run: |
+          docker build --build-arg env=staging -t {% raw %}${{ secrets.REGISTRY }}{% endraw %}/{{ cookiecutter.backend_container_name }}:{% raw %}${{ github.sha }}{% endraw %} ./{{ cookiecutter.backend_container_name }}
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 600
+      - name: Push image to DigitalOcean Container Registry
+        run: docker push {% raw %}${{ secrets.REGISTRY }}{% endraw %}/{{ cookiecutter.backend_container_name }}:{% raw %}${{ github.sha }}{% endraw %}
+
+  build_{{ cookiecutter.nginx_container_name }}:
+    runs-on: ubuntu-latest
+    name: Build Nginx proxy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:{% raw %}
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}{% endraw %}
+      - name: Build {{ cookiecutter.nginx_container_name }}
+        run: |
+          docker build --build-arg env=staging -t {% raw %}${{ secrets.REGISTRY }}{% endraw %}/{{ cookiecutter.nginx_container_name }}:{% raw %}${{ github.sha }}{% endraw %} ./{{ cookiecutter.nginx_container_name }}
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 600
+      - name: Push image to DigitalOcean Container Registry
+        run: docker push {% raw %}${{ secrets.REGISTRY }}{% endraw %}/{{ cookiecutter.nginx_container_name }}:{% raw %}${{ github.sha }}{% endraw %}

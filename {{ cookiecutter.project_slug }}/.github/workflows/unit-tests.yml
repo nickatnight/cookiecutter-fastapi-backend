@@ -1,0 +1,25 @@
+---
+
+name: unit-tests
+
+on: [workflow_call]  # allow this workflow to be called from other workflows
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    name: Run unit tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run unit tests
+        run: |
+          docker-compose -f ops/docker-compose.test.yml up --exit-code-from {{ cookiecutter.backend_container_name }}
+      - name: Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: /data/coverage.xml
+          flags: unittests
+      - name: Clean-up
+        if: always()
+        run: |
+          docker-compose -f ops/docker-compose.test.yml down -v
