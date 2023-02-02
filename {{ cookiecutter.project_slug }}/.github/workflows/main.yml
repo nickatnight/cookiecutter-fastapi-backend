@@ -1,5 +1,3 @@
----
-
 name: build, test and deploy
 
 on:
@@ -10,13 +8,16 @@ on:
       - master
       - develop
 
+{%- if cookiecutter.deployments == 'yes' %}
 env:
   DOCTL_VERSION: {{ cookiecutter.doctl_version }}
+{%- endif %}
 
 jobs:
   lint:
     uses: ./.github/workflows/lint.yml
 
+  {%- if cookiecutter.deployments == 'yes' %}
   build:
     needs: [lint]
     uses: ./.github/workflows/build.yml
@@ -24,11 +25,14 @@ jobs:
   unit-tests:
     needs: [build]
     uses: ./.github/workflows/unit-tests.yml
-
+  {%- elif cookiecutter.deployments == 'no' %}
+  unit-tests:
+    needs: [lint]
+    uses: ./.github/workflows/unit-tests.yml
+  {%- endif %}
   create-release:
     permissions:
       contents: write
-    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -37,7 +41,7 @@ jobs:
           fetch-depth: 0  # need this for all history for all branches and tags
       - name: Create Release
         id: create_release
-        uses: nickatnight/releases-action@v4
+        uses: nickatnight/releases-action@v5
         if: startsWith(github.ref, 'refs/tags/')
         {% raw %}
         env:
@@ -47,6 +51,8 @@ jobs:
     outputs:
       ReleaseTag: ${{ steps.create_release.outputs.release_tag }}
     {% endraw %}
+
+  {%- if cookiecutter.deployments == "yes" %}
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
@@ -65,8 +71,6 @@ jobs:
           DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
           REGISTRY: ${{ secrets.REGISTRY }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         with:
           user: ubuntu
           host: ${{ secrets.STAGING_HOST_IP }}
@@ -88,8 +92,6 @@ jobs:
           DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
           REGISTRY: ${{ secrets.REGISTRY }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         with:
           user: ubuntu
           host: ${{ secrets.PROD_HOST_IP }}
@@ -101,3 +103,4 @@ jobs:
             doctl registry login
             docker stack deploy --compose-file ${COMPOSE_FILE} --with-registry-auth --prune ${STACK_NAME}
           {% endraw %}
+  {%- endif %}

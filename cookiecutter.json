@@ -11,5 +11,9 @@
 
     "doctl_version": "1.92.0",
 
-    "github_username": "changeme"
+    "github_username": "changeme",
+
+    "include_example_api": ["no", "yes"],
+
+    "deployments": ["no", "yes"]
 }
