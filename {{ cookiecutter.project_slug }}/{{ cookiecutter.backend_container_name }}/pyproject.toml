@@ -13,7 +13,9 @@ fastapi = "^0.81.0"
 psycopg2-binary = "^2.9.3"
 sqlmodel = "^0.0.8"
 uvicorn = "^0.18.3"
+{%- if cookiecutter.include_example_api == "yes" %}
 r-dogecoin-bot = { git = "https://github.com/nickatnight/r-dogecoin-bot", tag = "0.1.4" }
+{%- endif %}
 
 [tool.poetry.dev-dependencies]
 black = "22.6.0"

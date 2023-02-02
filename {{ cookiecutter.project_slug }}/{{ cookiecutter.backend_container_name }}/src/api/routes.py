@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status
 from fastapi.responses import PlainTextResponse
 
-from src.api.v1 import health, meme
+from src.api.v1 import health{%- if cookiecutter.include_example_api == "yes" %}, meme{%- endif %}
 
 
 home_router = APIRouter()
@@ -14,4 +14,6 @@ async def home():
 
 api_router = APIRouter()
 api_router.include_router(health.router)
+{%- if cookiecutter.include_example_api == "yes" %}
 api_router.include_router(meme.router)
+{%- endif %}
