@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     POSTGRES_PORT: str = Field(default="", env="POSTGRES_PORT")
     POSTGRES_DB: str = Field(default="", env="POSTGRES_DB")
 
+    REDIS_HOST: str = Field(default="", env="REDIS_HOST")
+    REDIS_PORT: str = Field(default="", env="REDIS_PORT")
+
     DB_POOL_SIZE: int = Field(default=83, env="DB_POOL_SIZE")
     WEB_CONCURRENCY: int = Field(default=9, env="WEB_CONCURRENCY")
     MAX_OVERFLOW: int = Field(default=64, env="MAX_OVERFLOW")
