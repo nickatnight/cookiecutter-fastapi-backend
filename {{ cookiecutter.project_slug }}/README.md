@@ -82,6 +82,8 @@ volumes:
       - HTTPS_REDIRECT=true
       - CERTBOT_EMAIL=youremail@gmail.com
       - DOMAIN_LIST=yourservername.com
+      - BASIC_AUTH_USER=user
+      - BASIC_AUTH_PASS=pass
     ports:
       - '0.0.0.0:80:80'
       - '0.0.0.0:443:443'
@@ -96,6 +98,8 @@ Some of the envrionment variables available:
 - `NGINX_SERVER_NAME` name of the server and used as path name to store ssl fullchain and privkey
 - `CERTBOT_EMAIL=youremail@gmail.com` the email to register with Certbot.
 - `DOMAIN_LIST` domain(s) you are requesting a certificate for.
+- `BASIC_AUTH_USER` username for basic auth.
+- `BASIC_AUTH_PASS` password for basic auth.
 
 When SSL is enabled, server will install Cerbot in standalone mode and add a new daily periodic script to `/etc/periodic/daily/` to run a cronjob in the background. This allows you to automate cert renewing (every 3 months). See [docker-entrypoint]({{ cookiecutter.nginx_container_name }}/docker-entrypoint.sh) for details.
 

@@ -25,7 +25,10 @@ server {
   ssl_certificate /etc/letsencrypt/live/{{ NGINX_SERVER_NAME }}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{{ NGINX_SERVER_NAME }}/privkey.pem;
   {%- endif %}
-
+  {%- if BASIC_AUTH_USER and BASIC_AUTH_PASS %}
+  auth_basic "Please log in to proceed";
+  auth_basic_user_file /etc/nginx/.htpasswd;
+  {%- endif %}
   {%- if UPSTREAMS %}
   {%- for upstream in UPSTREAMS.split(',') %}
   {%- set upstream_parts = upstream.split(':') %}
