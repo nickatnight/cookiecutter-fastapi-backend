@@ -22,6 +22,10 @@ if [ ${#} -eq 0 ]; then
     # run crond in the background with a log level of 8
     crond -b -L /var/log/cron.log
   fi
+
+  if [ ! -z ${BASIC_AUTH_USER} ] && [ ! -z ${BASIC_AUTH_PASS} ]; then
+    echo "${BASIC_AUTH_USER}:$(openssl passwd -crypt ${BASIC_AUTH_PASS})" > /etc/nginx/.htpasswd
+  fi
   echo "Starting nginx..."
   exec nginx -g 'daemon off;'
 else

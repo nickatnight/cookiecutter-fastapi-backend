@@ -62,6 +62,13 @@ From `./{{ cookiecutter.backend_container_name }}/` you can install all the depe
 $ poetry install
 ```
 
+### pre-commit hooks
+If you haven't already done so, download [pre-commit](https://pre-commit.com/) system package and install. Once done, install the git hooks with
+```console
+$ pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+```
+
 ### Nginx
 The Nginx webserver acts like a web proxy, or load balancer rather. Incoming requests can get proxy passed to various upstreams eg. `/:service1:8001,/static:service2:8002`
 
@@ -82,6 +89,8 @@ volumes:
       - HTTPS_REDIRECT=true
       - CERTBOT_EMAIL=youremail@gmail.com
       - DOMAIN_LIST=yourservername.com
+      - BASIC_AUTH_USER=user
+      - BASIC_AUTH_PASS=pass
     ports:
       - '0.0.0.0:80:80'
       - '0.0.0.0:443:443'
@@ -96,6 +105,8 @@ Some of the envrionment variables available:
 - `NGINX_SERVER_NAME` name of the server and used as path name to store ssl fullchain and privkey
 - `CERTBOT_EMAIL=youremail@gmail.com` the email to register with Certbot.
 - `DOMAIN_LIST` domain(s) you are requesting a certificate for.
+- `BASIC_AUTH_USER` username for basic auth.
+- `BASIC_AUTH_PASS` password for basic auth.
 
 When SSL is enabled, server will install Cerbot in standalone mode and add a new daily periodic script to `/etc/periodic/daily/` to run a cronjob in the background. This allows you to automate cert renewing (every 3 months). See [docker-entrypoint]({{ cookiecutter.nginx_container_name }}/docker-entrypoint.sh) for details.
 
