@@ -62,6 +62,13 @@ From `./{{ cookiecutter.backend_container_name }}/` you can install all the depe
 $ poetry install
 ```
 
+### pre-commit hooks
+If you haven't already done so, download [pre-commit](https://pre-commit.com/) system package and install. Once done, install the git hooks with
+```console
+$ pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+```
+
 ### Nginx
 The Nginx webserver acts like a web proxy, or load balancer rather. Incoming requests can get proxy passed to various upstreams eg. `/:service1:8001,/static:service2:8002`
 
