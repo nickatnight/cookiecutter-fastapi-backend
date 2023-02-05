@@ -19,7 +19,7 @@ engine = create_async_engine(
     pool_size=settings.POOL_SIZE,
     max_overflow=settings.MAX_OVERFLOW,
 )
-async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+SessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
 async def on_startup():
@@ -37,5 +37,5 @@ async def on_startup():
 async def get_session() -> AsyncSession:
     # expire_on_commit=False will prevent attributes from being expired
     # after commit.
-    async with async_session() as session:
+    async with SessionLocal() as session:
         yield session

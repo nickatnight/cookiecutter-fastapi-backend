@@ -39,6 +39,11 @@ black:
 	@echo "running black...."
 	docker compose exec {{ cookiecutter.backend_container_name }} black .
 
+# database
+init-db: alembic-migrate
+	@echo "initializing database...."
+	docker compose exec {{ cookiecutter.backend_container_name }} python3 src/db/init_db.py
+
 # misc
 check: BREW-exists
 BREW-exists: ; @which brew > /dev/null

@@ -1,5 +1,4 @@
 import os
-import shutil
 
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
@@ -8,8 +7,8 @@ MEME_FILE_PATHS = [
     "%smodels/meme.py" % BASE_BACKEND_SRC_PATH,
     "%sschemas/meme.py" % BASE_BACKEND_SRC_PATH,
     "%sapi/v1/meme.py" % BASE_BACKEND_SRC_PATH,
-    "%score/utils.py" % BASE_BACKEND_SRC_PATH,
     "%smigrations/versions/3577cec8a2bb_init.py" % BASE_BACKEND_SRC_PATH,
+    "%sdb/init_db.py" % BASE_BACKEND_SRC_PATH,
 ]
 DEPLOYMENT_FILES = [
     "ops/docker-compose.prod.yml",
@@ -25,7 +24,6 @@ if "{{ cookiecutter.include_example_api}}" == "no":
     print("Removing example api files...")
     for p in MEME_FILE_PATHS:
         remove_file(p)
-    shutil.rmtree("%s/db/clients/" % BASE_BACKEND_SRC_PATH)
 
 
 if "{{ cookiecutter.deployments }}" == "no":
