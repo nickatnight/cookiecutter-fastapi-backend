@@ -1,7 +1,6 @@
 FROM python:3.9 as base
 
 ARG env
-ENV PYTHONPATH "${PYTHONPATH}:/code"
 
 WORKDIR /tmp
 
@@ -22,5 +21,6 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 ADD . /code/
 WORKDIR /code
+ENV PYTHONPATH=/code
 
 EXPOSE 8000

@@ -28,18 +28,17 @@
 {%- if cookiecutter.include_example_api == "yes" %}
 Run the alembic `migrate` command to apply schema to your newly created database (at `{{ cookiecutter.db_container_name }}:5432`)
 ```console
-$ make alembic-migrate
+$ make init-db
 ```
 
-### Example script to pull data for API
+### Example API
 The example API includes:
 - [models](/src/models/meme.py)
 - [schemas](/src/schemas/meme.py)
 - [routes](/src/api/v1/meme.py)
-- [utility](/src/core/utils.py) script to populate your local database. You will need to will need to fetch a client id and secret to use the example Reddit api. Details can be found [here](https://www.reddit.com/r/RequestABot/comments/cyll80/a_comprehensive_guide_to_running_your_reddit_bot/)
 {%- elif cookiecutter.include_example_api == "no" %}
 
-After adding some models in `src/model/`, you can run the initial making of the migrations
+After adding some models in `src/models/`, you can run the initial making of the migrations
 ```console
 $ make alembic-init
 $ make alembic-migrate
