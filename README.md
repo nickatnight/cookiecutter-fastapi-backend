@@ -61,9 +61,6 @@ The input variables, with their default values (some auto generated) are:
 ## More Details
 After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can view it [here](/%7B%7B%20cookiecutter.project_slug%20%7D%7D/README.md)
 
-## TODO
-- add database fixture for example project
-
 ## Acknowledgements
 - [tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project
 - [jonra](https://github.com/jonra1993/fastapi-alembic-sqlmodel-async) for the Alembic/SQLModel knowledge
