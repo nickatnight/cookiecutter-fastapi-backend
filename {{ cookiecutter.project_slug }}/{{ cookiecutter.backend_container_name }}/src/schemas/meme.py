@@ -8,4 +8,8 @@ class IMemeCreate(MemeBase):
 
 
 class IMemeRead(MemeBase):
-    id: UUID
+    ref_id: UUID
+
+
+class IMemeUpdate(MemeBase):
+    pass

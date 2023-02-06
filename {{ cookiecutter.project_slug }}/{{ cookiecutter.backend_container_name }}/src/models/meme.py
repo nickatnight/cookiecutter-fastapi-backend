@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from pydantic import BaseConfig, validator
+from pydantic import BaseConfig
 from sqlmodel import Column, DateTime, Field, SQLModel
 
 from src.models.base import BaseModel
@@ -25,7 +25,8 @@ class MemeBase(SQLModel):
         }
         schema_extra = {
             "example": {
-                "id": "1234-43143-3134-13423",
+                "id": 1,
+                "ref_id": "1234-43143-3134-13423",
                 "submission_id": "nny218",
                 "submission_title": "This community is so nice. Helps me hodl.",
                 "submission_url": "https://i.redd.it/gdv6tbamkb271.jpg",
@@ -38,6 +39,4 @@ class MemeBase(SQLModel):
 
 
 class Meme(BaseModel, MemeBase, table=True):
-    @validator("created_at", pre=True, always=True)
-    def set_created_at_now(cls, v):
-        return v or datetime.now(timezone.utc)
+    pass
