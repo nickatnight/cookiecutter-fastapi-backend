@@ -39,5 +39,5 @@ class MemeBase(SQLModel):
 
 class Meme(BaseModel, MemeBase, table=True):
     @validator("created_at", pre=True, always=True)
-    def set_created_at_now(cls, v):
+    def set_created_at_now(cls, v: datetime) -> datetime:
         return v or datetime.now(timezone.utc)

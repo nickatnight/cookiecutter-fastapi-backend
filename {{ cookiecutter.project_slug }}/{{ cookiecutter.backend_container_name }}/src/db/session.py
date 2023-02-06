@@ -1,4 +1,5 @@
 import logging
+from typing import AsyncGenerator
 
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
@@ -22,7 +23,7 @@ engine = create_async_engine(
 SessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
-async def on_startup():
+async def on_startup() -> None:
     redis_client = await get_redis_client()
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
     logger.info("FastAPI app running...")
@@ -34,7 +35,7 @@ async def on_startup():
 #         return await db.session.execute(query)
 
 
-async def get_session() -> AsyncSession:
+async def get_session() -> AsyncGenerator[AsyncSession, None]:
     # expire_on_commit=False will prevent attributes from being expired
     # after commit.
     async with SessionLocal() as session:

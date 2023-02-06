@@ -1,21 +1,21 @@
-from typing import Generic, List, Optional, TypeVar
+from typing import Generic, Optional, TypeVar, Dict, Any
 
 from pydantic.generics import GenericModel
 
 
-DataType = TypeVar("DataType")
+T = TypeVar("T")
 
 
-class IResponseBase(GenericModel, Generic[DataType]):
+class IResponseBase(GenericModel, Generic[T]):
     message: str = ""
-    meta: dict = {}
-    data: Optional[DataType] = None
+    meta: Optional[Dict[str, Any]] = {}
+    data: Optional[T] = None
 
 
-class IGetResponseBase(IResponseBase[DataType], Generic[DataType]):
+class IGetResponseBase(IResponseBase[T], Generic[T]):
     message: str = "Data got correctly"
-    data: Optional[List[DataType]] = None
+    data: Optional[T] = None
 
 
-class IPostResponseBase(IResponseBase[DataType], Generic[DataType]):
+class IPostResponseBase(IResponseBase[T], Generic[T]):
     message: str = "Data created correctly"

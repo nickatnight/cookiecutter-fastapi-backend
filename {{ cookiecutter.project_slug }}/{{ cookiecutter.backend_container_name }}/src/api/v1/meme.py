@@ -23,7 +23,7 @@ async def memes(
     session: AsyncSession = Depends(get_session),
 ) -> IGetResponseBase[IMemeRead]:
     result = await session.execute(
-        select(Meme).offset(skip).limit(limit).order_by(Meme.created_at.desc())
+        select(Meme).offset(skip).limit(limit).order_by(Meme.created_at.desc())  # type: ignore
     )
     memes = result.scalars().all()
 
