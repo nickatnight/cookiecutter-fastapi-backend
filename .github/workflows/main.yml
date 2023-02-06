@@ -8,23 +8,10 @@ on:
       - '*'
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 jobs:
-  linter:
-    runs-on: ubuntu-latest
-    name: Check python linting
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Install Python
-        uses: actions/setup-python@v3
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.0
-
   create-release:
+    needs: [lint]
     permissions:
       contents: write
     runs-on: ubuntu-latest
