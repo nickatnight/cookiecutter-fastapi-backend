@@ -9,6 +9,10 @@ down:
 	@echo "bringing down project...."
 	docker compose down
 
+bash:
+	@echo "connecting to container...."
+	docker compose exec {{ cookiecutter.backend_container_name }} bash
+
 # alembic
 alembic-scaffold:
 	@echo "scaffolding migrations folder..."
@@ -39,8 +43,12 @@ black:
 	@echo "running black...."
 	docker compose exec {{ cookiecutter.backend_container_name }} black .
 
+mypy:
+	@echo "running mypy...."
+	docker compose exec {{ cookiecutter.backend_container_name }} mypy src/
+
 # database
-init-db: alembic-migrate
+init-db: alembic-init alembic-migrate
 	@echo "initializing database...."
 	docker compose exec {{ cookiecutter.backend_container_name }} python3 src/db/init_db.py
 
