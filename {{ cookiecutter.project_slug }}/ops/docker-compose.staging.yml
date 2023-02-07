@@ -1,0 +1,78 @@
+version: '3.4'
+
+x-fastapi-envs: &fastapi_envs
+  environment:
+    - PROJECT_NAME={{ cookiecutter.project_slug|replace('-', '_') }}
+    - NGINX_HOST=api-staging.{{ cookiecutter._db }}.com
+    - ENV=staging
+    - POSTGRES_USER={{ cookiecutter._db }}
+    - POSTGRES_PASSWORD={% raw %}${POSTGRES_PASSWORD}{% endraw %}
+    - POSTGRES_HOST={{ cookiecutter.db_container_name }}
+    - POSTGRES_DB={{ cookiecutter._db }}
+    - POSTGRES_PORT=5432
+    - VERSION=v1
+
+x-default_deploy: &default_deploy
+  deploy:
+    mode: replicated
+    replicas: 1
+    restart_policy:
+      condition: on-failure
+      delay: 20s
+      max_attempts: 6
+      window: 120s
+    update_config:
+      parallelism: 1
+      order: start-first
+
+volumes:
+  data-vol:
+  {{ cookiecutter.db_container_name }}data-vol:
+  {{ cookiecutter.nginx_container_name }}data-vol:
+
+services:
+  {{ cookiecutter.db_container_name }}:
+    image: postgres:14.1-alpine
+    environment:
+    labels:
+      com.{{ cookiecutter._db }}.container.name: {{ cookiecutter._db }}-{{ cookiecutter.db_container_name }}
+      com.{{ cookiecutter._db }}.env: staging
+      com.{{ cookiecutter._db }}.project: {{ cookiecutter._db }}-cloud
+    volumes:
+      - {{ cookiecutter.db_container_name }}data-vol:/data/{{ cookiecutter.db_container_name }}
+    <<: *fastapi_envs
+    <<: *default_deploy
+
+  {{ cookiecutter.nginx_container_name }}:
+    image: {% raw %}${REGISTRY}{% endraw %}/{{ cookiecutter.nginx_container_name }}:{% raw %}${GITHUB_SHA}{% endraw %}
+    environment:
+      - UPSTREAMS=/:{{ cookiecutter.backend_container_name }}:8000
+      - NGINX_SERVER_NAME=api-staging.{{ cookiecutter._db }}.com # without this, /admin redirects to https://_/
+      - ENABLE_SSL=true
+      - HTTPS_REDIRECT=true
+      - CERTBOT_EMAIL={{ cookiecutter.author_email }}
+      - DOMAIN_LIST=api-staging.{{ cookiecutter._db }}.com
+
+    labels:
+      com.{{ cookiecutter._db }}.container.name: {{ cookiecutter._db }}-{{ cookiecutter.nginx_container_name }}
+      com.{{ cookiecutter._db }}.env: staging
+      com.{{ cookiecutter._db }}.project: {{ cookiecutter._db }}-cloud
+    ports:
+      - '0.0.0.0:80:80'
+      - '0.0.0.0:443:443'
+    volumes:
+      - {{ cookiecutter.nginx_container_name }}data-vol:/etc/letsencrypt
+    <<: *default_deploy
+
+  {{ cookiecutter.backend_container_name }}:
+    image: {% raw %}${REGISTRY}{% endraw %}/{{ cookiecutter.backend_container_name }}:{% raw %}${GITHUB_SHA}{% endraw %}
+    environment:
+    labels:
+      com.{{ cookiecutter._db }}.container.name: {{ cookiecutter._db }}-{{ cookiecutter.backend_container_name }}
+      com.{{ cookiecutter._db }}.env: staging
+      com.{{ cookiecutter._db }}.project: {{ cookiecutter._db }}-cloud
+    <<: *fastapi_envs
+    <<: *default_deploy
+    volumes:
+      - data-vol:/data
+    command: bash -c "uvicorn src.main:app --workers 1 --host 0.0.0.0 --port 8000"
