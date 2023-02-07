@@ -3,7 +3,6 @@ import logging
 
 from src.db.session import SessionLocal
 from src.models.meme import Meme
-from src.schemas.meme import IMemeCreate
 
 logging.basicConfig(level=logging.INFO)
 
@@ -24,7 +23,7 @@ async def create_init_data() -> None:
         db_obj2 = Meme(
             submission_id="10t11t6",
             submission_title="just paid for wives bf vacation",
-            submission_url="https://www.reddit.com/r/dogecoin/comments/10t11t6/just_paid_for_wives_bf_vacation/",
+            submission_url="https://www.reddit.com/r/dogecoin/comments/10t11t6/just_paid_for_wives_bf_vacation/",  # noqa
             permalink="/r/dogecoin/comments/10t11t6/just_paid_for_wives_bf_vacation/",
             author="DynamicHordeOnion",
             timestamp=1675473133.0,

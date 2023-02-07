@@ -1,38 +1,34 @@
 from abc import ABCMeta, abstractmethod
-from typing import Generic, Optional, TypeVar, Union, List
-
-from sqlmodel import SQLModel
+from typing import Generic, Optional, TypeVar, List
 
 
-ModelType = TypeVar("ModelType", bound=SQLModel)
-CreateSchemaType = TypeVar("CreateSchemaType", bound=SQLModel)
-UpdateSchemaType = TypeVar("UpdateSchemaType", bound=SQLModel)
+T = TypeVar("T")
 
 
-class IRepository(Generic[ModelType, CreateSchemaType, UpdateSchemaType], metaclass=ABCMeta):
+class IRepository(Generic[T], metaclass=ABCMeta):
     """Class representing the repository interface."""
 
     @abstractmethod
-    async def create(self, obj_in: CreateSchemaType, **kwargs: int) -> ModelType:
+    async def create(self, obj_in: T, **kwargs: int) -> T:
         """Create new entity and returns the saved instance."""
         raise NotImplementedError
 
     @abstractmethod
-    async def update(self, instance: ModelType, obj_in: Union[UpdateSchemaType, ModelType]) -> ModelType:
+    async def update(self, instance: T, obj_in: T) -> T:
         """Updates an entity and returns the saved instance."""
         raise NotImplementedError
 
     @abstractmethod
-    async def get(self, **kwargs) -> ModelType:
+    async def get(self, **kwargs: int) -> T:
         """Get and return one instance by filter."""
         raise NotImplementedError
 
     @abstractmethod
-    async def delete(self, **kwargs) -> None:
+    async def delete(self, **kwargs: int) -> None:
         """Delete one instance by filter."""
         raise NotImplementedError
     
     @abstractmethod
-    async def all(self, skip: int = 0, limit: int = 100, sort_field: Optional[str] = None, sort_order: Optional[str] = None) -> List[ModelType]:
+    async def all(self, skip: int = 0, limit: int = 50, sort_field: Optional[str] = None, sort_order: Optional[str] = None) -> List[T]:
         """Delete one instance by filter."""
         raise NotImplementedError

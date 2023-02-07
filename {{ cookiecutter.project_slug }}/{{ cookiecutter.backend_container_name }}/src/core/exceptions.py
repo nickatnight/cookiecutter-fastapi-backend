@@ -1,5 +1,5 @@
 
-class {{ cookiecutter.project_name|title|replace(' ', '') }}Exception:
+class {{ cookiecutter.project_name|title|replace(' ', '') }}Exception(Exception):
     pass
 
 

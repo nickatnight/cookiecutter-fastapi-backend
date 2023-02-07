@@ -1,31 +1,24 @@
 import logging
-from abc import ABCMeta
-from typing import Generic, Optional, Type, TypeVar, Union, List
-from uuid import UUID
+from typing import Optional, Type, TypeVar, List
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlmodel import SQLModel, select
 
-from src.core.enums import SortOrder
 from src.core.exceptions import ObjectNotFound
 from src.interfaces.repository import IRepository
 
-
 ModelType = TypeVar("ModelType", bound=SQLModel)
-CreateSchemaType = TypeVar("CreateSchemaType", bound=SQLModel)
-UpdateSchemaType = TypeVar("UpdateSchemaType", bound=SQLModel)
-
 logger: logging.Logger = logging.getLogger(__name__)
 
 
-class SQLAlchemyRepository(IRepository):
+class SQLAlchemyRepository(IRepository[ModelType]):
 
     def __init__(self, model: Type[ModelType], db: AsyncSession) -> None:
         self.model = model
-        self.db: AsyncSession = db
+        self.db = db
 
-    async def create(self, obj_in: CreateSchemaType, **kwargs: int) -> ModelType:
-        logger.info(f"Inserting new object[{db_obj}]")
+    async def create(self, obj_in: ModelType, **kwargs: int) -> ModelType:
+        logger.info(f"Inserting new object[{obj_in.__class__.__name__}]")
 
         db_obj = self.model.from_orm(obj_in)
         add = kwargs.get("add", True)
@@ -61,7 +54,7 @@ class SQLAlchemyRepository(IRepository):
     
         return scalar
 
-    async def update(self, obj_current: ModelType, obj_in: Union[UpdateSchemaType, ModelType]) -> ModelType:
+    async def update(self, obj_current: ModelType, obj_in: ModelType) -> ModelType:
         logger.info(f"Updating [{self.model}] object with [{obj_in}]")
 
         update_data = obj_in.dict(
@@ -90,7 +83,13 @@ class SQLAlchemyRepository(IRepository):
         sort_field: Optional[str] = None,
         sort_order: Optional[str] = None,
     ) -> List[ModelType]:
-        columns = self.model.__table__.columns
+        columns = self.model.__table__.columns  # type: ignore
+
+        if not sort_field:
+            sort_field = "created_at"
+
+        if not sort_order:
+            sort_order = "desc"
 
         order_by = getattr(columns[sort_field], sort_order)()
         query = (
