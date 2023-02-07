@@ -3,12 +3,12 @@ version: '3.4'
 x-fastapi-envs: &fastapi_envs
   environment:
     - PROJECT_NAME={{ cookiecutter.project_slug|replace('-', '_') }}
-    - NGINX_HOST=api-staging.{{ cookiecutter._db }}.com
+    - NGINX_HOST=api-staging.{{ cookiecutter.project_slug_db }}.com
     - ENV=staging
-    - POSTGRES_USER={{ cookiecutter._db }}
+    - POSTGRES_USER={{ cookiecutter.project_slug_db }}
     - POSTGRES_PASSWORD={% raw %}${POSTGRES_PASSWORD}{% endraw %}
     - POSTGRES_HOST={{ cookiecutter.db_container_name }}
-    - POSTGRES_DB={{ cookiecutter._db }}
+    - POSTGRES_DB={{ cookiecutter.project_slug_db }}
     - POSTGRES_PORT=5432
     - VERSION=v1
 
@@ -35,9 +35,9 @@ services:
     image: postgres:14.1-alpine
     environment:
     labels:
-      com.{{ cookiecutter._db }}.container.name: {{ cookiecutter._db }}-{{ cookiecutter.db_container_name }}
-      com.{{ cookiecutter._db }}.env: staging
-      com.{{ cookiecutter._db }}.project: {{ cookiecutter._db }}-cloud
+      com.{{ cookiecutter.project_slug_db }}.container.name: {{ cookiecutter.project_slug_db }}-{{ cookiecutter.db_container_name }}
+      com.{{ cookiecutter.project_slug_db }}.env: staging
+      com.{{ cookiecutter.project_slug_db }}.project: {{ cookiecutter.project_slug_db }}-cloud
     volumes:
       - {{ cookiecutter.db_container_name }}data-vol:/data/{{ cookiecutter.db_container_name }}
     <<: *fastapi_envs
@@ -47,16 +47,16 @@ services:
     image: {% raw %}${REGISTRY}{% endraw %}/{{ cookiecutter.nginx_container_name }}:{% raw %}${GITHUB_SHA}{% endraw %}
     environment:
       - UPSTREAMS=/:{{ cookiecutter.backend_container_name }}:8000
-      - NGINX_SERVER_NAME=api-staging.{{ cookiecutter._db }}.com # without this, /admin redirects to https://_/
+      - NGINX_SERVER_NAME=api-staging.{{ cookiecutter.project_slug_db }}.com # without this, /admin redirects to https://_/
       - ENABLE_SSL=true
       - HTTPS_REDIRECT=true
       - CERTBOT_EMAIL={{ cookiecutter.author_email }}
-      - DOMAIN_LIST=api-staging.{{ cookiecutter._db }}.com
+      - DOMAIN_LIST=api-staging.{{ cookiecutter.project_slug_db }}.com
 
     labels:
-      com.{{ cookiecutter._db }}.container.name: {{ cookiecutter._db }}-{{ cookiecutter.nginx_container_name }}
-      com.{{ cookiecutter._db }}.env: staging
-      com.{{ cookiecutter._db }}.project: {{ cookiecutter._db }}-cloud
+      com.{{ cookiecutter.project_slug_db }}.container.name: {{ cookiecutter.project_slug_db }}-{{ cookiecutter.nginx_container_name }}
+      com.{{ cookiecutter.project_slug_db }}.env: staging
+      com.{{ cookiecutter.project_slug_db }}.project: {{ cookiecutter.project_slug_db }}-cloud
     ports:
       - '0.0.0.0:80:80'
       - '0.0.0.0:443:443'
@@ -68,9 +68,9 @@ services:
     image: {% raw %}${REGISTRY}{% endraw %}/{{ cookiecutter.backend_container_name }}:{% raw %}${GITHUB_SHA}{% endraw %}
     environment:
     labels:
-      com.{{ cookiecutter._db }}.container.name: {{ cookiecutter._db }}-{{ cookiecutter.backend_container_name }}
-      com.{{ cookiecutter._db }}.env: staging
-      com.{{ cookiecutter._db }}.project: {{ cookiecutter._db }}-cloud
+      com.{{ cookiecutter.project_slug_db }}.container.name: {{ cookiecutter.project_slug_db }}-{{ cookiecutter.backend_container_name }}
+      com.{{ cookiecutter.project_slug_db }}.env: staging
+      com.{{ cookiecutter.project_slug_db }}.project: {{ cookiecutter.project_slug_db }}-cloud
     <<: *fastapi_envs
     <<: *default_deploy
     volumes:
