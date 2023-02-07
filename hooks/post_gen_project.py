@@ -7,7 +7,7 @@ MEME_FILE_PATHS = [
     "%smodels/meme.py" % BASE_BACKEND_SRC_PATH,
     "%sschemas/meme.py" % BASE_BACKEND_SRC_PATH,
     "%sapi/v1/meme.py" % BASE_BACKEND_SRC_PATH,
-    "%smigrations/versions/3577cec8a2bb_init.py" % BASE_BACKEND_SRC_PATH,
+    "%srepository/meme.py" % BASE_BACKEND_SRC_PATH,
     "%sdb/init_db.py" % BASE_BACKEND_SRC_PATH,
 ]
 DEPLOYMENT_FILES = [

@@ -4,9 +4,7 @@
     "project_slug_db": "{{ cookiecutter.project_name|lower|replace(' ', '') }}",
 
     "db_container_name": "db",
-
     "backend_container_name": "backend",
-
     "nginx_container_name": "nginx",
 
     "doctl_version": "1.92.0",
