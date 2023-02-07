@@ -1,14 +1,12 @@
 from fastapi import APIRouter
-
-
-# from fastapi_limiter.depends import RateLimiter
+from fastapi.responses import Response, JSONResponse
 
 
 router = APIRouter()
 
 
 @router.get("/ping", tags=["health"])
-async def pong():
+async def pong() -> Response:
     # some async operation could happen here
     # example: `data = await get_all_datas()`
-    return {"ping": "pong!"}
+    return JSONResponse({"ping": "pong!"})
