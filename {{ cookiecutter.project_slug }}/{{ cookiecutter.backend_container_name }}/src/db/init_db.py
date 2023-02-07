@@ -4,6 +4,7 @@ import logging
 from src.db.session import SessionLocal
 from src.models.meme import Meme
 
+
 logging.basicConfig(level=logging.INFO)
 
 

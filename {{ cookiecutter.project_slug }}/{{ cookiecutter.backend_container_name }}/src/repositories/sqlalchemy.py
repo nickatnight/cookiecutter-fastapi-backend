@@ -7,12 +7,12 @@ from sqlmodel import SQLModel, select
 from src.core.exceptions import ObjectNotFound
 from src.interfaces.repository import IRepository
 
+
 ModelType = TypeVar("ModelType", bound=SQLModel)
 logger: logging.Logger = logging.getLogger(__name__)
 
 
 class SQLAlchemyRepository(IRepository[ModelType]):
-
     def __init__(self, model: Type[ModelType], db: AsyncSession) -> None:
         self.model = model
         self.db = db
@@ -92,12 +92,7 @@ class SQLAlchemyRepository(IRepository[ModelType]):
             sort_order = "desc"
 
         order_by = getattr(columns[sort_field], sort_order)()
-        query = (
-            select(self.model)
-            .offset(skip)
-            .limit(limit)
-            .order_by(order_by)
-        )
+        query = select(self.model).offset(skip).limit(limit).order_by(order_by)
 
         response = await self.db.execute(query)
         return response.scalars().all()

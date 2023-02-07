@@ -1,12 +1,12 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.core.enums import SortOrder
 from src.db.session import get_session
-from src.repositories.sqlalchemy import SQLAlchemyRepository
 from src.models.meme import Meme
+from src.repositories.sqlalchemy import SQLAlchemyRepository
 from src.schemas.common import IGetResponseBase
 from src.schemas.meme import IMemeRead
 
@@ -28,6 +28,8 @@ async def memes(
     session: AsyncSession = Depends(get_session),
 ) -> IGetResponseBase[List[IMemeRead]]:
     meme_repo = SQLAlchemyRepository(model=Meme, db=session)
-    memes = await meme_repo.all(skip=skip, limit=limit, sort_field=sort_field, sort_order=sort_order)
+    memes = await meme_repo.all(
+        skip=skip, limit=limit, sort_field=sort_field, sort_order=sort_order
+    )
 
     return IGetResponseBase[List[IMemeRead]](data=memes)

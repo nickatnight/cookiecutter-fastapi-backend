@@ -1,4 +1,3 @@
-
 class {{ cookiecutter.project_name|title|replace(' ', '') }}Exception(Exception):
     pass
 
