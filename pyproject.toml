@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "cookiecutter-fastapi-backend"
+version = "0.2.4"
+description = ""
+authors = ["nickatnight <nickkelly.858@gmail.com>"]
+readme = "README.md"
+packages = [{include = "cookiecutter_fastapi_backend"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+cookiecutter = "^2.1.1"
+pytest = "^7.2.1"
+pytest-cookies = "0.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
