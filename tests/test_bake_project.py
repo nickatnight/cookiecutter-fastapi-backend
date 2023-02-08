@@ -1,11 +1,11 @@
 from contextlib import contextmanager
 
-import pytest_cookies
+from pytest_cookies import plugin
 from cookiecutter.utils import rmtree
 
 
 @contextmanager
-def bake_in_temp_dir(cookies: pytest_cookies.Cookies, *args: str, **kwargs: int) -> pytest_cookies.Result:
+def bake_in_temp_dir(cookies: plugin.Result, *args: str, **kwargs: int) -> plugin.Result:
     """
     Delete the temporal directory that is created when executing the tests
     :param cookies: pytest_cookies.Cookies,
