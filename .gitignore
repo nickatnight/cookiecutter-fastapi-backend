@@ -70,13 +70,11 @@ coverage.xml
 *,cover
 .hypothesis/
 .pytest_cache/
+.ruff_cache
 
 # Translations
 *.mo
 *.pot
-
-# Django stuff:
-*.log
 
 # Sphinx documentation
 docs/_build/

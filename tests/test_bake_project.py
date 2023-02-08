@@ -8,11 +8,7 @@ from pytest_cookies import plugin
 def bake_in_temp_dir(
     cookies: plugin.Result, *args: str, **kwargs: int
 ) -> plugin.Result:
-    """
-    Delete the temporal directory that is created when executing the tests
-    :param cookies: pytest_cookies.Cookies,
-        cookie to be baked and its temporal files will be removed
-    """
+    """Delete the temporal directory that is created when executing the tests"""
     result = cookies.bake(*args, **kwargs)
     try:
         yield result

@@ -1,5 +1,3 @@
----
-
 name: main
 
 on:
@@ -10,6 +8,12 @@ on:
       - master
 
 jobs:
+  lint:
+    uses: ./.github/workflows/pre-commit.yml
+
+  tests:
+    uses: ./.github/workflows/test.yml
+
   create-release:
     permissions:
       contents: write

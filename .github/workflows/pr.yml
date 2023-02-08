@@ -1,0 +1,13 @@
+name: pull-request
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint:
+    uses: ./.github/workflows/pre-commit.yml
+
+  tests:
+    uses: ./.github/workflows/test.yml

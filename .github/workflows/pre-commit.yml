@@ -1,14 +1,8 @@
-name: pre-commit and tests
+name: pre-commit
 
-on:
-  pull_request:
-    branches:
-      - master
+on: [workflow_call]  # allow this workflow to be called from other workflows
 
 jobs:
-  tests:
-    uses: ./.github/workflows/test.yml
-
   pre-commit:
     runs-on: ubuntu-latest
     name: Check python linting
