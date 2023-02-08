@@ -1,11 +1,13 @@
 from contextlib import contextmanager
 
-from pytest_cookies import plugin
 from cookiecutter.utils import rmtree
+from pytest_cookies import plugin
 
 
 @contextmanager
-def bake_in_temp_dir(cookies: plugin.Result, *args: str, **kwargs: int) -> plugin.Result:
+def bake_in_temp_dir(
+    cookies: plugin.Result, *args: str, **kwargs: int
+) -> plugin.Result:
     """
     Delete the temporal directory that is created when executing the tests
     :param cookies: pytest_cookies.Cookies,
@@ -25,12 +27,12 @@ def test_bake_with_defaults(cookies) -> None:
         assert result.exception is None
 
         found_toplevel_files = [f.basename for f in result.project.listdir()]
-        assert 'README.md' in found_toplevel_files
-        assert 'Makefile' in found_toplevel_files
-        assert 'docker-compose.yml' in found_toplevel_files
-        assert 'ops' in found_toplevel_files
-        assert 'backend' in found_toplevel_files
-        assert 'nginx' in found_toplevel_files
-        assert '.pre-commit-config.yaml' in found_toplevel_files
-        assert '.gitignore' in found_toplevel_files
-        assert '.env' in found_toplevel_files
+        assert "README.md" in found_toplevel_files
+        assert "Makefile" in found_toplevel_files
+        assert "docker-compose.yml" in found_toplevel_files
+        assert "ops" in found_toplevel_files
+        assert "backend" in found_toplevel_files
+        assert "nginx" in found_toplevel_files
+        assert ".pre-commit-config.yaml" in found_toplevel_files
+        assert ".gitignore" in found_toplevel_files
+        assert ".env" in found_toplevel_files
