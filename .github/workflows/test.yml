@@ -26,7 +26,7 @@ jobs:
         run: poetry env use ${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies 🤖
-        run: poetry install
+        run: poetry install --no-root
 
-      - name: Lint with isort 📉
+      - name: Run tests 📉
         run: poetry run pytest tests
