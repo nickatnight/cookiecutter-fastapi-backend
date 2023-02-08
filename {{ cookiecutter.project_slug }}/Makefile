@@ -35,9 +35,9 @@ test:
 	@echo "running pytest...."
 	docker compose exec {{ cookiecutter.backend_container_name }} pytest --cov-report xml --cov=src tests/
 
-flake8:
-	@echo "running flake8...."
-	docker compose exec {{ cookiecutter.backend_container_name }} flake8
+lint:
+	@echo "running ruff...."
+	docker compose exec {{ cookiecutter.backend_container_name }} ruff src
 
 black:
 	@echo "running black...."

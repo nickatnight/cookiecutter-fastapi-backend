@@ -15,11 +15,10 @@ repos:
     hooks:
     -   id: black
         args: ["--config=./{{ cookiecutter.backend_container_name }}/pyproject.toml"]
--   repo: https://github.com/PyCQA/flake8
-    rev: 5.0.4
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 'v0.0.241'
     hooks:
-    -   id: flake8
-        args: ["--config=./{{ cookiecutter.backend_container_name }}/.flake8"]
+        - id: ruff
 -   repo: https://github.com/PyCQA/isort
     rev: 5.12.0
     hooks:

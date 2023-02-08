@@ -40,8 +40,7 @@ services:
       com.{{ cookiecutter.project_slug_db }}.project: {{ cookiecutter.project_slug_db }}-cloud
     volumes:
       - {{ cookiecutter.db_container_name }}data-vol:/data/{{ cookiecutter.db_container_name }}
-    <<: *fastapi_envs
-    <<: *default_deploy
+    <<: [*fastapi_envs, *default_deploy]
 
   {{ cookiecutter.nginx_container_name }}:
     image: {% raw %}${REGISTRY}{% endraw %}/{{ cookiecutter.nginx_container_name }}:{% raw %}${GITHUB_SHA}{% endraw %}
@@ -71,8 +70,7 @@ services:
       com.{{ cookiecutter.project_slug_db }}.container.name: {{ cookiecutter.project_slug_db }}-{{ cookiecutter.backend_container_name }}
       com.{{ cookiecutter.project_slug_db }}.env: prod
       com.{{ cookiecutter.project_slug_db }}.project: {{ cookiecutter.project_slug_db }}-cloud
-    <<: *fastapi_envs
-    <<: *default_deploy
+    <<: [*fastapi_envs, *default_deploy]
     volumes:
       - data-vol:/data
     command: bash -c "uvicorn src.main:app --workers 1 --host 0.0.0.0 --port 8000"
