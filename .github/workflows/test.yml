@@ -22,6 +22,9 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: "poetry"
 
+      - name: Set Poetry environment
+        run: poetry env use ${{ env.PYTHON_VERSION }}
+
       - name: Install dependencies 🤖
         run: poetry install
 
