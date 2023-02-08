@@ -1,0 +1,32 @@
+name: test
+
+on: [workflow_call]  # allow this workflow to be called from other workflows
+
+env:
+  PYTHON_VERSION: 3.9
+
+jobs:
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Install poetry 📚
+        run: pipx install poetry
+
+      - name: Set up Python 3.9 🐍
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "poetry"
+
+      - name: Set Poetry environment
+        run: poetry env use ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies 🤖
+        run: poetry install --no-root
+
+      - name: Run tests 📉
+        run: poetry run pytest tests

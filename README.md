@@ -3,6 +3,9 @@
         <img alt="GitHub Actions status" src="https://github.com/nickatnight/cookiecutter-fastapi-backend/actions/workflows/main.yml/badge.svg">
     </a>
     <a href="https://github.com/nickatnight/cookiecutter-fastapi-backend/releases"><img alt="Release Status" src="https://img.shields.io/github/v/release/nickatnight/cookiecutter-fastapi-backend"></a>
+    <a href="https://github.com/nickatnight/cookiecutter-fastapi-backend/blob/master/LICENSE">
+        <img alt="License Shield" src="https://img.shields.io/github/license/nickatnight/cookiecutter-fastapi-backend">
+    </a>
 </p>
 
 # cookiecutter-fastapi-backend
@@ -61,6 +64,11 @@ The input variables, with their default values (some auto generated) are:
 
 ## More Details
 After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can view it [here](/%7B%7B%20cookiecutter.project_slug%20%7D%7D/README.md)
+
+## Development
+This project uses [Poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions) to manage dev environment.  Once installed:
+1. install packages with `poetry install`
+2. run tests with `poetry run pytest tests`
 
 ## Acknowledgements
 - [tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project

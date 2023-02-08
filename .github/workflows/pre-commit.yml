@@ -1,0 +1,13 @@
+name: pre-commit
+
+on: [workflow_call]  # allow this workflow to be called from other workflows
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    name: Check python linting
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.0

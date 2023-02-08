@@ -1,6 +1,5 @@
 import os
 
-
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 BASE_BACKEND_SRC_PATH = "{{ cookiecutter.backend_container_name }}/src/"
 MEME_FILE_PATHS = [
@@ -12,8 +11,9 @@ MEME_FILE_PATHS = [
 DEPLOYMENT_FILES = [
     "ops/docker-compose.prod.yml",
     "ops/docker-compose.staging.yml",
-    ".github/workflows/build.yml"
+    ".github/workflows/build.yml",
 ]
+
 
 def remove_file(filepath: str) -> None:
     os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
