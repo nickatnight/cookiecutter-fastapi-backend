@@ -1,5 +1,5 @@
 import logging
-from typing import Optional, Type, TypeVar, List
+from typing import List, Optional, Type, TypeVar
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlmodel import SQLModel, select
@@ -51,7 +51,7 @@ class SQLAlchemyRepository(IRepository[ModelType]):
 
         if not scalar:
             raise ObjectNotFound(f"Object with [{kwargs}] not found.")
-    
+
         return scalar
 
     async def update(self, obj_current: ModelType, obj_in: ModelType) -> ModelType:
@@ -75,7 +75,7 @@ class SQLAlchemyRepository(IRepository[ModelType]):
 
         await self.db.delete(obj)
         await self.db.commit()
-    
+
     async def all(
         self,
         skip: int = 0,

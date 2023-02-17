@@ -9,7 +9,7 @@
 </p>
 
 # cookiecutter-fastapi-backend
-[Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends..batteries included.
+:cookie: [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends..batteries included.
 
 ## Quickstart
 Install the latest Cookiecutter if you haven't installed it yet (this requires Cookiecutter 1.4.0 or higher):
@@ -23,26 +23,18 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 ```
 
 ## Features
-* **Docker & Docker Compose** integration and optimization for local development. Fast bundles using build stages and Poetry
-* **Production ready** Python web server using Uvicorn
-* Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a>:
-    * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
-    * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-    * **Easy**: Designed to be easy to use and learn. Less time reading docs.
-    * **Short**: Minimize code duplication. Multiple features from each parameter declaration.
-    * **Robust**: Get production-ready code. With automatic interactive documentation.
-    * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
-    * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Many other features**</a> including automatic validation, serialization, interactive documentation, authentication with OAuth2 JWT tokens, etc.
-* **SQLModel** Library for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
-* **Alembic** Lightweight database migration tool for usage with the SQLAlchemy Database Toolkit for Python
-* **CORS** (Cross Origin Resource Sharing).
-* **NGINX** High Performance Load Balancer, Web Server, & Reverse Proxy
-* **Let's Encrypt** A free, automated, and open certificate authority (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
-* **PostgresSQL** Powerfull open source object-relational database
-* **AsyncPG** Database interface library designed specifically for PostgreSQL and Python/asyncio
-* **Redis** In-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker
-* **Continuous Integration/Deployment** Modular GitHub Actions to lint, build, test, and deploy to DigitalOcean cloud
-* **pre-commit** Git hooks to maintain code quality
+* :whale: **Docker & Docker Compose** integration and optimization for local development. Fast bundles using build stages and Poetry
+* :computer: **Production ready** Python web server using <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">FastAPI</a>
+* :pencil2: **SQLModel** Library for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
+* :light_rail: **Alembic** Lightweight database migration tool for usage with the SQLAlchemy Database Toolkit for Python
+* :large_blue_diamond: **CORS** (Cross Origin Resource Sharing).
+* :globe_with_meridians: **NGINX** High Performance Load Balancer, Web Server, & Reverse Proxy
+* :lock: **Let's Encrypt** A free, automated, and open certificate authority (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
+* :floppy_disk: **postgresql** Powerful open source object-relational database
+* :left_right_arrow: **AsyncPG** Database interface library designed specifically for PostgreSQL and Python/asyncio
+* :convenience_store: **Redis** In-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker
+* :inbox_tray: **Continuous Integration/Deployment** Modular GitHub Actions to lint, build, test, and deploy to DigitalOcean cloud
+* :leftwards_arrow_with_hook: **pre-commit** Git hooks to maintain code quality using modern tooling (ruff, black, isort)
 
 ## Input Variables
 The generator (cookiecutter) will ask you for some data, you might want to have at hand before generating the project.
@@ -53,6 +45,7 @@ The input variables, with their default values (some auto generated) are:
 * `project_slug`: The development friendly name of the project. By default, based on the project name
 * `project_slug_db`: The database friendly name of the project. By default, based on the project name
 * `author_email`: The authors email...used for certbot
+* `py_version`: The version of Python to install. Options are `3.8`, `3.9`, `3.10`, and `3.11`
 * `db_container_name`: The name of the database container. Default `db`
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `nginx_container_name`: The name of the nginx web server container. Default `nginx`
@@ -77,5 +70,5 @@ Pre-commit:
 ## Acknowledgements
 - [tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project
 - [jonra](https://github.com/jonra1993/fastapi-alembic-sqlmodel-async) for the Alembic/SQLModel knowledge
-- [nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hax
+- [nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hacks
 - [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django) for cookiecutter testing patterns

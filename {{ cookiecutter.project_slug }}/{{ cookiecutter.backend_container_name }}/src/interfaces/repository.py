@@ -27,14 +27,14 @@ class IRepository(Generic[T], metaclass=ABCMeta):
     async def delete(self, **kwargs: int) -> None:
         """Delete one instance by filter."""
         raise NotImplementedError
-    
+
     @abstractmethod
     async def all(
         self,
         skip: int = 0,
         limit: int = 50,
         sort_field: Optional[str] = None,
-        sort_order: Optional[str] = None
+        sort_order: Optional[str] = None,
     ) -> List[T]:
         """Delete one instance by filter."""
         raise NotImplementedError
