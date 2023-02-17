@@ -11,7 +11,7 @@ on:
 jobs:
   lint:
     uses: ./.github/workflows/lint.yml
-  
+
   unit-tests:
     needs: [lint]
     uses: ./.github/workflows/unit-tests.yml
