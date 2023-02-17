@@ -23,18 +23,17 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 ```
 
 ## Features
-* :whale: **Docker & Docker Compose** integration and optimization for local development. Fast bundles using build stages and Poetry
-* :computer: **Production ready** Python web server using <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">FastAPI</a>
-* :pencil2: **SQLModel** Library for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
-* :light_rail: **Alembic** Lightweight database migration tool for usage with the SQLAlchemy Database Toolkit for Python
-* :large_blue_diamond: **CORS** (Cross Origin Resource Sharing).
-* :globe_with_meridians: **NGINX** High Performance Load Balancer, Web Server, & Reverse Proxy
-* :lock: **Let's Encrypt** A free, automated, and open certificate authority (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
-* :floppy_disk: **postgresql** Powerful open source object-relational database
-* :left_right_arrow: **AsyncPG** Database interface library designed specifically for PostgreSQL and Python/asyncio
-* :convenience_store: **Redis** In-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker
-* :inbox_tray: **Continuous Integration/Deployment** Modular GitHub Actions to lint, build, test, and deploy to DigitalOcean cloud
-* :leftwards_arrow_with_hook: **pre-commit** Git hooks to maintain code quality using modern tooling (ruff, black, isort)
+* :whale: **Docker & Docker Compose** integration and optimization for [local development](https://docs.docker.com/compose/). Fast bundles using build stages and [Poetry](https://python-poetry.org/)
+* :computer: **Production ready** Python web server using [FastAPI](https://fastapi.tiangolo.com/)
+* :pencil2: **SQLModel** [Library](https://sqlmodel.tiangolo.com/) for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
+* :light_rail: **Alembic** Lightweight database migration tool for usage with the [SQLAlchemy](https://alembic.sqlalchemy.org/en/latest/) Database Toolkit for Python
+* :globe_with_meridians: **NGINX** High Performance Load Balancer, [Web Server](https://www.nginx.com/), & Reverse Proxy
+* :lock: **Let's Encrypt** A free, automated, and open [certificate authority](https://letsencrypt.org/) (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
+* :floppy_disk: **postgresql** Powerful open source [object-relational](https://www.postgresql.org/) database
+* :left_right_arrow: **AsyncPG** [Database](https://magicstack.github.io/asyncpg/current/) interface library designed specifically for PostgreSQL and Python/asyncio
+* :convenience_store: **Redis** In-memory data structure [store](https://redis.io/), used as a distributed, in-memory key–value database, cache and message broker
+* :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, build, test, and deploy to DigitalOcean cloud
+* :leftwards_arrow_with_hook: **pre-commit** [Git hooks](https://pre-commit.com/) to maintain code quality using modern tooling (ruff, black, isort)
 
 ## Input Variables
 The generator (cookiecutter) will ask you for some data, you might want to have at hand before generating the project.
