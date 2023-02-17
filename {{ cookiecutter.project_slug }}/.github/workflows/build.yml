@@ -13,10 +13,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
-        {% raw %}
-        with:
-          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
-        {% endraw %}
+        {% raw %}with:
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}{% endraw %}
       - name: Build {{ cookiecutter.backend_container_name }}
         run: |
           docker build --build-arg env=staging -t {% raw %}${{ secrets.REGISTRY }}{% endraw %}/{{ cookiecutter.backend_container_name }}:{% raw %}${{ github.sha }}{% endraw %} ./{{ cookiecutter.backend_container_name }}
