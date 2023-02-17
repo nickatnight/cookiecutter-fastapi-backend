@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cookiecutter-fastapi-backend"
-version = "0.2.4"
+version = "0.2.5"
 description = "Cookiecutter template to build and deploy fastapi backends..batteries included"
 authors = ["nickatnight <nickkelly.858@gmail.com>"]
 readme = "README.md"
@@ -15,6 +15,32 @@ python = "^3.9"
 cookiecutter = "^2.1.1"
 pytest = "^7.2.1"
 pytest-cookies = "0.6.1"
+sh = "^2.0.2"
+binaryornot = "^0.4.4"
+pre-commit = "^3.0.4"
+pytest-instafail = "^0.4.2"
+
+[tool.ruff]
+line-length = 100
+exclude = [".git", "__pycache__", ".mypy_cache", ".pytest_cache"]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    # "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "B904",
+    "B006",
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
 
 [build-system]
 requires = ["poetry-core"]

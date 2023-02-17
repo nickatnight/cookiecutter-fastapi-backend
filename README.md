@@ -70,7 +70,12 @@ This project uses [Poetry](https://python-poetry.org/docs/#osx--linux--bashonwin
 1. install packages with `poetry install`
 2. run tests with `poetry run pytest tests`
 
+Pre-commit:
+1. Install pre-commit hooks with `pre-commit install`
+2. Run hooks with `pre-commit run --all-files`
+
 ## Acknowledgements
 - [tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project
 - [jonra](https://github.com/jonra1993/fastapi-alembic-sqlmodel-async) for the Alembic/SQLModel knowledge
 - [nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hax
+- [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django) for cookiecutter testing patterns

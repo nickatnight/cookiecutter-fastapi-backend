@@ -5,6 +5,8 @@
 
     "author_email": "change.me@gmail.com",
 
+    "py_version": ["3.8", "3.9", "3.10", "3.11"],
+
     "db_container_name": "db",
     "backend_container_name": "backend",
     "nginx_container_name": "nginx",

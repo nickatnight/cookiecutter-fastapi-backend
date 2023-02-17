@@ -7,8 +7,15 @@ env:
 
 jobs:
   run-tests:
-    name: Run Tests
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macOS-latest
+    name: "pytest ${{ matrix.os }}"
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v3
@@ -23,6 +30,7 @@ jobs:
           cache: "poetry"
 
       - name: Set Poetry environment
+        if: matrix.os == 'ubuntu-latest'
         run: poetry env use ${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies 🤖
