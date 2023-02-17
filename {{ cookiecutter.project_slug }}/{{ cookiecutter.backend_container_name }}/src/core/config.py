@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Dict, List, Optional
 
 from pydantic import AnyHttpUrl, BaseSettings, Field, PostgresDsn, validator
@@ -8,6 +9,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
     # SERVER_NAME: Optional[str] = Field(..., env="NGINX_HOST")
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
+    LOG_LEVEL: int = Field(default=logging.INFO, env="LOG_LEVEL")
 
     CLIENT_ID: str = Field(default="", env="CLIENT_ID")
     CLIENT_SECRET: str = Field(default="", env="CLIENT_SECRET")

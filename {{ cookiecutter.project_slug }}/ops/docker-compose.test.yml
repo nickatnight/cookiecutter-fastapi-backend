@@ -11,7 +11,7 @@ services:
         env: "test"
     command: |
         bash -c "
-        while !</dev/tcp/db-test/5432; do sleep 1; done;
+        while !</dev/tcp/{{ cookiecutter.db_container_name }}-test/5432; do sleep 1; done;
         pytest --cov-report=xml:/data/coverage.xml --cov=src/ ."
     environment:
       - PYTHONUNBUFFERED=0
@@ -23,11 +23,11 @@ services:
       - POSTGRES_PASSWORD=test
       - POSTGRES_DB=test
       - POSTGRES_PORT=5432
-      - POSTGRES_HOST=db-test
+      - POSTGRES_HOST={{ cookiecutter.db_container_name }}-test
     volumes:
       - /data:/data  # to access coverage.xml
 
-  db-test:
+  {{ cookiecutter.db_container_name }}-test:
     image: postgres:14.1-alpine
     expose:
       - "5432"
@@ -36,4 +36,4 @@ services:
       - POSTGRES_PASSWORD=test
       - POSTGRES_DB=test
       - POSTGRES_PORT=5432
-      - POSTGRES_HOST=db-test
+      - POSTGRES_HOST={{ cookiecutter.db_container_name }}-test

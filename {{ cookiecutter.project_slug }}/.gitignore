@@ -1,13 +1,54 @@
-.DS_Store
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.pytest_cache
+*.py[cod]
+*$py.class
 
+# OSX useful to ignore
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Env
 .env
 
-__pycache__
-.pytest_cache
-*.out
-
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+.pytest_cache/
+.ruff_cache
 .mypy_cache
 
-htmlcov/
-coverage.xml
-.coverage
+# Translations
+*.mo
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+# IntelliJ Idea family of suites
+.idea
+*.iml
+## File-based project format:
+*.ipr
+*.iws
+## mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# Cookiecutter
+output/
+python_boilerplate/
+cookiecutter-pypackage-env/
+
+# IDE settings
+.vscode/

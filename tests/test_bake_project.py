@@ -32,3 +32,7 @@ def test_bake_with_defaults(cookies) -> None:
         assert ".pre-commit-config.yaml" in found_toplevel_files
         assert ".gitignore" in found_toplevel_files
         assert ".env" in found_toplevel_files
+
+
+def test_bake_with_different_py_versions(cookies) -> None:
+    pass

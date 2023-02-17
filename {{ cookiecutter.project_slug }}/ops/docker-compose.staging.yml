@@ -73,4 +73,4 @@ services:
     <<: [*fastapi_envs, *default_deploy]
     volumes:
       - data-vol:/data
-    command: bash -c "uvicorn src.main:app --workers 1 --host 0.0.0.0 --port 8000"
+    command: bash -c "uvicorn src.main:app --workers 1 --host 0.0.0.0 --port 8000 --log-config=logconfig.yml"
