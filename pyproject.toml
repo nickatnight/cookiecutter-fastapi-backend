@@ -18,6 +18,7 @@ pytest-cookies = "0.6.1"
 sh = "^2.0.2"
 binaryornot = "^0.4.4"
 pre-commit = "^3.0.4"
+pytest-instafail = "^0.4.2"
 
 [tool.ruff]
 line-length = 100

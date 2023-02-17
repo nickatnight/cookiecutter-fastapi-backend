@@ -29,11 +29,13 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: "poetry"
 
-      - name: Set Poetry environment
-        run: poetry env use ${{ env.PYTHON_VERSION }}
+      # - name: Set Poetry environment
+      #   run: poetry env use ${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies 🤖
-        run: poetry install --no-root
+        run: |
+          poetry env use ${{ env.PYTHON_VERSION }}
+          poetry install --no-root
 
       - name: Run tests 📉
         run: poetry run pytest tests

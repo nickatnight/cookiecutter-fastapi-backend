@@ -526,6 +526,21 @@ cookiecutter = ">=1.4.0"
 pytest = ">=3.3.0"
 
 [[package]]
+name = "pytest-instafail"
+version = "0.4.2"
+description = "pytest plugin to show failures instantly"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+files = [
+    {file = "pytest-instafail-0.4.2.tar.gz", hash = "sha256:19273fdf3f0f9a1cb4b7a0bc8aa1bdaaf6b0f62a681b693d5eca4626abc99782"},
+    {file = "pytest_instafail-0.4.2-py2.py3-none-any.whl", hash = "sha256:1ec440a177be89a9ed2759dade8e1f7a2b95bac74ae81dc91318d309bf4ebd4f"},
+]
+
+[package.dependencies]
+pytest = ">=2.9"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -736,4 +751,4 @@ test = ["covdefaults (>=2.2.2)", "coverage (>=7.1)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "8c7ca0f7848ee6ef0328499128ea830a1444940a62da96584b37c7f6ba527709"
+content-hash = "334be57e17477533f6db2c635821149e85e4ec0567052796cdd3026b128d2734"
