@@ -9,7 +9,7 @@
 </p>
 
 # cookiecutter-fastapi-backend
-[Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends..batteries included.
+:cookie: [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends..batteries included.
 
 ## Quickstart
 Install the latest Cookiecutter if you haven't installed it yet (this requires Cookiecutter 1.4.0 or higher):
@@ -24,7 +24,7 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 
 ## Features
 * :whale: **Docker & Docker Compose** integration and optimization for local development. Fast bundles using build stages and Poetry
-* :computer; **Production ready** Python web server using <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">FastAPI</a>
+* :computer: **Production ready** Python web server using <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">FastAPI</a>
 * :pencil2: **SQLModel** Library for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
 * :light_rail: **Alembic** Lightweight database migration tool for usage with the SQLAlchemy Database Toolkit for Python
 * :large_blue_diamond: **CORS** (Cross Origin Resource Sharing).
