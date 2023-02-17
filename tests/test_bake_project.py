@@ -1,6 +1,6 @@
 import os
 import re
-from typing import List
+from typing import Dict, List
 
 import pytest
 from binaryornot.check import is_binary
@@ -25,7 +25,7 @@ RE_OBJ = re.compile(PATTERN)
 
 
 @pytest.fixture
-def context():
+def context() -> Dict:
     return {
         "project_name": "Goblet of Fire",
         "project_slug": "goblet-of-fire",
@@ -49,7 +49,7 @@ def build_files_list(base_dir) -> List[str]:
     ]
 
 
-def check_paths(paths):
+def check_paths(paths) -> None:
     """Method to check all paths have correct substitutions."""
     # Assert that no match is found in any of the files
     for path in paths:
@@ -61,13 +61,13 @@ def check_paths(paths):
             assert match is None, f"cookiecutter variable not replaced in {path}"
 
 
-def _fixture_id(ctx):
+def _fixture_id(ctx) -> str:
     """Helper to get a user-friendly test name from the parametrized context."""
     return "-".join(f"{key}:{value}" for key, value in ctx.items())
 
 
 @pytest.mark.parametrize("context_override", SUPPORTED_COMBINATIONS, ids=_fixture_id)
-def test_project_generation(cookies, context, context_override):
+def test_project_generation(cookies, context, context_override) -> None:
     """Test that project is generated and fully rendered."""
 
     result = cookies.bake(extra_context={**context, **context_override})
@@ -82,12 +82,12 @@ def test_project_generation(cookies, context, context_override):
 
 
 @pytest.mark.parametrize("context_override", SUPPORTED_COMBINATIONS, ids=_fixture_id)
-def test_pre_commit_hooks(cookies, context_override):
+def test_pre_commit_hooks(cookies, context_override) -> None:
     """Generated project pre-commit hooks run successfully."""
     _ = cookies.bake(extra_context=context_override)
 
     try:
-        sh.git("init")
-        sh.poetry("run", "pre-commit --all-files")
+        sh.git("init")  # so pre-commit has files to run against
+        sh.poetry("run", "pre-commit", "run", "--all-files")
     except sh.ErrorReturnCode as e:
         pytest.fail(e.stdout.decode())
