@@ -34,6 +34,7 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 
+
 async def on_startup() -> None:
     redis_client = await get_redis_client()
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")

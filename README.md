@@ -30,7 +30,7 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 * :large_blue_diamond: **CORS** (Cross Origin Resource Sharing).
 * :globe_with_meridians: **NGINX** High Performance Load Balancer, Web Server, & Reverse Proxy
 * :lock: **Let's Encrypt** A free, automated, and open certificate authority (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
-* :floppy_disk: **PostgresSQL** Powerfull open source object-relational database
+* :floppy_disk: **postgresql** Powerful open source object-relational database
 * :left_right_arrow: **AsyncPG** Database interface library designed specifically for PostgreSQL and Python/asyncio
 * :convenience_store: **Redis** In-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker
 * :inbox_tray: **Continuous Integration/Deployment** Modular GitHub Actions to lint, build, test, and deploy to DigitalOcean cloud
@@ -70,5 +70,5 @@ Pre-commit:
 ## Acknowledgements
 - [tiangolo](https://github.com/tiangolo/full-stack-fastapi-postgresql) for the FastAPI project
 - [jonra](https://github.com/jonra1993/fastapi-alembic-sqlmodel-async) for the Alembic/SQLModel knowledge
-- [nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hax
+- [nemd](https://github.com/nemd/) / [ironhalik](https://github.com/ironhalik/) for the inspiration and Docker hacks
 - [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django) for cookiecutter testing patterns
