@@ -61,12 +61,6 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.9 🐍
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: pip
-
       - name: Install poetry 📚
         run: pipx install poetry
 
