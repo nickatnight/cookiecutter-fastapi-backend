@@ -38,3 +38,50 @@ jobs:
 
       - name: Run tests 📉
         run: poetry run pytest tests
+
+  docker:
+    strategy:
+      fail-fast: false
+      matrix:
+        script:
+          - name: Basic
+            args: ""
+          - name: Deployments, Example Api, & py3.11
+            args: "include_example_api=yes deployments=yes, py_version=3.11"
+          - name: Deployments, Example Api, & py3.9
+            args: "include_example_api=yes deployments=yes, py_version=3.9"
+          - name: Deployments, Example Api, & py3.8
+            args: "include_example_api=yes deployments=yes, py_version=3.8"
+    name: "Docker ${{ matrix.script.name }}"
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+      COMPOSE_DOCKER_CLI_BUILD: 1
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9 🐍
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install poetry 📚
+        run: pipx install poetry
+
+      - name: Set up Python 3.9 🐍
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "poetry"
+
+      - name: Set Poetry environment
+        if: matrix.os == 'ubuntu-latest'
+        run: poetry env use ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies 🤖
+        run: poetry install --no-root
+
+      - name: Docker ${{ matrix.script.name }}
+        run: sh tests/test_docker.sh ${{ matrix.script.args }}

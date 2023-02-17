@@ -1,5 +1,5 @@
 default_language_version:
-    python: python3.9
+    python: python{{ cookiecutter.py_version }}
 
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
@@ -15,6 +15,10 @@ repos:
     hooks:
     -   id: black
         args: ["--config=./{{ cookiecutter.backend_container_name }}/pyproject.toml"]
+-   repo: https://github.com/codespell-project/codespell
+    rev: v2.2.2
+    hooks:
+        - id: codespell
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: 'v0.0.241'
     hooks:
