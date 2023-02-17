@@ -11,7 +11,7 @@ mkdir -p .cache/docker
 cd .cache/docker
 
 # create the project using the default settings in cookiecutter.json
-cookiecutter ../../ --no-input --overwrite-if-exists "$@"
+poetry run cookiecutter ../../ --no-input --overwrite-if-exists "$@"
 cd fastapi-backend
 
 # Lint by running pre-commit on all files
@@ -19,7 +19,7 @@ cd fastapi-backend
 # We don't have git inside Docker, so run it outside
 git init
 git add .
-pre-commit run --show-diff-on-failure --all-files
+poetry run pre-commit run --show-diff-on-failure --all-files
 
 # make sure all images build
 docker-compose build
