@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 from typing import Dict, List
 
 import pytest
@@ -9,6 +10,12 @@ try:
     import sh
 except (ImportError, ModuleNotFoundError):
     sh = None  # sh doesn't support Windows
+
+if sys.platform.startswith("win"):
+    pytest.skip("sh doesn't support windows", allow_module_level=True)
+elif sys.platform.startswith("darwin") and os.getenv("CI"):
+    # "CI" env var is provided by GHA runner
+    pytest.skip("skipping slow macOS tests on CI", allow_module_level=True)
 
 SUPPORTED_COMBINATIONS = [
     {"include_example_api": "no"},
@@ -87,7 +94,8 @@ def test_pre_commit_hooks(cookies, context_override) -> None:
     _ = cookies.bake(extra_context=context_override)
 
     try:
-        sh.git("init")  # so pre-commit has files to run against
+        if os.getenv("CI"):  # so pre-commit has files to run against
+            sh.git("init")
         sh.poetry("run", "pre-commit", "run", "--all-files")
     except sh.ErrorReturnCode as e:
         pytest.fail(e.stdout.decode())
