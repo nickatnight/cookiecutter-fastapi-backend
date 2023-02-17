@@ -5,6 +5,10 @@ on: [workflow_call]  # allow this workflow to be called from other workflows
 env:
   PYTHON_VERSION: 3.9
 
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   run-tests:
     strategy:
@@ -27,7 +31,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: "poetry"
 
       # - name: Set Poetry environment
       #   run: poetry env use ${{ env.PYTHON_VERSION }}
