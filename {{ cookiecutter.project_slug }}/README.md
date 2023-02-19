@@ -97,7 +97,7 @@ volumes:
       - proxydata-vol:/etc/letsencrypt
 ```
 
-Some of the envrionment variables available:
+Some of the environment variables available:
 - `UPSTREAMS=/:{{ cookiecutter.backend_container_name }}:8000` a comma separated list of \<path\>:\<upstream\>:\<port\>.  Each of those of those elements creates a location block with proxy_pass in it.
 - `HTTPS_REDIRECT=true` enabled a standard, ELB compliant https redirect.
 - `ENABLE_SSL=true` to enable redirects to https from http
