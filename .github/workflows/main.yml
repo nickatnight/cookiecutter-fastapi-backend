@@ -22,7 +22,7 @@ jobs:
     permissions:
       contents: write
     needs: [lint, tests]
-    uses: nickatnight/gha-workflows/.github/workflows/create-release.yml
+    uses: nickatnight/gha-workflows/.github/workflows/create-release.yml@main
     with:
       branch: "master"
     secrets:
