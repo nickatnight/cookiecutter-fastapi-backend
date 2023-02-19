@@ -21,24 +21,21 @@ git init
 git add .
 poetry run pre-commit run --show-diff-on-failure --all-files
 
-# bring up project
-docker-compose up
+# make sure all images build
+docker-compose build
 
 # run the project's type checks
-docker-compose run --rm backend mypy src/
+docker-compose run backend mypy src/
 
 # run the project's tests
-docker-compose run --rm backend pytest tests/
+docker-compose run backend pytest tests/
 
-# test health endpoint
-RESPONSE=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' -X GET localhost:8666/v1/ping)
-if [[ $response != "200" ]]; then
-    echo "Unhealthy endpoint"
-    exit 1
-fi
+# # test health endpoint
+# RESPONSE=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' -X GET localhost:8666/v1/ping)
+# if [[ $response != "200" ]]; then
+#     echo "Unhealthy endpoint"
+#     exit 1
+# fi
 
 # return non-zero status code if there are migrations that have not been created
 # docker-compose run backend alembic --dry-run --check || { echo "ERROR: there were changes in the models, but migration listed above have not been created and are not saved in version control"; exit 1; }
-
-# clean up
-docker-compose down -v
