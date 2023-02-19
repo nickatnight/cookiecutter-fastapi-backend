@@ -8,6 +8,7 @@ from fastapi_cache.backends.redis import RedisBackend
 from src.api import routes
 from src.api.deps import get_redis_client
 from src.core.config import settings
+from src.db.session import add_postgresql_extension
 
 
 logger = logging.getLogger(__name__)
@@ -36,6 +37,7 @@ app = FastAPI(
 
 
 async def on_startup() -> None:
+    await add_postgresql_extension()
     redis_client = await get_redis_client()
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
     logger.info("FastAPI app running...")

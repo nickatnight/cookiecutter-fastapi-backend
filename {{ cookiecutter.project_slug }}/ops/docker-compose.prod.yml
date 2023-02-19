@@ -11,6 +11,7 @@ x-fastapi-envs: &fastapi_envs
     - POSTGRES_DB={{ cookiecutter.project_slug_db }}
     - POSTGRES_PORT=5432
     - VERSION=v1
+    - DEBUG=False
 
 x-default_deploy: &default_deploy
   deploy:
