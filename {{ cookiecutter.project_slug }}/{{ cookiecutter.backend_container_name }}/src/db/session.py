@@ -20,7 +20,7 @@ SessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 async def add_postgresql_extension() -> None:
     async with SessionLocal() as db:
         query = text("CREATE EXTENSION IF NOT EXISTS pg_trgm")
-        await db.session.execute(query)
+        await db.execute(query)
 
 
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
