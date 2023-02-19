@@ -9,7 +9,7 @@ from src.core.config import settings
 
 engine = create_async_engine(
     settings.POSTGRES_URL,
-    echo=True,
+    echo=settings.DEBUG,
     future=True,
     pool_size=settings.POOL_SIZE,
     max_overflow=settings.MAX_OVERFLOW,
