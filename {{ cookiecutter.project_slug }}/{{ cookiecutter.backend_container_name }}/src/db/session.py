@@ -1,5 +1,6 @@
 from typing import AsyncGenerator
 
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -16,10 +17,10 @@ engine = create_async_engine(
 SessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
-# async def add_postgresql_extension() -> None:
-#     async with db():
-#         query = text("CREATE EXTENSION IF NOT EXISTS pg_trgm")
-#         return await db.session.execute(query)
+async def add_postgresql_extension() -> None:
+    async with SessionLocal() as db:
+        query = text("CREATE EXTENSION IF NOT EXISTS pg_trgm")
+        await db.session.execute(query)
 
 
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
