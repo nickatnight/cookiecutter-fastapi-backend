@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   lint:
-    uses: nickatnight/gha-workflow/.github/workflows/pre-commit.yml@main
+    uses: nickatnight/gha-workflows/.github/workflows/pre-commit.yml@main
 
   tests:
     uses: ./.github/workflows/test.yml
