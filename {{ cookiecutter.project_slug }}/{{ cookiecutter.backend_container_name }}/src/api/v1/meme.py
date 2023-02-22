@@ -5,7 +5,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.core.enums import SortOrder
 from src.db.session import get_session
-from src.models.meme import Meme
 from src.repositories.meme import MemeRepository
 from src.schemas.common import IGetResponseBase
 from src.schemas.meme import IMemeRead
