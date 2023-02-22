@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.core.enums import SortOrder
 from src.db.session import get_session
 from src.models.meme import Meme
-from src.repositories.sqlalchemy import SQLAlchemyRepository
+from src.repositories.meme import MemeRepository
 from src.schemas.common import IGetResponseBase
 from src.schemas.meme import IMemeRead
 
@@ -27,7 +27,7 @@ async def memes(
     sort_order: Optional[str] = SortOrder.DESC,
     session: AsyncSession = Depends(get_session),
 ) -> IGetResponseBase[List[IMemeRead]]:
-    meme_repo = SQLAlchemyRepository(model=Meme, db=session)
+    meme_repo = MemeRepository(db=session)
     memes = await meme_repo.all(
         skip=skip, limit=limit, sort_field=sort_field, sort_order=sort_order
     )

@@ -10,7 +10,7 @@ on:
 
 jobs:
   lint:
-    uses: ./.github/workflows/lint.yml
+    uses: nickatnight/gha-workflow/.github/workflows/pre-commit.yml@main
 
   unit-tests:
     needs: [lint]

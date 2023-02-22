@@ -1,30 +1,27 @@
 from abc import ABCMeta, abstractmethod
-from typing import Generic, List, Optional, TypeVar
+from typing import Any, List, Optional
 
 
-T = TypeVar("T")
-
-
-class IRepository(Generic[T], metaclass=ABCMeta):
+class IRepository(metaclass=ABCMeta):
     """Class representing the repository interface."""
 
     @abstractmethod
-    async def create(self, obj_in: T, **kwargs: int) -> T:
+    async def create(self, obj_in: Any, **kwargs: Any) -> Any:
         """Create new entity and returns the saved instance."""
         raise NotImplementedError
 
     @abstractmethod
-    async def update(self, instance: T, obj_in: T) -> T:
+    async def update(self, obj_current: Any, obj_in: Any) -> Any:
         """Updates an entity and returns the saved instance."""
         raise NotImplementedError
 
     @abstractmethod
-    async def get(self, **kwargs: int) -> T:
+    async def get(self, **kwargs: Any) -> Optional[Any]:
         """Get and return one instance by filter."""
         raise NotImplementedError
 
     @abstractmethod
-    async def delete(self, **kwargs: int) -> None:
+    async def delete(self, **kwargs: Any) -> None:
         """Delete one instance by filter."""
         raise NotImplementedError
 
@@ -35,6 +32,16 @@ class IRepository(Generic[T], metaclass=ABCMeta):
         limit: int = 50,
         sort_field: Optional[str] = None,
         sort_order: Optional[str] = None,
-    ) -> List[T]:
-        """Delete one instance by filter."""
+    ) -> List[Any]:
+        """Get all instances."""
+        raise NotImplementedError
+
+    @abstractmethod
+    async def f(self, **kwargs: Any) -> List[Any]:
+        """Filter instances"""
+        raise NotImplementedError
+
+    @abstractmethod
+    async def get_or_create(self, obj_in: Any, **kwargs: Any) -> Any:
+        """Get or create an instance"""
         raise NotImplementedError
