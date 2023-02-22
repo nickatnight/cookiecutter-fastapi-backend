@@ -7,7 +7,7 @@ on:
 
 jobs:
   lint:
-    uses: ./.github/workflows/pre-commit.yml
+    uses: nickatnight/gha-workflows/.github/workflows/pre-commit.yml@main
 
   tests:
     uses: ./.github/workflows/test.yml
