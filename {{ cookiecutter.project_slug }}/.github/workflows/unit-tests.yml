@@ -13,11 +13,13 @@ jobs:
         uses: actions/checkout@v3
       - name: Run unit tests
         run: |
-          docker-compose -f ops/docker-compose.test.yml up --exit-code-from {{ cookiecutter.backend_container_name }}
+          docker compose -f ops/docker-compose.test.yml up --detach --wait
+          docker compose -f ops/docker-compose.test.yml exec {{ cookiecutter.backend_container_name }} pytest --cov-report=xml:/data/coverage.xml --cov=src/ tests/
       - name: Codecov
-        uses: codecov/codecov-action@v1
+        if: success()
+        uses: codecov/codecov-action@v3
         with:
-          file: /data/coverage.xml
+          files: /data/coverage.xml
           flags: unittests
       - name: Clean-up
         if: always()
