@@ -21,6 +21,9 @@ jobs:
   build:
     needs: [lint]
     uses: ./.github/workflows/build.yml
+    {% raw %}secrets:
+      do-token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+      registry: ${{ secrets.REGISTRY }}{% endraw %}
 
   unit-tests:
     needs: [build]
