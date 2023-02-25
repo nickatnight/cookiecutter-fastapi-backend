@@ -32,14 +32,14 @@ volumes:
 
 services:
   {{ cookiecutter.db_container_name }}:
-    image: postgres:14.1-alpine
+    image: postgres:15-alpine
     environment:
     labels:
       com.{{ cookiecutter.project_slug_db }}.container.name: {{ cookiecutter.project_slug_db }}-{{ cookiecutter.db_container_name }}
       com.{{ cookiecutter.project_slug_db }}.env: staging
       com.{{ cookiecutter.project_slug_db }}.project: {{ cookiecutter.project_slug_db }}-cloud
     volumes:
-      - {{ cookiecutter.db_container_name }}data-vol:/data/{{ cookiecutter.db_container_name }}
+      - {{ cookiecutter.db_container_name }}data-vol:/var/lib/postgresql/data/
     <<: [*fastapi_envs, *default_deploy]
 
   {{ cookiecutter.nginx_container_name }}:
@@ -73,4 +73,6 @@ services:
     <<: [*fastapi_envs, *default_deploy]
     volumes:
       - data-vol:/data
-    command: bash -c "uvicorn src.main:app --workers 1 --host 0.0.0.0 --port 8000 --log-config=logconfig.yml"
+    command: bash -c "
+      alembic upgrade head &&
+      gunicorn src.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --log-level=info --timeout=120"

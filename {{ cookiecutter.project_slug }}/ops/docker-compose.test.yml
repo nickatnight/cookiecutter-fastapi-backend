@@ -12,7 +12,7 @@ services:
     command: |
         bash -c "
         while !</dev/tcp/{{ cookiecutter.db_container_name }}-test/5432; do sleep 1; done;
-        uvicorn src.main:app --workers 1 --host 0.0.0.0 --port 8000"
+        gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --log-level=debug --timeout=60"
     environment:
       - PYTHONUNBUFFERED=0
       - PROJECT_NAME=test
@@ -30,7 +30,7 @@ services:
       - {{ cookiecutter.db_container_name }}-test
 
   {{ cookiecutter.db_container_name }}-test:
-    image: postgres:14.1-alpine
+    image: postgres:15-alpine
     expose:
       - "5432"
     environment:
