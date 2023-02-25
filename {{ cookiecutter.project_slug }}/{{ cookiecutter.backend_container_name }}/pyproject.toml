@@ -28,6 +28,7 @@ pytest-mock = "^3.10.0"
 pytest-asyncio = "^0.19.0"
 mypy = "^0.982"
 ruff = "^0.0.241"
+requests = ^"2.28.2"
 
 [tool.isort]
 multi_line_output = 3
