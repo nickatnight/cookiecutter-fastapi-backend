@@ -8,7 +8,7 @@ volumes:
 
 services:
   {{ cookiecutter.db_container_name }}:
-    image: postgres:14.1-alpine
+    image: postgres:15-alpine
     env_file:
       - .env
     restart: always
