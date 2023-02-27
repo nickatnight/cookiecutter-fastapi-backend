@@ -31,7 +31,7 @@ services:
     command: |
         bash -c "
         while !</dev/tcp/{{ cookiecutter.db_container_name }}/5432; do sleep 1; done;
-        gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --log-level=debug --timeout=60"
+        gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --log-level=debug --timeout=60 --reload"
     depends_on:
       - {{ cookiecutter.db_container_name }}
     environment:
