@@ -9,7 +9,7 @@ python = "~{{ cookiecutter.py_version }}"
 alembic = "1.12.1"
 asyncpg = "0.28.0"
 fastapi = "0.104.0"
-psycopg2-binary = "2.9.3"
+psycopg2-binary = "2.9.9"
 sqlmodel = "0.0.10"
 uvicorn = {extras = ["standard"], version = "0.23.2"}
 redis = "4.6.0"
