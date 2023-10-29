@@ -13,9 +13,9 @@ except (ImportError, ModuleNotFoundError):
 
 if sys.platform.startswith("win"):
     pytest.skip("sh doesn't support windows", allow_module_level=True)
-elif sys.platform.startswith("darwin") and os.getenv("CI"):
-    # "CI" env var is provided by GHA runner
-    pytest.skip("skipping slow macOS tests on CI", allow_module_level=True)
+# elif sys.platform.startswith("darwin") and os.getenv("CI"):
+#     # "CI" env var is provided by GHA runner
+#     pytest.skip("skipping slow macOS tests on CI", allow_module_level=True)
 
 SUPPORTED_COMBINATIONS = [
     {"include_example_api": "no"},
