@@ -47,7 +47,7 @@ class BaseSQLAlchemyRepository(IRepository, Generic[ModelType, CreateSchemaType,
     async def get(self, **kwargs: Any) -> Optional[ModelType]:
         logger.info(f"Fetching [{self._model.__class__.__name__}] object by [{kwargs}]")
 
-        query = select(self._model).filter_by(**kwargs)
+        query = select(self._model).filter_by(**kwargs)  # type: ignore
         response = await self.db.execute(query)
         scalar: Optional[ModelType] = response.scalar_one_or_none()
 
@@ -97,12 +97,12 @@ class BaseSQLAlchemyRepository(IRepository, Generic[ModelType, CreateSchemaType,
         query = select(self._model).offset(skip).limit(limit).order_by(order_by)
 
         response = await self.db.execute(query)
-        return response.scalars().all()
+        return response.scalars().all()  # type: ignore
 
     async def f(self, **kwargs: Any) -> List[ModelType]:
         logger.info(f"Fetching [{self._model.__class__.__name__}] object by [{kwargs}]")
 
-        query = select(self._model).filter_by(**kwargs)
+        query = select(self._model).filter_by(**kwargs)  # type: ignore
         response = await self.db.execute(query)
         scalars: List[ModelType] = response.scalars().all()
 

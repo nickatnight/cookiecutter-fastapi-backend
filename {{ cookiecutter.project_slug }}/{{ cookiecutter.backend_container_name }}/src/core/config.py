@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = Field(default="", env="POSTGRES_HOST")
     POSTGRES_PORT: str = Field(default="", env="POSTGRES_PORT")
     POSTGRES_DB: str = Field(default="", env="POSTGRES_DB")
+    POSTGRES_URL: Optional[str] = None
 
     REDIS_HOST: str = Field(default="", env="REDIS_HOST")
     REDIS_PORT: str = Field(default="", env="REDIS_PORT")
@@ -26,8 +27,7 @@ class Settings(BaseSettings):
     DB_POOL_SIZE: int = Field(default=83, env="DB_POOL_SIZE")
     WEB_CONCURRENCY: int = Field(default=9, env="WEB_CONCURRENCY")
     MAX_OVERFLOW: int = Field(default=64, env="MAX_OVERFLOW")
-    POOL_SIZE: Optional[int]
-    POSTGRES_URL: Optional[str]
+    POOL_SIZE: Optional[int] = None
 
     @validator("POOL_SIZE", pre=True)
     def build_pool(cls, v: Optional[str], values: Dict[str, Any]) -> Any:

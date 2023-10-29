@@ -31,4 +31,4 @@ async def memes(
         skip=skip, limit=limit, sort_field=sort_field, sort_order=sort_order
     )
 
-    return IGetResponseBase[List[IMemeRead]](data=memes)
+    return IGetResponseBase[List[IMemeRead]](data=memes)  # type: ignore
