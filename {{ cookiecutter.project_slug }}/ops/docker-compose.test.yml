@@ -16,7 +16,7 @@ services:
     environment:
       - PYTHONUNBUFFERED=0
       - PROJECT_NAME=test
-      - VERSION=v2
+      - VERSION=v1
       - DEVELOPER=nickatnight
       - ENV=test
       - POSTGRES_USER=test
