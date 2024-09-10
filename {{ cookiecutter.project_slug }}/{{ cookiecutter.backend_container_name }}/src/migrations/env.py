@@ -1,4 +1,3 @@
-import asyncio
 import pathlib
 import sys
 from logging.config import fileConfig
@@ -6,7 +5,6 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Connection
-from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlmodel import SQLModel
 
 
@@ -67,7 +65,7 @@ def do_run_migrations(connection: Connection) -> None:
         context.run_migrations()
 
 
-async def run_migrations_online() -> None:
+def run_migrations_online() -> None:
     """Run migrations in 'online' mode.
 
     In this scenario we need to create an Engine
@@ -82,15 +80,15 @@ async def run_migrations_online() -> None:
     #         future=True,
     #     )
     # )
-    connectable = AsyncEngine(create_engine(settings.POSTGRES_URL, echo=True, future=True))
+    connectable = create_engine(settings.POSTGRES_URL, echo=True)
 
-    async with connectable.connect() as connection:
-        await connection.run_sync(do_run_migrations)
+    with connectable.connect() as connection:
+        do_run_migrations(connection)
 
-    await connectable.dispose()
+    connectable.dispose()
 
 
 if context.is_offline_mode():
     run_migrations_offline()
 else:
-    asyncio.run(run_migrations_online())
+    run_migrations_online()

@@ -4,7 +4,7 @@ from redis.asyncio import Redis
 from src.core.config import settings
 
 
-async def get_redis_client() -> Redis:
+def get_redis_client() -> Redis:
     redis = await aioredis.from_url(
         f"redis://{settings.REDIS_HOST}:{settings.REDIS_PORT}",
         max_connections=10,

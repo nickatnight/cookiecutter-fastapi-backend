@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cookiecutter-fastapi-backend"
-version = "0.2.9"
+version = "0.3.0"
 description = "Cookiecutter template to build and deploy fastapi backends..batteries included"
 authors = ["nickatnight <nickkelly.858@gmail.com>"]
 readme = "README.md"
@@ -12,12 +12,12 @@ repository = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
 python = "^3.9"
 
 [tool.poetry.group.dev.dependencies]
-cookiecutter = "2.4.0"
-pytest = "7.4.3"
+cookiecutter = "2.6.0"
+pytest = "8.3.3"
 pytest-cookies = "0.7.0"
-sh = "2.0.6"
+sh = "2.0.7"
 binaryornot = "0.4.4"
-pre-commit = "3.5.0"
+pre-commit = "3.8.0"
 pytest-instafail = "0.5.0"
 
 [tool.ruff]

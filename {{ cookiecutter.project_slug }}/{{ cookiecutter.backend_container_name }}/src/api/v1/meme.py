@@ -19,7 +19,7 @@ router = APIRouter()
     response_model=IGetResponseBase[List[IMemeRead]],
     tags=["memes"],
 )
-async def memes(
+def memes(
     skip: int = Query(0, ge=0),
     limit: int = Query(50, ge=1),
     sort_field: Optional[str] = "created_at",
