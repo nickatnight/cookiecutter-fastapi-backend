@@ -22,7 +22,6 @@ SUPPORTED_COMBINATIONS = [
     {"include_example_api": "yes"},
     {"deployments": "no"},
     {"deployments": "yes"},
-    {"py_version": "3.8"},
     {"py_version": "3.9"},
     {"py_version": "3.10"},
     {"py_version": "3.11"},

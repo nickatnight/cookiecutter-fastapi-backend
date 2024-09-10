@@ -44,7 +44,7 @@ The input variables, with their default values (some auto generated) are:
 * `project_slug`: The development friendly name of the project. By default, based on the project name
 * `project_slug_db`: The database friendly name of the project. By default, based on the project name
 * `author_email`: The authors email...used for certbot
-* `py_version`: The version of Python to install. Options are `3.8`, `3.9`, `3.10`, and `3.11`
+* `py_version`: The version of Python to install. Options are `3.9`, `3.10`, and `3.11`
 * `db_container_name`: The name of the database container. Default `db`
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `nginx_container_name`: The name of the nginx web server container. Default `nginx`
