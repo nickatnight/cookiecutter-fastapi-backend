@@ -12,7 +12,7 @@ repos:
     -   id: debug-statements
     -   id: pretty-format-json
 -   repo: https://github.com/psf/black
-    rev: 23.10.1
+    rev: 24.8.0
     hooks:
     -   id: black
         args: ["--config=./{{ cookiecutter.backend_container_name }}/pyproject.toml"]
@@ -21,7 +21,7 @@ repos:
     hooks:
         - id: ruff
 -   repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
     -   id: isort
         args: ["--settings-path=./{{ cookiecutter.backend_container_name }}/pyproject.toml"]

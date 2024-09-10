@@ -1,7 +1,8 @@
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
-from pydantic import AnyHttpUrl, BaseSettings, Field, PostgresDsn, validator
+from pydantic import AnyHttpUrl, Field, PostgresDsn, validator, field_validator, ValidationInfo
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -19,7 +20,7 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = Field(default="", env="POSTGRES_HOST")
     POSTGRES_PORT: str = Field(default="", env="POSTGRES_PORT")
     POSTGRES_DB: str = Field(default="", env="POSTGRES_DB")
-    POSTGRES_URL: Optional[str] = None
+    POSTGRES_URL: Union[Optional[PostgresDsn], Optional[str]] = None
 
     REDIS_HOST: str = Field(default="", env="REDIS_HOST")
     REDIS_PORT: str = Field(default="", env="REDIS_PORT")
@@ -36,19 +37,19 @@ class Settings(BaseSettings):
 
         return max(values.get("DB_POOL_SIZE") // values.get("WEB_CONCURRENCY"), 5)  # type: ignore
 
-    @validator("POSTGRES_URL", pre=True)
-    def build_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
+    @field_validator("POSTGRES_URL", mode="before")
+    @classmethod
+    def build_db_connection(cls, v: Optional[str], values: ValidationInfo) -> Any:
         if isinstance(v, str):
             return v
 
         return PostgresDsn.build(
-            scheme="postgresql+asyncpg",
-            user=values.get("POSTGRES_USER"),
-            password=values.get("POSTGRES_PASSWORD"),
-            host=values.get("POSTGRES_HOST"),
-            port=str(values.get("POSTGRES_PORT")),
-            path=f"/{values.get('POSTGRES_DB') or ''}",
-        )
+            scheme="postgresql+psycopg",
+            username=values.data.get("POSTGRES_USER"),
+            password=values.data.get("POSTGRES_PASSWORD"),
+            host=values.data.get("POSTGRES_HOST"),
+            path=f"{values.data.get('POSTGRES_DB') or ''}",
+        ).unicode_string()
 
 
 settings = Settings()
