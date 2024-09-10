@@ -1,7 +1,14 @@
 import logging
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import AnyHttpUrl, Field, PostgresDsn, validator, field_validator, ValidationInfo
+from pydantic import (
+    AnyHttpUrl,
+    Field,
+    PostgresDsn,
+    ValidationInfo,
+    field_validator,
+    validator,
+)
 from pydantic_settings import BaseSettings
 
 
