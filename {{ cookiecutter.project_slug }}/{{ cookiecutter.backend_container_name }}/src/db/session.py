@@ -1,5 +1,7 @@
+from typing import Generator
+
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 
 from src.core.config import settings
 
@@ -18,7 +20,7 @@ def add_postgresql_extension() -> None:
         db.execute(query)
 
 
-def get_session():
+def get_session() -> Generator[Session, None, None]:
     # expire_on_commit=False will prevent attributes from being expired
     # after commit.
     with SessionLocal() as session:

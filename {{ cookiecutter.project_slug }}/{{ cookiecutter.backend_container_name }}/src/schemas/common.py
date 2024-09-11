@@ -6,7 +6,7 @@ from pydantic.generics import GenericModel
 T = TypeVar("T")
 
 
-class IResponseBase(GenericModel, Generic[T]):
+class IResponseBase(GenericModel, Generic[T]):  # type: ignore
     message: str = ""
     meta: Optional[Dict[str, Any]] = {}
     data: Optional[T] = None

@@ -36,9 +36,9 @@ app = FastAPI(
 )
 
 
-async def on_startup() -> None:
-    await add_postgresql_extension()
-    redis_client = await get_redis_client()
+def on_startup() -> None:
+    add_postgresql_extension()
+    redis_client = get_redis_client()
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
     logger.info("FastAPI app running...")
 
