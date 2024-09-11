@@ -18,8 +18,6 @@ if sys.platform.startswith("win"):
 #     pytest.skip("skipping slow macOS tests on CI", allow_module_level=True)
 
 SUPPORTED_COMBINATIONS = [
-    {"include_example_api": "no"},
-    {"include_example_api": "yes"},
     {"deployments": "no"},
     {"deployments": "yes"},
     {"py_version": "3.9"},

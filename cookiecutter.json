@@ -15,7 +15,5 @@
 
     "github_username": "change.me",
 
-    "include_example_api": ["no", "yes"],
-
     "deployments": ["no", "yes"]
 }

@@ -18,13 +18,7 @@ tags_metadata = [
     {
         "name": "health",
         "description": "Health check for api",
-    },
-    {%- if cookiecutter.include_example_api == "yes" %}
-    {
-        "name": "memes",
-        "description": "Fetch all posts from database",
-    },
-    {%- endif %}
+    }
 ]
 
 app = FastAPI(

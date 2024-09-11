@@ -50,7 +50,6 @@ The input variables, with their default values (some auto generated) are:
 * `nginx_container_name`: The name of the nginx web server container. Default `nginx`
 * `doctl_version`: The version name of [DigitalOcean Command Line Interface](https://docs.digitalocean.com/reference/doctl/) to use. Default `1.92.0`
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
-* `include_example_api`: Include example API, models, schemas, and script to init db data. Options are `y` or `n`
 * `deployments`: Include `docker-compose` files needed for deployment step in GitHub Action. Options are `y` or `n`
 
 

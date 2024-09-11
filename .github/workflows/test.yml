@@ -47,9 +47,9 @@ jobs:
           - name: Basic
             args: ""
           - name: Deployments, Example Api, & py3.11
-            args: "include_example_api='yes' deployments='yes' py_version=3.11"
+            args: "deployments='yes' py_version=3.11"
           - name: Deployments, Example Api, & py3.9
-            args: "include_example_api='yes' deployments='yes' py_version=3.9"
+            args: "deployments='yes' py_version=3.9"
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
     env:
