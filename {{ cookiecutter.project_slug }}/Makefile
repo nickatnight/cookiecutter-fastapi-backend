@@ -37,7 +37,7 @@ test:
 
 lint:
 	@echo "running ruff...."
-	docker compose exec {{ cookiecutter.backend_container_name }} ruff src
+	docker compose exec {{ cookiecutter.backend_container_name }} ruff check src
 
 black:
 	@echo "running black...."
