@@ -30,7 +30,6 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 * :globe_with_meridians: **NGINX** High Performance Load Balancer, [Web Server](https://www.nginx.com/), & Reverse Proxy
 * :lock: **Let's Encrypt** A free, automated, and open [certificate authority](https://letsencrypt.org/) (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
 * :floppy_disk: **postgresql** Powerful open source [object-relational](https://www.postgresql.org/) database
-* :left_right_arrow: **AsyncPG** [Database](https://magicstack.github.io/asyncpg/current/) interface library designed specifically for PostgreSQL and Python/asyncio
 * :convenience_store: **Redis** In-memory data structure [store](https://redis.io/), used as a distributed, in-memory key–value database, cache and message broker
 * :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, build, test, and deploy to DigitalOcean cloud
 * :leftwards_arrow_with_hook: **pre-commit** [Git hooks](https://pre-commit.com/) to maintain code quality using modern tooling (ruff, black, isort)
