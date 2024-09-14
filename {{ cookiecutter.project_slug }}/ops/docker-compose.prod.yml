@@ -1,5 +1,3 @@
-version: '3.4'
-
 x-fastapi-envs: &fastapi_envs
   environment:
     - PROJECT_NAME={{ cookiecutter.project_slug|replace('-', '_') }}

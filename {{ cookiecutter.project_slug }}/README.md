@@ -25,31 +25,6 @@
 
 ### Migrations
 
-{%- if cookiecutter.include_example_api == "yes" %}
-Run the alembic `migrate` command to apply schema to your newly created database (at `{{ cookiecutter.db_container_name }}:5432`)
-```console
-$ make init-db
-```
-
-### Example API
-The example API includes:
-- [models](/src/models/meme.py)
-- [schemas](/src/schemas/meme.py)
-- [routes](/src/api/v1/meme.py)
-{%- elif cookiecutter.include_example_api == "no" %}
-
-After adding some models in `src/models/`, you can run the initial making of the migrations
-```console
-$ make alembic-init
-$ make alembic-migrate
-```
-Every migration after that, you can create new migrations and apply them with
-```console
-$ make alembic-make-migrations "cool comment dude"
-$ make alembic-migrate
-```
-{%- endif %}
-
 ### General workflow
 See the [Makefile](/Makefile) to view available commands.
 

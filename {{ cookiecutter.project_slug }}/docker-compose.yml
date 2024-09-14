@@ -1,5 +1,3 @@
-version: '3'
-
 volumes:
   base-data:
   {{ cookiecutter.db_container_name }}-data:

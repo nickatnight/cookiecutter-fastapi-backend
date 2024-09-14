@@ -16,7 +16,7 @@ bash:
 # alembic
 alembic-scaffold:
 	@echo "scaffolding migrations folder..."
-	docker compose exec {{ cookiecutter.backend_container_name }} alembic init -t async migrations
+	docker compose exec {{ cookiecutter.backend_container_name }} alembic init migrations
 
 alembic-init:
 	@echo "initializing first migration...."

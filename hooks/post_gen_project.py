@@ -26,12 +26,6 @@ def rename_file(old: str, new: str):
     os.rename(in_, out_)
 
 
-if "{{ cookiecutter.include_example_api}}" == "no":
-    print("Removing example api files...")
-    for p in MEME_FILE_PATHS:
-        remove_file(p)
-
-
 if "{{ cookiecutter.deployments }}" == "no":
     print("Removing deployment files...")
     for p in DEPLOYMENT_FILES:

@@ -30,7 +30,6 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 * :globe_with_meridians: **NGINX** High Performance Load Balancer, [Web Server](https://www.nginx.com/), & Reverse Proxy
 * :lock: **Let's Encrypt** A free, automated, and open [certificate authority](https://letsencrypt.org/) (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
 * :floppy_disk: **postgresql** Powerful open source [object-relational](https://www.postgresql.org/) database
-* :left_right_arrow: **AsyncPG** [Database](https://magicstack.github.io/asyncpg/current/) interface library designed specifically for PostgreSQL and Python/asyncio
 * :convenience_store: **Redis** In-memory data structure [store](https://redis.io/), used as a distributed, in-memory key–value database, cache and message broker
 * :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, build, test, and deploy to DigitalOcean cloud
 * :leftwards_arrow_with_hook: **pre-commit** [Git hooks](https://pre-commit.com/) to maintain code quality using modern tooling (ruff, black, isort)
@@ -44,13 +43,12 @@ The input variables, with their default values (some auto generated) are:
 * `project_slug`: The development friendly name of the project. By default, based on the project name
 * `project_slug_db`: The database friendly name of the project. By default, based on the project name
 * `author_email`: The authors email...used for certbot
-* `py_version`: The version of Python to install. Options are `3.8`, `3.9`, `3.10`, and `3.11`
+* `py_version`: The version of Python to install. Options are `3.9`, `3.10`, and `3.11`
 * `db_container_name`: The name of the database container. Default `db`
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `nginx_container_name`: The name of the nginx web server container. Default `nginx`
 * `doctl_version`: The version name of [DigitalOcean Command Line Interface](https://docs.digitalocean.com/reference/doctl/) to use. Default `1.92.0`
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
-* `include_example_api`: Include example API, models, schemas, and script to init db data. Options are `y` or `n`
 * `deployments`: Include `docker-compose` files needed for deployment step in GitHub Action. Options are `y` or `n`
 
 
