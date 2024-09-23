@@ -59,6 +59,7 @@ services:
       - redis-data:/data
 {%- if cookiecutter.use_celery == "yes" %}
   celery:
+    restart: always
     build: ./{{ cookiecutter.backend_container_name }}
     command: celery --app=src worker --loglevel=info
     env_file:
@@ -66,7 +67,9 @@ services:
     depends_on:
       - {{ cookiecutter.backend_container_name }}
       - redis
+
   beat:
+    restart: always
     build: ./{{ cookiecutter.backend_container_name }}
     command: celery --app=src beat --loglevel=info
     env_file:
