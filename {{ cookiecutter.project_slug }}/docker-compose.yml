@@ -57,3 +57,24 @@ services:
       - "6479:6379"
     volumes:
       - redis-data:/data
+{%- if cookiecutter.use_celery == "yes" %}
+  celery:
+    restart: always
+    build: ./{{ cookiecutter.backend_container_name }}
+    command: celery --app=src worker --loglevel=info
+    env_file:
+      - .env
+    depends_on:
+      - {{ cookiecutter.backend_container_name }}
+      - redis
+
+  beat:
+    restart: always
+    build: ./{{ cookiecutter.backend_container_name }}
+    command: celery --app=src beat --loglevel=info
+    env_file:
+      - .env
+    depends_on:
+      - {{ cookiecutter.backend_container_name }}
+      - redis
+{%- endif %}

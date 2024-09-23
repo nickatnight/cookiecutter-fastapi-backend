@@ -20,6 +20,8 @@ if sys.platform.startswith("win"):
 SUPPORTED_COMBINATIONS = [
     {"deployments": "no"},
     {"deployments": "yes"},
+    {"use_celery": "no"},
+    {"use_celery": "yes"},
     {"py_version": "3.9"},
     {"py_version": "3.10"},
     {"py_version": "3.11"},

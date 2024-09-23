@@ -2,12 +2,8 @@ import os
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 BASE_BACKEND_SRC_PATH = "{{ cookiecutter.backend_container_name }}/src/"
-MEME_FILE_PATHS = [
-    "%smodels/meme.py" % BASE_BACKEND_SRC_PATH,
-    "%sschemas/meme.py" % BASE_BACKEND_SRC_PATH,
-    "%sapi/v1/meme.py" % BASE_BACKEND_SRC_PATH,
-    "%srepositories/meme.py" % BASE_BACKEND_SRC_PATH,
-    "%sdb/init_db.py" % BASE_BACKEND_SRC_PATH,
+CELERY_FILE_PATHS = [
+    "%sworker.py" % BASE_BACKEND_SRC_PATH,
 ]
 DEPLOYMENT_FILES = [
     "ops/docker-compose.prod.yml",
@@ -31,5 +27,9 @@ if "{{ cookiecutter.deployments }}" == "no":
     for p in DEPLOYMENT_FILES:
         remove_file(p)
 
+if "{{ cookiecutter.use_celery }}" == "no":
+    print("Removing celery files...")
+    for p in CELERY_FILE_PATHS:
+        remove_file(p)
 
 rename_file(".env_example", ".env")

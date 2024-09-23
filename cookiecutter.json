@@ -9,6 +9,7 @@
 
     "db_container_name": "db",
     "backend_container_name": "backend",
+    "use_celery": ["no", "yes"],
     "nginx_container_name": "nginx",
 
     "doctl_version": "1.92.0",
