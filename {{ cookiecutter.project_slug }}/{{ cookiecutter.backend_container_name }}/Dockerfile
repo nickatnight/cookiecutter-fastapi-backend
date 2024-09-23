@@ -1,4 +1,4 @@
-FROM python:{{ cookiecutter.py_version}} as base
+FROM python:{{ cookiecutter.py_version}} AS base
 
 ARG env
 

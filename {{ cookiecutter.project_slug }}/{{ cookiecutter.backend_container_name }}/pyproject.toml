@@ -19,6 +19,7 @@ PyYAML = "6.0.1"
 httpx = "0.25.0"
 gunicorn = "23.0.0"
 openai = "1.44.0"
+{%- if cookiecutter.use_celery == "yes" %}celery = {extras = ["beat"], version = "5.2.7"}{%- endif %}
 
 [tool.poetry.dev-dependencies]
 black = "24.8.0"
