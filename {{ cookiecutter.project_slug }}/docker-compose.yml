@@ -38,18 +38,6 @@ services:
       - base-data:/data
       - ./{{ cookiecutter.backend_container_name }}/:/code
 
-  {{ cookiecutter.nginx_container_name }}:
-    restart: always
-    ports:
-      - "0.0.0.0:80:80"
-    env_file:
-      - .env
-    build:
-      context: ./{{ cookiecutter.nginx_container_name }}
-      dockerfile: ./Dockerfile
-    volumes:
-        - {{ cookiecutter.nginx_container_name }}-data:/etc/letsencrypt
-
   redis:
     restart: always
     image: redis:latest

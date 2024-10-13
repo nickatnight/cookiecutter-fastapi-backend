@@ -10,11 +10,8 @@
     "db_container_name": "db",
     "backend_container_name": "backend",
     "use_celery": ["no", "yes"],
-    "nginx_container_name": "nginx",
-
-    "doctl_version": "1.92.0",
 
     "github_username": "change.me",
 
-    "deployments": ["no", "yes"]
+    "cloud_provider": ["None", "Fly.io"]
 }
