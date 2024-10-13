@@ -5,8 +5,7 @@ on:
     tags:
       - '*'
     branches:
-      - master
-      - develop
+      - main
 
 {%- if cookiecutter.deployments == 'yes' %}
 env:

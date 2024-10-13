@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 def create_init_data() -> None:
     with SessionLocal() as session:
+        # Add initial data here eg session.add(Model(field=value))
         session.add()
         session.add()
 

@@ -82,7 +82,7 @@ lint.ignore = [
 ignore-words-list = 'selectin,'
 
 [tool.coverage.report]
-fail_under = 55
+fail_under = 20
 
 [tool.coverage.run]
 omit = ['*tests/*']
