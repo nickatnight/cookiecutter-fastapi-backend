@@ -15,7 +15,27 @@
 
 ## Backend local development, additional details
 
+Initialize first migration (project must be up with docker compose up and contain no 'version' files)
+```shell
+$ make alembic-init
+```
+
+Create new migration file
+```shell
+$ docker compose exec {{ cookiecutter.backend_container_name }} alembic revision --autogenerate -m "some cool comment"
+```
+
+Apply migrations
+```shell
+$ make alembic-migrate
+```
+
 ### Migrations
+Every migration after that, you can create new migrations and apply them with
+```console
+$ make alembic-make-migrations "cool comment dude"
+$ make alembic-migrate
+```
 
 ### General workflow
 See the [Makefile](/Makefile) to view available commands.
