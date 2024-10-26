@@ -1,0 +1,20 @@
+name: Fly Deploy
+
+on: [workflow_call]
+
+jobs:
+  deploy-backend:
+    name: Deploy FastAPI Backend
+    runs-on: ubuntu-latest
+    concurrency: deploy-group    # optional: ensure only one action runs at a time
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy
+        run: flyctl deploy --remote-only {{ cookiecutter.backend_container_name }}
+        {% raw %}env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}{% endraw %}
