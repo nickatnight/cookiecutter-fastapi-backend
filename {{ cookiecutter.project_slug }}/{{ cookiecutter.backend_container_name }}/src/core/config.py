@@ -10,7 +10,6 @@ class Settings(BaseSettings):
 
     # 60 minutes * 24 hours * 8 days = 8 days
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
-    # SERVER_NAME: Optional[str] = Field(..., env="NGINX_HOST")
     BACKEND_CORS_ORIGINS: list[AnyHttpUrl] = []
     LOG_LEVEL: int = Field(default=logging.INFO)
 

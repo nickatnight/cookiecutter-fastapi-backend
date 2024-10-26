@@ -1,7 +1,6 @@
 volumes:
   base-data:
   {{ cookiecutter.db_container_name }}-data:
-  {{ cookiecutter.nginx_container_name }}-data:
   redis-data:
 
 services:

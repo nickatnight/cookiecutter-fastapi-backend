@@ -3,7 +3,7 @@ name: test
 on: [workflow_call]  # allow this workflow to be called from other workflows
 
 env:
-  PYTHON_VERSION: 3.9
+  PYTHON_VERSION: 3.11
 
 jobs:
   run-tests:
@@ -23,7 +23,7 @@ jobs:
       - name: Install poetry 📚
         run: pipx install poetry
 
-      - name: Set up Python 3.9 🐍
+      - name: Set up Python ${{ env.PYTHON_VERSION }} 🐍
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -46,10 +46,12 @@ jobs:
         script:
           - name: Basic
             args: ""
-          - name: Deployments, Example Api, & py3.11
-            args: "deployments='yes' py_version=3.11"
-          - name: Deployments, Example Api, & py3.9
-            args: "deployments='yes' py_version=3.9"
+          - name: No deploy, Example Api, & py3.11
+            args: "cloud_provider='none' py_version=3.11"
+          - name: Fly.io, Example Api, & py3.9
+            args: "cloud_provider='Fly.io' py_version=3.9"
+          - name: Fly.io, Example Api, & py3.10
+            args: "cloud_provider='Fly.io' py_version=3.10"
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
     env:

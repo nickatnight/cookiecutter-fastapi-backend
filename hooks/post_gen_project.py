@@ -6,9 +6,8 @@ CELERY_FILE_PATHS = [
     "%sworker.py" % BASE_BACKEND_SRC_PATH,
 ]
 DEPLOYMENT_FILES = [
-    "ops/docker-compose.prod.yml",
-    "ops/docker-compose.staging.yml",
-    ".github/workflows/build.yml",
+    ".github/workflows/deploy.yml",
+    "{{ cookiecutter.backend_container_name }}/fly.toml",
 ]
 
 
@@ -22,7 +21,7 @@ def rename_file(old: str, new: str):
     os.rename(in_, out_)
 
 
-if "{{ cookiecutter.deployments }}" == "no":
+if "{{ cookiecutter.cloud_provider }}" == "none":
     print("Removing deployment files...")
     for p in DEPLOYMENT_FILES:
         remove_file(p)

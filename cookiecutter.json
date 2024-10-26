@@ -13,5 +13,5 @@
 
     "github_username": "change.me",
 
-    "cloud_provider": ["None", "Fly.io"]
+    "cloud_provider": ["none", "Fly.io"]
 }
