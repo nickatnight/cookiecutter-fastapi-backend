@@ -1,24 +1,28 @@
-[tool.poetry]
+[project]
+authors = [
+    {name = "nickatnight", email = "nialexanderke@proton.me"},
+]
+requires-python = "<4.0,>=3.9"
+dependencies = []
 name = "cookiecutter-fastapi-backend"
-version = "0.4.1"
+version = "0.5.0"
 description = "Cookiecutter template to build and deploy fastapi backends..batteries included"
-authors = ["nickatnight <nickkelly.858@gmail.com>"]
 readme = "README.md"
-packages = []
+
+[project.urls]
 homepage = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
 repository = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
 
-[tool.poetry.dependencies]
-python = "^3.9"
-
-[tool.poetry.group.dev.dependencies]
-cookiecutter = "2.6.0"
-pytest = "8.3.3"
-pytest-cookies = "0.7.0"
-sh = "2.0.7"
-binaryornot = "0.4.4"
-pre-commit = "3.8.0"
-pytest-instafail = "0.5.0"
+[tool.uv]
+dev-dependencies = [
+    "cookiecutter==2.6.0",
+    "pytest==8.3.3",
+    "pytest-cookies==0.7.0",
+    "sh==2.0.7",
+    "binaryornot==0.4.4",
+    "pre-commit==3.8.0",
+    "pytest-instafail==0.5.0",
+]
 
 [tool.ruff]
 line-length = 100
@@ -41,7 +45,3 @@ ignore = [
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
