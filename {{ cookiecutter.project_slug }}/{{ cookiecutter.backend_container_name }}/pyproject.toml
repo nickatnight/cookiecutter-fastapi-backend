@@ -2,7 +2,7 @@
 authors = [
     {name = "nickatnight", email = "nialexanderke@proton.me"},
 ]
-requires-python = "~{{ cookiecutter.py_version }}"
+requires-python = ">={{ cookiecutter.py_version }}"
 dependencies = [
     "alembic==1.13.2",
     "sqlalchemy==2.0.34",

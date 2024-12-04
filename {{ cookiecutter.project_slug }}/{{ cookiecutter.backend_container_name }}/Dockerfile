@@ -8,10 +8,7 @@ RUN pip install uv
 
 COPY ./pyproject.toml ./uv.lock* /tmp/
 
-RUN uv export $(test "${env:-dev}" != "prod" && echo "--with dev") \
-    -f requirements.txt \
-    --output requirements.txt \
-    --without-hashes
+RUN uv pip compile pyproject.toml -o requirements.txt
 
 FROM python:{{ cookiecutter.py_version}}
 
