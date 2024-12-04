@@ -4,11 +4,11 @@ ARG env
 
 WORKDIR /tmp
 
-RUN pip install poetry
+RUN pip install uv
 
-COPY ./pyproject.toml ./poetry.lock* /tmp/
+COPY ./pyproject.toml ./uv.lock* /tmp/
 
-RUN poetry export $(test "${env:-dev}" != "prod" && echo "--with dev") \
+RUN uv export $(test "${env:-dev}" != "prod" && echo "--with dev") \
     -f requirements.txt \
     --output requirements.txt \
     --without-hashes

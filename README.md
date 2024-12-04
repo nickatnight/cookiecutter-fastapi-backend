@@ -23,7 +23,7 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 ```
 
 ## Features
-* :whale: **Docker & Docker Compose** integration and optimization for [local development](https://docs.docker.com/compose/). Fast bundles using build stages and [Poetry](https://python-poetry.org/)
+* :whale: **Docker & Docker Compose** integration and optimization for [local development](https://docs.docker.com/compose/). Fast bundles using build stages and [uv](https://docs.astral.sh/uv/)
 * :computer: **Production ready** Python web server using [FastAPI](https://fastapi.tiangolo.com/)
 * :pencil2: **SQLModel** [Library](https://sqlmodel.tiangolo.com/) for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
 * :light_rail: **Alembic** Lightweight database migration tool for usage with the [SQLAlchemy](https://alembic.sqlalchemy.org/en/latest/) Database Toolkit for Python
