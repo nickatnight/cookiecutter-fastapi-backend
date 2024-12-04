@@ -95,6 +95,6 @@ def test_pre_commit_hooks(cookies, context_override) -> None:
     try:
         if os.getenv("CI"):  # so pre-commit has files to run against
             sh.git("init")
-        sh.poetry("run", "pre-commit", "run", "--all-files")
+        sh.uv("run", "pre-commit", "run", "--all-files")
     except sh.ErrorReturnCode as e:
         pytest.fail(e.stdout.decode())
