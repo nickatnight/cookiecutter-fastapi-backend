@@ -3,7 +3,7 @@ from redis import Redis
 from src.core.config import settings
 
 
-def get_redis_url():
+def get_redis_url() -> str:
     return f"redis://{settings.REDIS_HOST}:{settings.REDIS_PORT}"
 
 
