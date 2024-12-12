@@ -4,14 +4,11 @@ ARG env
 
 WORKDIR /tmp
 
-RUN pip install poetry
+RUN pip install uv
 
-COPY ./pyproject.toml ./poetry.lock* /tmp/
+COPY ./pyproject.toml ./uv.lock* /tmp/
 
-RUN poetry export $(test "${env:-dev}" != "prod" && echo "--with dev") \
-    -f requirements.txt \
-    --output requirements.txt \
-    --without-hashes
+RUN uv pip compile pyproject.toml -o requirements.txt
 
 FROM python:{{ cookiecutter.py_version}}
 
