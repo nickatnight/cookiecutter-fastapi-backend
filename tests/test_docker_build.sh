@@ -25,10 +25,10 @@ uv run pre-commit run --show-diff-on-failure --all-files
 docker compose build
 
 # run the project's type checks
-docker compose run backend mypy src/
+docker compose run --rm backend mypy src/
 
 # run the project's tests
-docker compose run backend pytest tests/
+docker compose run --rm backend pytest tests/
 
 # # test health endpoint
 # RESPONSE=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' -X GET localhost:8666/v1/ping)

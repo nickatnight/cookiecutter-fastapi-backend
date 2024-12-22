@@ -3,6 +3,9 @@ authors = [
     {name = "nickatnight", email = "nialexanderke@proton.me"},
 ]
 requires-python = ">={{ cookiecutter.py_version }}"
+name = "{{ cookiecutter.project_slug }}"
+version = "1.0.0"
+description = "Base project for building fastapi backends"
 dependencies = [
     "alembic==1.13.2",
     "sqlalchemy==2.0.34",
@@ -19,12 +22,9 @@ dependencies = [
     "openai==1.44.0",
     {%- if cookiecutter.use_celery == "yes" %}"celery[beat]==5.2.7"{%- endif %}
 ]
-name = "{{ cookiecutter.project_slug }}"
-version = "1.0.0"
-description = "Base project for building fastapi backends"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "black==24.8.0",
     "isort==5.13.2",
     "pytest==8.3.3",
