@@ -1,0 +1,14 @@
+alembic==1.13.2
+sqlalchemy==2.0.34
+psycopg[binary]==3.1.13
+fastapi==0.114.0
+pydantic-settings==2.4.0
+sqlmodel==0.0.21
+redis==4.6.0
+fastapi-cache2[redis]==0.2.2
+uvicorn[standard]==0.23.2
+PyYAML==6.0.1
+httpx==0.25.0
+gunicorn==23.0.0
+openai==1.44.0
+{% if cookiecutter.use_celery == "yes" %}celery[beat]==5.2.7{% endif %}
