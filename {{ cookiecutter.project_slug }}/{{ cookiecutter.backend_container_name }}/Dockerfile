@@ -4,20 +4,15 @@ ARG env
 
 WORKDIR /tmp
 
-RUN pip install poetry
+RUN pip install uv
 
-COPY ./pyproject.toml ./poetry.lock* /tmp/
+COPY ./requirements*.txt /tmp/
 
-RUN poetry export $(test "${env:-dev}" != "prod" && echo "--with dev") \
-    -f requirements.txt \
-    --output requirements.txt \
-    --without-hashes
+RUN uv pip install -r requirements.txt $(test "${env:-dev}" != "prod" && echo "-r requirements-dev.txt")
 
 FROM python:{{ cookiecutter.py_version}}
 
-COPY --from=base /tmp/requirements.txt /code/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY --from=base /usr/local/lib/python*/site-packages /usr/local/lib/python*/site-packages
 
 ADD . /code/
 WORKDIR /code
