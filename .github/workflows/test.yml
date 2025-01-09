@@ -20,24 +20,20 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: Install poetry 📚
-        run: pipx install poetry
+      - name: Install uv 📚
+        run: pip install uv
 
       - name: Set up Python 3.9 🐍
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: "poetry"
-
-      - name: Set Poetry environment
-        if: matrix.os == 'ubuntu-latest'
-        run: poetry env use ${{ env.PYTHON_VERSION }}
+          cache: "pip"
 
       - name: Install dependencies 🤖
-        run: poetry install --no-root
+        run: uv pip install -r requirements.txt -r requirements-dev.txt
 
       - name: Run tests 📉
-        run: poetry run pytest tests
+        run: pytest tests
 
   docker:
     strategy:
@@ -59,21 +55,17 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: Install poetry 📚
-        run: pipx install poetry
+      - name: Install uv 📚
+        run: pip install uv
 
       - name: Set up Python ${{ env.PYTHON_VERSION }} 🐍
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: "poetry"
-
-      - name: Set Poetry environment
-        if: matrix.os == 'ubuntu-latest'
-        run: poetry env use ${{ env.PYTHON_VERSION }}
+          cache: "pip"
 
       - name: Install dependencies 🤖
-        run: poetry install --no-root
+        run: uv pip install -r requirements.txt -r requirements-dev.txt
 
       - name: Docker ${{ matrix.script.name }}
         run: sh tests/test_docker_build.sh ${{ matrix.script.args }}
