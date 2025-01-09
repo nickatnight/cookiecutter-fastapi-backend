@@ -58,9 +58,12 @@ The input variables, with their default values (some auto generated) are:
 After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can view it [here](/%7B%7B%20cookiecutter.project_slug%20%7D%7D/README.md)
 
 ## Development
-This project uses [Poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions) to manage dev environment.  Once installed:
-1. install packages with `poetry install`
-2. run tests with `poetry run pytest tests`
+This project uses [uv](https://github.com/astral-sh/uv) to manage dependencies. To set up the development environment:
+
+1. Install uv: `pip install uv`
+2. Install dependencies:    ```sh
+   uv pip install -r requirements-dev.txt   ```
+3. Run tests: `pytest tests`
 
 Pre-commit:
 1. Install pre-commit hooks with `pre-commit install`
