@@ -1,0 +1,4 @@
+cookiecutter==2.6.0
+pytest-cookies==0.7.0
+sh==2.0.7
+binaryornot==0.4.4

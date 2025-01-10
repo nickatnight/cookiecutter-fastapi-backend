@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest==8.3.3
+pytest-instafail==0.5.0
+pre-commit==3.8.0
