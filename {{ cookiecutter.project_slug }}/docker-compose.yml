@@ -14,6 +14,12 @@ services:
       - '5431:5432'
     volumes:
       - {{ cookiecutter.db_container_name }}-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
   {{ cookiecutter.backend_container_name }}:
     restart: always
@@ -28,10 +34,11 @@ services:
       - "8666:8000"
     command: |
         bash -c "
-        while !</dev/tcp/{{ cookiecutter.db_container_name }}/5432; do sleep 1; done;
+        source .venv/bin/activate;
         gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --log-level=debug --timeout=60 --reload"
     depends_on:
-      - {{ cookiecutter.db_container_name }}
+      {{ cookiecutter.db_container_name }}:
+        condition: service_healthy
     environment:
       - PYTHONUNBUFFERED=0
     volumes:

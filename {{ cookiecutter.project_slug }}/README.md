@@ -48,12 +48,12 @@ $ make alembic-migrate
 ### General workflow
 See the [Makefile](/Makefile) to view available commands.
 
-By default, the dependencies are managed with [Poetry](https://python-poetry.org/), go there and install it.
+By default, the dependencies are managed with [uv](https://docs.astral.sh/uv/getting-started/installation/), go there and install it.
 
 From `./{{ cookiecutter.backend_container_name }}/` you can install all the dependencies with:
 
 ```console
-$ poetry install
+$ uv sync
 ```
 
 ### pre-commit hooks
