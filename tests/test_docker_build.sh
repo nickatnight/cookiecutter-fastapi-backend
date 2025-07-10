@@ -25,7 +25,7 @@ uv run pre-commit run --show-diff-on-failure --all-files
 docker compose build
 
 # run the project's type checks
-docker compose run --rm backend mypy src/
+docker compose run --rm backend bash -c "uv sync && mypy src/"
 
 # run the project's tests
 docker compose run --rm backend pytest tests/
