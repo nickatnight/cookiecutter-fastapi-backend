@@ -4,6 +4,7 @@ on: [workflow_call]  # allow this workflow to be called from other workflows
 
 env:
   PYTHON_VERSION: 3.9
+  POETRY_VERSION: 1.8.5  # the most recent 1.x.x version of Poetry
 
 jobs:
   run-tests:
@@ -21,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install poetry 📚
-        run: pipx install poetry
+        run: pipx install poetry==$POETRY_VERSION
 
       - name: Set up Python 3.9 🐍
         uses: actions/setup-python@v4
@@ -60,7 +61,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install poetry 📚
-        run: pipx install poetry
+        run: pipx install poetry==$POETRY_VERSION
 
       - name: Set up Python ${{ env.PYTHON_VERSION }} 🐍
         uses: actions/setup-python@v4
