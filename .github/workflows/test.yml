@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install poetry 📚
-        run: pipx install poetry==$POETRY_VERSION
+        run: pipx install poetry==${{ env.POETRY_VERSION }}
 
       - name: Set up Python 3.9 🐍
         uses: actions/setup-python@v4
@@ -61,7 +61,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install poetry 📚
-        run: pipx install poetry==$POETRY_VERSION
+        run: pipx install poetry==${{ env.POETRY_VERSION }}
 
       - name: Set up Python ${{ env.PYTHON_VERSION }} 🐍
         uses: actions/setup-python@v4
