@@ -34,7 +34,8 @@ app = FastAPI(
 
 def on_startup() -> None:
     add_postgresql_extension()
-    {%- if cookiecutter.use_celery == "yes" %}redis_client = get_redis_client()
+    {%- if cookiecutter.use_celery == "yes" %}
+    redis_client = get_redis_client()
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache"){%- endif %}
     logger.info("FastAPI app running...")
 
