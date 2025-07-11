@@ -22,7 +22,7 @@ services:
       - key: POETRY_VERSION
         value: '1.8.5'
       # PostgreSQL service
-      - key: DATABASE_URL
+      - key: POSTGRES_URL
         fromDatabase:
           name: {{ cookiecutter.project_slug_db }}db
           property: connectionString
