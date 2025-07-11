@@ -1,7 +1,8 @@
 volumes:
   base-data:
   {{ cookiecutter.db_container_name }}-data:
-  {%- if cookiecutter.use_celery == "yes" %}redis-data:{%- endif %}
+  {%- if cookiecutter.use_celery == "yes" %}
+  redis-data:{%- endif %}
 
 services:
   {{ cookiecutter.db_container_name }}:
