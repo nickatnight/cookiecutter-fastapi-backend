@@ -10,11 +10,10 @@ class Settings(BaseSettings):
 
     # 60 minutes * 24 hours * 8 days = 8 days
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
-    # SERVER_NAME: Optional[str] = Field(..., env="NGINX_HOST")
     BACKEND_CORS_ORIGINS: list[AnyHttpUrl] = []
     LOG_LEVEL: int = Field(default=logging.INFO)
 
-    VERSION: str = Field(default="")
+    VERSION: str = Field(default="v1")
     DEBUG: bool = Field(default=True)
 
     POSTGRES_USER: str = Field(default="")
@@ -23,10 +22,10 @@ class Settings(BaseSettings):
     POSTGRES_PORT: str = Field(default="")
     POSTGRES_DB: str = Field(default="")
     POSTGRES_URL: Union[Optional[PostgresDsn], Optional[str]] = None
-
+    {%- if cookiecutter.use_celery == "yes" %}
     REDIS_HOST: str = Field(default="")
     REDIS_PORT: str = Field(default="")
-
+    {%- endif %}
     DB_POOL_SIZE: int = Field(default=83)
     WEB_CONCURRENCY: int = Field(default=9)
     MAX_OVERFLOW: int = Field(default=64)

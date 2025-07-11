@@ -39,3 +39,5 @@ docker compose run backend pytest tests/
 
 # return non-zero status code if there are migrations that have not been created
 # docker compose run backend alembic --dry-run --check || { echo "ERROR: there were changes in the models, but migration listed above have not been created and are not saved in version control"; exit 1; }
+
+docker compose down -v

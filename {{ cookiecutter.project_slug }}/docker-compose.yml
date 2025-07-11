@@ -1,8 +1,8 @@
 volumes:
   base-data:
   {{ cookiecutter.db_container_name }}-data:
-  {{ cookiecutter.nginx_container_name }}-data:
-  redis-data:
+  {%- if cookiecutter.use_celery == "yes" %}
+  redis-data:{%- endif %}
 
 services:
   {{ cookiecutter.db_container_name }}:
@@ -12,6 +12,11 @@ services:
     restart: always
     ports:
       - '5431:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - {{ cookiecutter.db_container_name }}-data:/var/lib/postgresql/data
 
@@ -28,28 +33,16 @@ services:
       - "8666:8000"
     command: |
         bash -c "
-        while !</dev/tcp/{{ cookiecutter.db_container_name }}/5432; do sleep 1; done;
         gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --log-level=debug --timeout=60 --reload"
     depends_on:
-      - {{ cookiecutter.db_container_name }}
+      db:
+        condition: service_healthy
     environment:
       - PYTHONUNBUFFERED=0
     volumes:
       - base-data:/data
       - ./{{ cookiecutter.backend_container_name }}/:/code
-
-  {{ cookiecutter.nginx_container_name }}:
-    restart: always
-    ports:
-      - "0.0.0.0:80:80"
-    env_file:
-      - .env
-    build:
-      context: ./{{ cookiecutter.nginx_container_name }}
-      dockerfile: ./Dockerfile
-    volumes:
-        - {{ cookiecutter.nginx_container_name }}-data:/etc/letsencrypt
-
+{%- if cookiecutter.use_celery == "yes" %}
   redis:
     restart: always
     image: redis:latest
@@ -57,7 +50,7 @@ services:
       - "6479:6379"
     volumes:
       - redis-data:/data
-{%- if cookiecutter.use_celery == "yes" %}
+
   celery:
     restart: always
     build: ./{{ cookiecutter.backend_container_name }}
