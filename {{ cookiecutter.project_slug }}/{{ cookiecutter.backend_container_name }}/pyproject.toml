@@ -18,17 +18,16 @@ uvicorn = {extras = ["standard"], version = "0.23.2"}
 PyYAML = "6.0.1"
 httpx = "0.25.0"
 gunicorn = "23.0.0"
-openai = "1.44.0"
 {%- if cookiecutter.use_celery == "yes" %}celery = {extras = ["beat"], version = "5.2.7"}{%- endif %}
 
 [tool.poetry.dev-dependencies]
-black = "24.8.0"
-isort = "5.13.2"
+black = "25.1.0"
+isort = "6.0.1"
 pytest = "8.3.3"
 pytest-cov = "5.0.0"
 pytest-mock = "3.14.0"
-mypy = "1.11.2"
-ruff = "0.6.4"
+mypy = "1.16.1"
+ruff = "0.12.2"
 requests = "2.32.3"
 sqlalchemy-stubs = "0.4"
 
@@ -79,7 +78,7 @@ lint.ignore = [
 "__init__.py" = ["F401"]
 
 [tool.codespell]
-ignore-words-list = 'selectin,'
+ignore-words-list = 'selectin,THIRDPARTY'
 
 [tool.coverage.report]
 fail_under = 20

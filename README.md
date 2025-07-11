@@ -32,8 +32,6 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 * :computer: **Production ready** Python web server using [FastAPI](https://fastapi.tiangolo.com/)
 * :pencil2: **SQLModel** [Library](https://sqlmodel.tiangolo.com/) for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
 * :light_rail: **Alembic** Lightweight database migration tool for usage with the [SQLAlchemy](https://alembic.sqlalchemy.org/en/latest/) Database Toolkit for Python
-* :globe_with_meridians: **NGINX** High Performance Load Balancer, [Web Server](https://www.nginx.com/), & Reverse Proxy
-* :lock: **Let's Encrypt** A free, automated, and open [certificate authority](https://letsencrypt.org/) (CA), provided by the Internet Security Research Group (ISRG)...with automatic cert renewal
 * :floppy_disk: **postgresql** Powerful open source [object-relational](https://www.postgresql.org/) database
 * :convenience_store: **Redis** In-memory data structure [store](https://redis.io/), used as a distributed, in-memory key–value database, cache and message broker
 * :seedling: **Celery** [Asynchronous](https://docs.celeryq.dev/en/stable/getting-started/introduction.html) task or job queue
@@ -53,10 +51,8 @@ The input variables, with their default values (some auto generated) are:
 * `db_container_name`: The name of the database container. Default `db`
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `use_celery`: Whether to use Celery/Beat for asynchronous/scheduled tasks.
-* `nginx_container_name`: The name of the nginx web server container. Default `nginx`
-* `doctl_version`: The version name of [DigitalOcean Command Line Interface](https://docs.digitalocean.com/reference/doctl/) to use. Default `1.92.0`
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
-* `deployments`: Include `docker-compose` files needed for deployment step in GitHub Action. Options are `y` or `n`
+* `deployments`: Deploy to your favorite platform, Render (and more to come)
 
 
 ## More Details

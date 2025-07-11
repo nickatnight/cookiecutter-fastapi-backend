@@ -18,8 +18,8 @@ if sys.platform.startswith("win"):
 #     pytest.skip("skipping slow macOS tests on CI", allow_module_level=True)
 
 SUPPORTED_COMBINATIONS = [
-    {"deployments": "no"},
-    {"deployments": "yes"},
+    {"deployments": "none"},
+    {"deployments": "render"},
     {"use_celery": "no"},
     {"use_celery": "yes"},
     {"py_version": "3.9"},
@@ -40,8 +40,6 @@ def context() -> Dict:
         "py_version": "3.10",
         "db_container_name": "db",
         "backend_container_name": "backend",
-        "nginx_container_name": "nginx",
-        "doctl_version": "1.92.0",
         "github_username": "yer.a.wizard",
     }
 
