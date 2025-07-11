@@ -12,8 +12,8 @@ psycopg = {extras = ["binary"], version = "3.1.13"}
 fastapi = "0.114.0"
 pydantic-settings = "2.4.0"
 sqlmodel = "0.0.21"
-redis = "4.6.0"
-fastapi-cache2 = {extras = ["redis"], version = "0.2.2"}
+{%- if cookiecutter.use_celery == "yes" %}redis = "4.6.0"{%- endif %}
+{%- if cookiecutter.use_celery == "yes" %}fastapi-cache2 = {extras = ["redis"], version = "0.2.2"}{%- endif %}
 uvicorn = {extras = ["standard"], version = "0.23.2"}
 PyYAML = "6.0.1"
 httpx = "0.25.0"

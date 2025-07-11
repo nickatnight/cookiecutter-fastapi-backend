@@ -48,9 +48,9 @@ jobs:
           - name: Basic
             args: ""
           - name: Deployments, Example Api, & py3.11
-            args: "deployments='none' py_version=3.11"
+            args: "deployments='render' py_version=3.11 use_celery='yes'"
           - name: Deployments, Example Api, & py3.9
-            args: "deployments='none' py_version=3.9"
+            args: "deployments='render' py_version=3.9 use_celery='yes'"
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
     env:

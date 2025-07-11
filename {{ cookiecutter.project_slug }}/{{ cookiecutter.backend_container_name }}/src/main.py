@@ -2,11 +2,11 @@ import logging
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi_cache import FastAPICache
-from fastapi_cache.backends.redis import RedisBackend
+{%- if cookiecutter.use_celery == "yes" %}from fastapi_cache import FastAPICache
+from fastapi_cache.backends.redis import RedisBackend{%- endif %}
 
 from src.api import routes
-from src.api.deps import get_redis_client
+{%- if cookiecutter.use_celery == "yes" %}from src.api.deps import get_redis_client{%- endif %}
 from src.core.config import settings
 from src.db.session import add_postgresql_extension
 
@@ -32,8 +32,8 @@ app = FastAPI(
 
 def on_startup() -> None:
     add_postgresql_extension()
-    redis_client = get_redis_client()
-    FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
+    {%- if cookiecutter.use_celery == "yes" %}redis_client = get_redis_client()
+    FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache"){%- endif %}
     logger.info("FastAPI app running...")
 
 

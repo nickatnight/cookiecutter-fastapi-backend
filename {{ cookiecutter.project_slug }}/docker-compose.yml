@@ -1,7 +1,7 @@
 volumes:
   base-data:
   {{ cookiecutter.db_container_name }}-data:
-  redis-data:
+  {%- if cookiecutter.use_celery == "yes" %}redis-data:{%- endif %}
 
 services:
   {{ cookiecutter.db_container_name }}:
@@ -41,7 +41,7 @@ services:
     volumes:
       - base-data:/data
       - ./{{ cookiecutter.backend_container_name }}/:/code
-
+{%- if cookiecutter.use_celery == "yes" %}
   redis:
     restart: always
     image: redis:latest
@@ -49,7 +49,7 @@ services:
       - "6479:6379"
     volumes:
       - redis-data:/data
-{%- if cookiecutter.use_celery == "yes" %}
+
   celery:
     restart: always
     build: ./{{ cookiecutter.backend_container_name }}

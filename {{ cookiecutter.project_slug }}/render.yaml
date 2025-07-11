@@ -4,10 +4,15 @@ services:
     name: {{ cookiecutter.project_slug }}
     runtime: docker
     plan: free
-    autoDeploy: false
+    # Trigger a deploy only if the linked branch's CI checks pass
+    autoDeployTrigger: checksPass
+    # Web services only. The path of the service's health check endpoint for zero-downtime deploys.
     healthCheckPath: /v1/ping
+    # The command to run when starting the Docker-based service.
     dockerCommand: gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    # The path to the service's Dockerfile, relative to the repo root. Typically used for services in a monorepo.
     dockerfilePath: ./{{ cookiecutter.backend_container_name }}/Dockerfile
+    # The path to the service's Docker build context, relative to the repo root. Typically used for services in a monorepo.
     dockerContext: ./{{ cookiecutter.backend_container_name }}
 
     envVars:

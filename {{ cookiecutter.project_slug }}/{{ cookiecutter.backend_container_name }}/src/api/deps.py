@@ -1,4 +1,4 @@
-from redis import Redis
+{%- if cookiecutter.use_celery == "yes" %}from redis import Redis
 
 from src.core.config import settings
 
@@ -15,3 +15,4 @@ def get_redis_client() -> Redis:
         decode_responses=True,
     )
     return redis
+{%- endif %}

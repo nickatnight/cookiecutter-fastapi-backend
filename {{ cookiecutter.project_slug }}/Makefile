@@ -1,4 +1,4 @@
-all:
+all: black isort lint mypy
 
 # docker
 up:
@@ -42,6 +42,10 @@ lint:
 black:
 	@echo "running black...."
 	docker compose exec {{ cookiecutter.backend_container_name }} black .
+
+isort:
+	@echo "running isort...."
+	docker compose exec {{ cookiecutter.backend_container_name }} isort .
 
 mypy:
 	@echo "running mypy...."
