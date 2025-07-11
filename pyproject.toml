@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "cookiecutter-fastapi-backend"
-version = "0.4.1"
+version = "1.0.0"
 description = "Cookiecutter template to build and deploy fastapi backends..batteries included"
-authors = ["nickatnight <nickkelly.858@gmail.com>"]
+authors = ["nickatnight <nialexanderke@proton.me>"]
 readme = "README.md"
 packages = []
 homepage = "https://github.com/nickatnight/cookiecutter-fastapi-backend"

@@ -52,7 +52,7 @@ The input variables, with their default values (some auto generated) are:
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `use_celery`: Whether to use Celery/Beat for asynchronous/scheduled tasks.
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
-* `deployments`: Deploy to your favorite platform, Render (and more to come)
+* `deployments`: Deploy to your favorite platform, Render.com (and more to come)
 
 
 ## More Details
