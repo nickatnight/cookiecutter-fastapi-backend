@@ -35,7 +35,7 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 * :floppy_disk: **postgresql** Powerful open source [object-relational](https://www.postgresql.org/) database
 * :convenience_store: **Redis** In-memory data structure [store](https://redis.io/), used as a distributed, in-memory key–value database, cache and message broker
 * :seedling: **Celery** [Asynchronous](https://docs.celeryq.dev/en/stable/getting-started/introduction.html) task or job queue
-* :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, build, test, and deploy to DigitalOcean cloud
+* :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, test, and deploy to your favorite platform
 * :leftwards_arrow_with_hook: **pre-commit** [Git hooks](https://pre-commit.com/) to maintain code quality using modern tooling (ruff, black, isort)
 
 ## Input Variables

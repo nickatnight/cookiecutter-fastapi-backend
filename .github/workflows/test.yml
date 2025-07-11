@@ -24,7 +24,7 @@ jobs:
       - name: Install poetry 📚
         run: pipx install poetry==${{ env.POETRY_VERSION }}
 
-      - name: Set up Python 3.9 🐍
+      - name: Set up Python ${{ env.PYTHON_VERSION }} 🐍
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}

@@ -58,5 +58,7 @@ pre-commit installed at .git/hooks/pre-commit
 
 {%- if cookiecutter.deployments == "render" %}
 ### Deployment to Render
-N/A
+This project uses a Render blueprint to automatically deploy to Render.
+
+Once you commit your project to GitHub, view [Render docs](https://render.com/docs/infrastructure-as-code#setup) on how to link the `render` blueprint to your project.
 {%- endif %}

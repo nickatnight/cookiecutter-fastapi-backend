@@ -2,8 +2,17 @@ services:
   # A Docker web service
   - type: web
     name: {{ cookiecutter.project_slug }}
-    runtime: python
+    runtime: docker
     plan: free
     autoDeploy: false
-    buildCommand: poetry export -f requirements.txt --output requirements.txt
-    startCommand: gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --host 0.0.0.0 --port $PORT
+    healthCheckPath: /v1/ping
+    dockerCommand: gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    dockerfilePath: ./{{ cookiecutter.backend_container_name }}/Dockerfile
+    dockerContext: ./{{ cookiecutter.backend_container_name }}
+
+    envVars:
+    # Environment variables for the application
+      - key: PORT
+        value: '10000'
+      - key: POETRY_VERSION
+        value: '1.8.5'
