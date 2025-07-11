@@ -2,11 +2,13 @@ import logging
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-{%- if cookiecutter.use_celery == "yes" %}from fastapi_cache import FastAPICache
+{%- if cookiecutter.use_celery == "yes" %}
+from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend{%- endif %}
 
 from src.api import routes
-{%- if cookiecutter.use_celery == "yes" %}from src.api.deps import get_redis_client{%- endif %}
+{%- if cookiecutter.use_celery == "yes" %}
+from src.api.deps import get_redis_client{%- endif %}
 from src.core.config import settings
 from src.db.session import add_postgresql_extension
 

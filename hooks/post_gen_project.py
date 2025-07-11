@@ -4,11 +4,10 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 BASE_BACKEND_SRC_PATH = "{{ cookiecutter.backend_container_name }}/src/"
 CELERY_FILE_PATHS = [
     "%sworker.py" % BASE_BACKEND_SRC_PATH,
+    "%sapi/deps.py" % BASE_BACKEND_SRC_PATH,
 ]
 DEPLOYMENT_FILES = [
-    "ops/docker-compose.prod.yml",
-    "ops/docker-compose.staging.yml",
-    ".github/workflows/build.yml",
+    "render.yaml",
 ]
 
 
@@ -22,7 +21,7 @@ def rename_file(old: str, new: str):
     os.rename(in_, out_)
 
 
-if "{{ cookiecutter.deployments }}" == "no":
+if "{{ cookiecutter.deployments }}" == "none":
     print("Removing deployment files...")
     for p in DEPLOYMENT_FILES:
         remove_file(p)
