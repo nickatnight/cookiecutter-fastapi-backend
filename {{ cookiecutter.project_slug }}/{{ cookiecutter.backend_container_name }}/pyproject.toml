@@ -109,7 +109,8 @@ strict_equality = true
 [[tool.mypy.overrides]]
 module = [
     "fastapi_cache.*",
-    "redis.*"
+    "redis.*",
+    "celery.*",
 ]
 ignore_missing_imports = true
 
