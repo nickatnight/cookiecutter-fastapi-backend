@@ -28,7 +28,7 @@ services:
           property: connectionString
 
 databases:
-  - name: {{ cookiecutter.project_slug_db }}db 
+  - name: {{ cookiecutter.project_slug_db }}db
     postgresMajorVersion: '15'
     ipAllowList: [] # Only allow internal connections
     user: app_user
