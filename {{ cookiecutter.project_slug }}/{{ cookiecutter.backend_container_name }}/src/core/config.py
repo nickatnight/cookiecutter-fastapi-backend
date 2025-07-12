@@ -53,8 +53,9 @@ class Settings(BaseSettings):
             host=values.data.get("POSTGRES_HOST"),
             path=f"{values.data.get('POSTGRES_DB') or ''}",
         ).unicode_string()
+    {%- if cookiecutter.use_celery == "yes" %}
 
-    {%- if cookiecutter.use_celery == "yes" %}@field_validator("REDIS_URL", mode="before")
+    @field_validator("REDIS_URL", mode="before")
     @classmethod
     def build_redis_connection(cls, v: Optional[str], values: ValidationInfo) -> Any:
         if isinstance(v, str) and len(v) > 0:
