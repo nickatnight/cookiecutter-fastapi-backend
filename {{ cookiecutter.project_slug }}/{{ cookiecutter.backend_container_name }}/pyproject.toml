@@ -19,6 +19,7 @@ uvicorn = {extras = ["standard"], version = "0.23.2"}
 PyYAML = "6.0.1"
 httpx = "0.25.0"
 gunicorn = "23.0.0"
+psycopg2 = "2.9.10"
 {%- if cookiecutter.use_celery == "yes" %}
 celery = {extras = ["beat"], version = "5.2.7"}{%- endif %}
 
