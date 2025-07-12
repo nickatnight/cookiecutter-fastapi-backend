@@ -15,6 +15,14 @@
 # cookiecutter-fastapi-backend
 :cookie: [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends to your favorite PaaS..batteries included.
 
+Support PaaS's:
+- Render.com
+- Platform.sh (Coming soon)
+- Porter (Coming soon)
+- Fly.io (Coming soon)
+- AWS (Coming soon)
+- DigitalOcean (Coming soon)
+
 ## Quickstart
 Install the latest Cookiecutter if you haven't installed it yet (this requires Cookiecutter 1.4.0 or higher):
 ```sh
@@ -52,10 +60,6 @@ The input variables, with their default values (some auto generated) are:
 * `use_celery`: Whether to use Celery/Beat and Redis for asynchronous/scheduled tasks. Default `no`
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
 * `deployments`: Deploy to your favorite platform, Render.com (and more to come). Default `none`
-
-
-## More Details
-After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can view it [here](/%7B%7B%20cookiecutter.project_slug%20%7D%7D/README.md)
 
 ## Documentation
 See full documentation [here](https://cookiecutter-fastapi-backend.readthedocs.io/en/latest/).
