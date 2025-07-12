@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
-version = "1.0.0"
+version = "0.1.0"
 description = "Base project for building fastapi backends"
 authors = ["nickatnight <nickkelly.858@gmail.com>"]
 
