@@ -1,25 +1,41 @@
-[tool.poetry]
+[project]
 name = "cookiecutter-fastapi-backend"
-version = "1.2.0"
+version = "2.0.0"
 description = "Cookiecutter template to build and deploy fastapi backends..batteries included"
-authors = ["nickatnight <nialexanderke@proton.me>"]
+authors = [{ name = "nickatnight", email = "nialexanderke@proton.me" }]
+requires-python = ">=3.9"
 readme = "README.md"
-packages = []
-homepage = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
-repository = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
-package-mode = false
+dependencies = [
+    "cookiecutter==2.6.0",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
+[project.urls]
+Homepage = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
+Repository = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
 
-[tool.poetry.group.dev.dependencies]
-cookiecutter = "2.6.0"
-pytest = "8.3.3"
-pytest-cookies = "0.7.0"
-sh = "2.0.7"
-binaryornot = "0.4.4"
-pre-commit = "3.8.0"
-pytest-instafail = "0.5.0"
+[dependency-groups]
+dev = [
+    "pytest==8.3.3",
+    "pytest-cookies==0.7.0",
+    "sh==2.0.7",
+    "binaryornot==0.4.4",
+    "pre-commit==3.8.0",
+    "pytest-instafail==0.5.0",
+]
+
+[tool.uv]
+package = false
+required-version = ">=0.7.18"
 
 [tool.ruff]
 line-length = 100
@@ -42,7 +58,3 @@ ignore = [
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

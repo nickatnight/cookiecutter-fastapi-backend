@@ -6,17 +6,15 @@
     <a href="https://github.com/nickatnight/cookiecutter-fastapi-backend/blob/master/LICENSE">
         <img alt="License Shield" src="https://img.shields.io/github/license/nickatnight/cookiecutter-fastapi-backend">
     </a>
+    <a href="https://docs.astral.sh/uv/">
+        <img alt="uv version" src="https://img.shields.io/badge/uv-0.7.18+-purple">
+    </a
 </p>
 
 # cookiecutter-fastapi-backend
 :cookie: [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends..batteries included.
 
 ## Quickstart
-> This project requires Poetry version 1.x.x. Poetry version 2 contains breaking changes that are not yet supported by this template.
->
-> There are updates coming soon that will pivot to `uv`
-
-
 Install the latest Cookiecutter if you haven't installed it yet (this requires Cookiecutter 1.4.0 or higher):
 ```sh
 pip install cookiecutter

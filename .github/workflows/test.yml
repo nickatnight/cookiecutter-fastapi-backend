@@ -4,7 +4,7 @@ on: [workflow_call]  # allow this workflow to be called from other workflows
 
 env:
   PYTHON_VERSION: 3.9
-  POETRY_VERSION: 1.8.5  # the most recent 1.x.x version of Poetry
+  UV_VERSION: 0.7.18
 
 jobs:
   run-tests:
@@ -21,24 +21,20 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v4
 
-      - name: Install poetry 📚
-        run: pipx install poetry==${{ env.POETRY_VERSION }}
-
-      - name: Set up Python ${{ env.PYTHON_VERSION }} 🐍
-        uses: actions/setup-python@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: "poetry"
+          # Install a specific version of uv.
+          version: ${{ env.UV_VERSION }}
 
-      - name: Set Poetry environment
-        if: matrix.os == 'ubuntu-latest'
-        run: poetry env use ${{ env.PYTHON_VERSION }}
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
 
-      - name: Install dependencies 🤖
-        run: poetry install --no-root
+      - name: Install the project
+        run: uv sync
 
       - name: Run tests 📉
-        run: poetry run pytest tests
+        run: make pytest
 
   docker:
     strategy:
@@ -60,21 +56,17 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v4
 
-      - name: Install poetry 📚
-        run: pipx install poetry==${{ env.POETRY_VERSION }}
-
-      - name: Set up Python ${{ env.PYTHON_VERSION }} 🐍
-        uses: actions/setup-python@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: "poetry"
+          # Install a specific version of uv.
+          version: ${{ env.UV_VERSION }}
 
-      - name: Set Poetry environment
-        if: matrix.os == 'ubuntu-latest'
-        run: poetry env use ${{ env.PYTHON_VERSION }}
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
 
-      - name: Install dependencies 🤖
-        run: poetry install --no-root
+      - name: Install the project
+        run: uv sync
 
       - name: Docker ${{ matrix.script.name }}
-        run: sh tests/test_docker_build.sh ${{ matrix.script.args }}
+        run: uv run sh tests/test_docker_build.sh ${{ matrix.script.args }}
