@@ -53,6 +53,7 @@ class Settings(BaseSettings):
             host=values.data.get("POSTGRES_HOST"),
             path=f"{values.data.get('POSTGRES_DB') or ''}",
         ).unicode_string()
+
     {%- if cookiecutter.use_celery == "yes" %}
     @field_validator("REDIS_URL", mode="before")
     @classmethod
@@ -62,5 +63,6 @@ class Settings(BaseSettings):
 
         return f"redis://{values.data.get('REDIS_HOST')}:{values.data.get('REDIS_PORT')}"
     {%- endif %}
+
 
 settings = Settings()
