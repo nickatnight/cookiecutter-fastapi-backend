@@ -1,7 +1,7 @@
 Continuous Integration and Deployment
-====================================
+=====================================
 
-The project uses a typical CI/CD workflow when developing projects.
+The project uses a typical CI/CD workflow when developing projects within a team.
 
 Any opened pull request to main branch will run:
 
@@ -9,7 +9,7 @@ Any opened pull request to main branch will run:
 2. Unit tests
 3. Code coverage (automatically includes Codecov reporting)
 
-Releasing and tagging is also supported. When a developer is on ``main`` branch and pushed a new tag:
+Releasing and tagging is also supported. When a developer is on ``main`` branch and pushes a new tag:
 
 1. A new tag is created
 2. A new GitHub release is created

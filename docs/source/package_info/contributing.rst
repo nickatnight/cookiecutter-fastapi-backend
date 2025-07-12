@@ -5,26 +5,33 @@ This is an open-source project and contributions are always welcome. The project
 
 .. note::
 
-    This section assumes you have Python 3.9+ installed on your system
-
+    This section assumes you have Python 3.9+ installed on your system, `uv <https://docs.astral.sh/uv/getting-started/installation/>`_ Python package manager, and `pre-commit <https://pre-commit.com/>`_ installed.
 
 Setting Up Your Development Environment
 ---------------------------------------
 
-This project uses `Poetry <https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions>`_ to manage dev environment.  Once installed:
+To get started, fork the `cookiecutter-fastapi-backend` repository on GitHub and clone your fork locally.
 
-1. install packages with `poetry install`
+.. code-block:: bash
 
-Pre-commit:
+    $ git clone https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 
-1. Install pre-commit hooks with `pre-commit install`
-2. Run hooks with `pre-commit run --all-files`
+Sync the project:
 
+.. code-block:: bash
+
+    $ uv sync
+
+Install Pre-commit hooks:
+
+.. code-block:: bash
+
+    $ pre-commit install
 
 Running Tests
 -------------
 
-The project uses ``pytest`` for testing. To run the test suite, use the following command:
+The project uses a combination of ``pytest`` and ``docker`` for testing. To run the test suite, use the following command:
 
 .. code-block:: bash
 

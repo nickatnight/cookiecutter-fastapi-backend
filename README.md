@@ -8,7 +8,8 @@
     </a>
     <a href="https://docs.astral.sh/uv/">
         <img alt="uv version" src="https://img.shields.io/badge/uv-0.7.18+-purple">
-    </a
+    </a>
+    <a href="https://cookiecutter-fastapi-backend.readthedocs.io/en/latest/"><img alt="Read The Docs Badge" src="https://img.shields.io/readthedocs/cookiecutter-fastapi-backend"></a>
 </p>
 
 # cookiecutter-fastapi-backend
