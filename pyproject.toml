@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "cookiecutter-fastapi-backend"
-version = "1.0.0"
+version = "1.1.0"
 description = "Cookiecutter template to build and deploy fastapi backends..batteries included"
 authors = ["nickatnight <nialexanderke@proton.me>"]
 readme = "README.md"
 packages = []
 homepage = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
 repository = "https://github.com/nickatnight/cookiecutter-fastapi-backend"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9"

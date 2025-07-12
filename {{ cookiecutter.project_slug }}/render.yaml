@@ -15,9 +15,21 @@ services:
     # The path to the service's Docker build context, relative to the repo root. Typically used for services in a monorepo.
     dockerContext: ./{{ cookiecutter.backend_container_name }}
 
-    envVars:
     # Environment variables for the application
+    envVars:
       - key: PORT
         value: '10000'
       - key: POETRY_VERSION
         value: '1.8.5'
+      # PostgreSQL service
+      - key: POSTGRES_URL
+        fromDatabase:
+          name: {{ cookiecutter.project_slug_db }}db
+          property: connectionString
+
+databases:
+  - name: {{ cookiecutter.project_slug_db }}db
+    plan: free
+    postgresMajorVersion: '15'
+    ipAllowList: [] # Only allow internal connections
+    user: app_user
