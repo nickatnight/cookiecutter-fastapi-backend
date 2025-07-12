@@ -41,7 +41,10 @@ services:
       - PYTHONUNBUFFERED=0
     volumes:
       - base-data:/data
-      - ./{{ cookiecutter.backend_container_name }}/:/code
+      - ./{{ cookiecutter.backend_container_name }}/src:/code/src
+      - ./{{ cookiecutter.backend_container_name }}/tests:/code/tests
+      - ./{{ cookiecutter.backend_container_name }}/alembic.ini:/code/alembic.ini
+      - ./{{ cookiecutter.backend_container_name }}/logconfig.yml:/code/logconfig.yml
 {%- if cookiecutter.use_celery == "yes" %}
   redis:
     restart: always

@@ -1,11 +1,9 @@
-test:
+pytest:
 	@echo "Running pytest"
-	poetry run tests/
+	uv run pytest tests/
 
-	@echo "Running docker build tests"
-	poetry run sh tests/test_docker_build.sh
+dockertest:
+	@echo "Running Docker build tests"
+	uv run sh tests/test_docker_build.sh
 
-
-sphinx:
-	@echo "Building Sphinx documentation"
-	poetry run sphinx-build -M html docs/source/ docs/build/
+test: pytest dockertest
