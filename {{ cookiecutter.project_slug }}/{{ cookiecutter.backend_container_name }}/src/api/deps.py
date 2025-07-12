@@ -4,7 +4,7 @@ from src.core.config import settings
 
 
 def get_redis_url() -> str:
-    return f"redis://{settings.REDIS_HOST}:{settings.REDIS_PORT}"
+    return settings.REDIS_URL
 
 
 def get_redis_client() -> Redis:

@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     {%- if cookiecutter.use_celery == "yes" %}
     REDIS_HOST: str = Field(default="")
     REDIS_PORT: str = Field(default="")
+    REDIS_URL: Optional[str] = None
     {%- endif %}
     DB_POOL_SIZE: int = Field(default=83)
     WEB_CONCURRENCY: int = Field(default=9)
@@ -52,6 +53,14 @@ class Settings(BaseSettings):
             host=values.data.get("POSTGRES_HOST"),
             path=f"{values.data.get('POSTGRES_DB') or ''}",
         ).unicode_string()
+
+    @field_validator("REDIS_URL", mode="before")
+    @classmethod
+    def build_redis_connection(cls, v: Optional[str], values: ValidationInfo) -> Any:
+        if isinstance(v, str) and len(v) > 0:
+            return v
+
+        return f"redis://{values.data.get('REDIS_HOST')}:{values.data.get('REDIS_PORT')}"
 
 
 settings = Settings()
