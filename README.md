@@ -6,17 +6,15 @@
     <a href="https://github.com/nickatnight/cookiecutter-fastapi-backend/blob/master/LICENSE">
         <img alt="License Shield" src="https://img.shields.io/github/license/nickatnight/cookiecutter-fastapi-backend">
     </a>
+    <a href="https://docs.astral.sh/uv/">
+        <img alt="uv version" src="https://img.shields.io/badge/uv-0.7.18+-purple">
+    </a
 </p>
 
 # cookiecutter-fastapi-backend
 :cookie: [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends..batteries included.
 
 ## Quickstart
-> This project requires Poetry version 1.x.x. Poetry version 2 contains breaking changes that are not yet supported by this template.
->
-> There are updates coming soon that will pivot to `uv`
-
-
 Install the latest Cookiecutter if you haven't installed it yet (this requires Cookiecutter 1.4.0 or higher):
 ```sh
 pip install cookiecutter
@@ -28,7 +26,7 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 ```
 
 ## Features
-* :whale: **Docker & Docker Compose** integration and optimization for [local development](https://docs.docker.com/compose/). Fast bundles using build stages and [Poetry](https://python-poetry.org/)
+* :whale: **Docker & Docker Compose** integration and optimization for [local development](https://docs.docker.com/compose/). Fast bundles using build stages and [uv](https://docs.astral.sh/uv/)
 * :computer: **Production ready** Python web server using [FastAPI](https://fastapi.tiangolo.com/)
 * :pencil2: **SQLModel** [Library](https://sqlmodel.tiangolo.com/) for interacting with SQL databases from Python code, with Python objects. It is designed to be intuitive, easy to use, highly compatible, and robust
 * :light_rail: **Alembic** Lightweight database migration tool for usage with the [SQLAlchemy](https://alembic.sqlalchemy.org/en/latest/) Database Toolkit for Python
@@ -59,9 +57,9 @@ The input variables, with their default values (some auto generated) are:
 After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can view it [here](/%7B%7B%20cookiecutter.project_slug%20%7D%7D/README.md)
 
 ## Development
-This project uses [Poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions) to manage dev environment.  Once installed:
-1. install packages with `poetry install`
-2. run tests with `poetry run pytest tests`
+This project uses [uv](https://docs.astral.sh/uv/) `0.7.18+` to manage dev environment.  Once installed:
+1. install project with `uv sync`
+2. run tests with `uv run pytest tests`
 
 Pre-commit:
 1. Install pre-commit hooks with `pre-commit install`

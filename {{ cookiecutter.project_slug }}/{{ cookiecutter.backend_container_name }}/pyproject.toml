@@ -1,38 +1,41 @@
-[tool.poetry]
+[project]
 name = "{{ cookiecutter.project_slug }}"
-version = "1.0.0"
+version = "0.1.0"
 description = "Base project for building fastapi backends"
-authors = ["nickatnight <nickkelly.858@gmail.com>"]
+maintainers = [
+  {name = "{{ cookiecutter.github_username }}", email = "{{ cookiecutter.author_email }}"}
+]
+requires-python = ">={{ cookiecutter.py_version }}"
+readme = "README.md"
+dependencies = [
+    "alembic==1.13.2",
+    "sqlalchemy==2.0.34",
+    "psycopg[binary]==3.1.13",
+    "fastapi==0.114.0",
+    "pydantic-settings==2.4.0",
+    "sqlmodel==0.0.21",
+    {%- if cookiecutter.use_celery == "yes" %}
+    "redis==4.6.0",
+    "fastapi-cache2[redis]==0.2.2",
+    "celery[beat]==5.2.7",{%- endif %}
+    "uvicorn[standard]==0.23.2",
+    "PyYAML==6.0.1",
+    "httpx==0.25.0",
+    "gunicorn==23.0.0"
+]
 
-[tool.poetry.dependencies]
-python = "~{{ cookiecutter.py_version }}"
-alembic = "1.13.2"
-sqlalchemy = "2.0.34"
-psycopg = {extras = ["binary"], version = "3.1.13"}
-fastapi = "0.114.0"
-pydantic-settings = "2.4.0"
-sqlmodel = "0.0.21"
-{%- if cookiecutter.use_celery == "yes" %}
-redis = "4.6.0"
-fastapi-cache2 = {extras = ["redis"], version = "0.2.2"}{%- endif %}
-uvicorn = {extras = ["standard"], version = "0.23.2"}
-PyYAML = "6.0.1"
-httpx = "0.25.0"
-gunicorn = "23.0.0"
-psycopg2 = "2.9.10"
-{%- if cookiecutter.use_celery == "yes" %}
-celery = {extras = ["beat"], version = "5.2.7"}{%- endif %}
-
-[tool.poetry.dev-dependencies]
-black = "25.1.0"
-isort = "6.0.1"
-pytest = "8.3.3"
-pytest-cov = "5.0.0"
-pytest-mock = "3.14.0"
-mypy = "1.16.1"
-ruff = "0.12.2"
-requests = "2.32.3"
-sqlalchemy-stubs = "0.4"
+[dependency-groups]
+dev = [
+    "black==25.1.0",
+    "isort==6.0.1",
+    "pytest==8.3.3",
+    "pytest-cov==5.0.0",
+    "pytest-mock==3.14.0",
+    "mypy==1.16.1",
+    "ruff==0.12.2",
+    "requests==2.32.3",
+    "sqlalchemy-stubs==0.4"
+]
 
 [tool.isort]
 multi_line_output = 3
@@ -114,7 +117,3 @@ module = [
     "celery.*",
 ]
 ignore_missing_imports = true
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
