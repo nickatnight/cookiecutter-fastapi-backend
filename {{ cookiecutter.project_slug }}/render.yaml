@@ -26,7 +26,43 @@ services:
         fromDatabase:
           name: {{ cookiecutter.project_slug_db }}db
           property: connectionString
+{%- if cookiecutter.use_celery == "yes" %}
+      - key: REDIS_URL
+        fromService:
+          name: celery-redis
+          type: redis
+          property: connectionString
 
+  - type: worker
+    name: celery-worker
+    runtime: docker
+    plan: free
+    autoDeployTrigger: checksPass
+    dockerCommand: celery --app=src worker --loglevel=info --concurrency=4
+    dockerfilePath: ./{{ cookiecutter.backend_container_name }}/Dockerfile
+    dockerContext: ./{{ cookiecutter.backend_container_name }}
+
+    envVars:
+      - key: PORT
+        value: '10000'
+      - key: POETRY_VERSION
+        value: '1.8.5'
+      - key: POSTGRES_URL
+        fromDatabase:
+          name: {{ cookiecutter.project_slug_db }}db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: celery-redis
+          type: redis
+          property: connectionString
+
+  - type: redis
+    name: celery-redis
+    plan: free # free plans will not persist data
+    maxmemoryPolicy: noeviction # recommended policy for queues
+    ipAllowList: [] # only allow internal connections
+{%- endif %}
 databases:
   - name: {{ cookiecutter.project_slug_db }}db
     plan: free
