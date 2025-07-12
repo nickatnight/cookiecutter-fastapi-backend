@@ -1,26 +1,28 @@
-FROM python:{{ cookiecutter.py_version}} AS base
+# Install uv
+FROM python:{{ cookiecutter.py_version}}-slim
+COPY --from=ghcr.io/astral-sh/uv:0.7.18 /uv /uvx /bin/
 
-ARG env
-
-WORKDIR /tmp
-
-RUN pip install poetry==1.8.5
-
-COPY ./pyproject.toml ./poetry.lock* /tmp/
-
-RUN poetry export $(test "${env:-dev}" != "prod" && echo "--with dev") \
-    -f requirements.txt \
-    --output requirements.txt \
-    --without-hashes
-
-FROM python:{{ cookiecutter.py_version}}
-
-COPY --from=base /tmp/requirements.txt /code/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-ADD . /code/
+# Change the working directory to the `app` directory
 WORKDIR /code
-ENV PYTHONPATH=/code
 
-EXPOSE 8000
+ENV PATH="/code/.venv/bin:$PATH"
+
+# Compile bytecode
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
+ENV UV_COMPILE_BYTECODE=1
+
+# uv Cache
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#caching
+ENV UV_LINK_MODE=copy
+
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --no-install-project
+
+# Copy the project into the image
+ADD . /code
+
+# Sync the project
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync
