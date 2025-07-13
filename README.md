@@ -2,7 +2,9 @@
     <a href="https://github.com/nickatnight/cookiecutter-fastapi-backend/actions">
         <img alt="GitHub Actions status" src="https://github.com/nickatnight/cookiecutter-fastapi-backend/actions/workflows/main.yml/badge.svg">
     </a>
-    <a href="https://github.com/nickatnight/cookiecutter-fastapi-backend/releases"><img alt="Release Status" src="https://img.shields.io/github/v/release/nickatnight/cookiecutter-fastapi-backend"></a>
+    <a href="https://pypi.org/project/cookiecutter-fastapi-backend/">
+        <img alt="PyPi Shield" src="https://img.shields.io/pypi/v/cookiecutter-fastapi-backend">
+    </a>
     <a href="https://github.com/nickatnight/cookiecutter-fastapi-backend/blob/master/LICENSE">
         <img alt="License Shield" src="https://img.shields.io/github/license/nickatnight/cookiecutter-fastapi-backend">
     </a>
