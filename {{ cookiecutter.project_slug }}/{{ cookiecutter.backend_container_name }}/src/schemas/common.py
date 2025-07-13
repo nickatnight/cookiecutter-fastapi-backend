@@ -13,7 +13,7 @@ class IResponseBase(GenericModel, Generic[T]):  # type: ignore
 
 
 class IGetResponseBase(IResponseBase[T], Generic[T]):
-    message: str = "Data got correctly"
+    message: str = "Data fetched correctly"
     data: Optional[T] = None
 
 

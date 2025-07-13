@@ -6,6 +6,7 @@ CELERY_FILE_PATHS = [
     "%sworker.py" % BASE_BACKEND_SRC_PATH,
     "%sapi/deps.py" % BASE_BACKEND_SRC_PATH,
     "%s__init__.py" % BASE_BACKEND_SRC_PATH,
+    "%score/tasks.py" % BASE_BACKEND_SRC_PATH,
 ]
 DEPLOYMENT_FILES = [
     "render.yaml",
@@ -39,5 +40,6 @@ if "{{ cookiecutter.use_celery }}" == "no":
     # deleting and creating new __init__.py file because formatting with pre-commit is difficult with if conditions in potentially empty file
     print("Creating empty __init__.py file")
     create_file(os.path.join(BASE_BACKEND_SRC_PATH, "__init__.py"))
+
 
 rename_file(".env_example", ".env")
