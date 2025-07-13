@@ -33,8 +33,11 @@ jobs:
       - name: Install the project
         run: uv sync
 
-      - name: Run tests 📉
+      - name: Run unit tests 📉
         run: make pytest
+
+      - name: Tests sphinx 📚
+        run: make sphinx
 
   docker:
     strategy:
