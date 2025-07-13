@@ -32,3 +32,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
     {% raw %}outputs:
       ReleaseTag: ${{ steps.create_release.outputs.release_tag }}{% endraw %}
+  {%- if cookiecutter.deployments == "digitalocean" %}
+  deploy-app:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout repository
+       uses: actions/checkout@v4
+     - name: Deploy the app
+       uses: digitalocean/app_action/deploy@v2
+       with:
+         app_spec_location: digitalocean.yaml
+         {% raw %}token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN_VARIABLE_NAME }}{% endraw %}
+  {%- endif %}

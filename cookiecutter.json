@@ -13,5 +13,5 @@
 
     "github_username": "change.me",
 
-    "deployments": ["none", "render"]
+    "deployments": ["none", "render", "digitalocean"]
 }
