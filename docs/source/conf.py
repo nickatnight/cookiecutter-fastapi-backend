@@ -8,15 +8,22 @@ import sys
 from datetime import datetime
 from typing import Any
 
+import tomli
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 sys.path.insert(0, ".")
 sys.path.append(os.path.abspath("../.."))
 
 
+with open("../../pyproject.toml", "rb") as f:
+    toml_dict = tomli.load(f)
+
 project = "Cookiecutter FastAPI Backend"
 author = "Nick Kelly"
 copyright = datetime.today().strftime(f"%Y, {author}")
+release = toml_dict["project"]["version"]
+version = ".".join(release.split(".", 2)[:2])
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
