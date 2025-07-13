@@ -12,10 +12,10 @@
     <a href="https://cookiecutter-fastapi-backend.readthedocs.io/en/latest/"><img alt="Read The Docs Badge" src="https://img.shields.io/readthedocs/cookiecutter-fastapi-backend"></a>
 </p>
 
-# cookiecutter-fastapi-backend
-:cookie: [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends to your favorite PaaS..batteries included.
+# :cookie: cookiecutter-fastapi-backend
+[Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to build and deploy fastapi backends to your favorite PaaS..batteries included.
 
-Support PaaS's:
+Supported PaaS's:
 - Render.com
 - Platform.sh (Coming soon)
 - Porter (Coming soon)
@@ -41,6 +41,7 @@ cookiecutter https://github.com/nickatnight/cookiecutter-fastapi-backend.git
 * :light_rail: **Alembic** Lightweight database migration tool for usage with the [SQLAlchemy](https://alembic.sqlalchemy.org/en/latest/) Database Toolkit for Python
 * :floppy_disk: **postgresql** Powerful open source [object-relational](https://www.postgresql.org/) database
 * :convenience_store: **Redis** In-memory data structure [store](https://redis.io/), used as a distributed, in-memory key–value database, cache and message broker
+* :gear: **Common** Base models and repository classes for common CRUD operations and database schemas.
 * :seedling: **Celery** [Asynchronous](https://docs.celeryq.dev/en/stable/getting-started/introduction.html) task or job queue
 * :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, test, and deploy to your favorite platform. Automatically includes [Codecov](https://about.codecov.io/) reporting.
 * :leftwards_arrow_with_hook: **pre-commit** [Git hooks](https://pre-commit.com/) to maintain code quality using modern tooling (ruff, black, isort)
