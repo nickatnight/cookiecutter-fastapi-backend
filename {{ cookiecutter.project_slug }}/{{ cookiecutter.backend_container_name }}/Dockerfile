@@ -7,6 +7,8 @@ WORKDIR /code
 
 ENV PATH="/code/.venv/bin:$PATH"
 
+ADD pyproject.toml /code/
+
 # Compile bytecode
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
 ENV UV_COMPILE_BYTECODE=1
@@ -20,7 +22,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --no-install-project
 
-# Copy the project into the image
+# Copy remaining project files into the image
 ADD . /code
 
 # Sync the project
