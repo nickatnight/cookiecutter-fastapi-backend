@@ -10,7 +10,7 @@
     "db_container_name": "db",
     "backend_container_name": "backend",
     "use_celery": ["no", "yes"],
-
+    "use_sentry": ["no", "yes"],
     "github_username": "change.me",
 
     "deployments": ["none", "render"]
