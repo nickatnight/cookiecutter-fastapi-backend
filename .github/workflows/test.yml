@@ -48,8 +48,8 @@ jobs:
             args: ""
           - name: Deployments[render], Example Api, py3.11, & celery[yes]
             args: "deployments='render' py_version=3.11 use_celery='yes'"
-          - name: Deployments[render], Example Api, py3.9, & celery[yes]
-            args: "deployments='render' py_version=3.9 use_celery='yes'"
+          - name: Deployments[render], Example Api, py3.9, celery[yes], & sentry[yes]
+            args: "deployments='render' py_version=3.9 use_celery='yes' use_sentry='yes'"
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
     env:

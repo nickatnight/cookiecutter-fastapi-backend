@@ -54,6 +54,7 @@ The input variables, with their default values (some auto generated) are:
 * `db_container_name`: The name of the database container. Default `db`
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `use_celery`: Whether to use Celery/Beat and Redis for asynchronous/scheduled tasks. Default `no`
+* `use_sentry`: Whether to use Sentry for application monitoring and error tracking. Default `no`
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
 * `deployments`: Deploy to your favorite platform, Render.com (and more to come). Default `none`
 
