@@ -5,7 +5,7 @@ To get started, install the latest version of `Cookiecutter <https://github.com/
 
 .. code-block:: bash
 
-    pip install cookiecutter
+    pipx install cookiecutter
 
 Then, generate a new project
 
@@ -18,14 +18,14 @@ Using a GitHub templates:
 
 .. code-block:: bash
 
-    cookiecutter gh:nickatnight/cookiecutter-fastapi-backend.git
+    pipx run cookiecutter gh:nickatnight/cookiecutter-fastapi-backend
 
 
 Using a local template:
 
 .. code-block:: bash
 
-    cookiecutter cookiecutter-fastapi-backend
+    pipx run cookiecutter cookiecutter-fastapi-backend
 
 Using from Python:
 
@@ -37,7 +37,7 @@ Using from Python:
     cookiecutter("cookiecutter-fastapi-backend/")
 
     # Create project from the cookiecutter-fastapi-backend.git repo template
-    cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend.git")
+    cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend")
 
 Input Variables
 ---------------
@@ -54,6 +54,7 @@ The input variables, with their default values (some auto generated) are:
 * `db_container_name`: The name of the database container. Default `db`
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `use_celery`: Whether to use Celery/Beat and Redis for asynchronous/scheduled tasks. Default `no`
+* `use_sentry`: Whether to use Sentry for application monitoring and error tracking. Default `no`
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
 * `deployments`: Deploy to your favorite platform, Render.com (and more to come). Default `none`
 

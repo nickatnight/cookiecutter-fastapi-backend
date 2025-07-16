@@ -20,20 +20,24 @@
 Supported PaaS's:
 - Render
 - Platform.sh (Coming soon)
-- Porter (Coming soon)
 - Fly.io (Coming soon)
 - DigitalOcean (Coming soon)
 
 ## Quickstart
 Install the latest Cookiecutter if you haven't installed it yet (this requires Cookiecutter 1.4.0 or higher):
 ```sh
-pip install cookiecutter
+# pipx is strongly recommended.
+$ pipx install cookiecutter
+
+# If pipx is not an option,
+# you can install cookiecutter in your Python user directory.
+$ python -m pip install --user cookiecutter
 ```
 
 Generate project from GitHub template:
 
 ```sh
-$ cookiecutter gh:nickatnight/cookiecutter-fastapi-backend.git
+$ pipx run cookiecutter gh:nickatnight/cookiecutter-fastapi-backend
 ```
 
 Or from Python code:
@@ -41,7 +45,7 @@ Or from Python code:
 ```python
 from cookiecutter.main import cookiecutter
 
-cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend.git")
+cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend")
 ```
 
 ## Features
@@ -55,6 +59,7 @@ cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend.git")
 * :seedling: **Celery** [Asynchronous](https://docs.celeryq.dev/en/stable/getting-started/introduction.html) task or job queue
 * :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, test, and deploy to your favorite platform. Automatically includes [Codecov](https://about.codecov.io/) reporting.
 * :leftwards_arrow_with_hook: **pre-commit** [Git hooks](https://pre-commit.com/) to maintain code quality using modern tooling (ruff, black, isort)
+* :rocket: **Sentry** Application monitoring and error tracking. You can sign up for free at [sentry.io](https://sentry.io/)
 
 ## Input Variables
 The generator (cookiecutter) will ask you for some data, you might want to have at hand before generating the project.
@@ -69,6 +74,7 @@ The input variables, with their default values (some auto generated) are:
 * `db_container_name`: The name of the database container. Default `db`
 * `backend_container_name`: The name of the backend container. Default `backend`
 * `use_celery`: Whether to use Celery/Beat and Redis for asynchronous/scheduled tasks. Default `no`
+* `use_sentry`: Whether to use Sentry for application monitoring and error tracking. Default `no`
 * `github_username`: The username of the GitHub user. Used for badge display in generated project `README.md`
 * `deployments`: Deploy to your favorite platform, Render.com (and more to come). Default `none`
 
