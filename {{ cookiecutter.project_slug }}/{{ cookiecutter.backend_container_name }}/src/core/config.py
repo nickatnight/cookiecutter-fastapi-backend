@@ -52,7 +52,7 @@ class Settings(BaseSettings):
             password=values.data.get("POSTGRES_PASSWORD"),
             host=values.data.get("POSTGRES_HOST"),
             path=f"{values.data.get('POSTGRES_DB') or ''}",
-            port=values.data.get("POSTGRES_PORT"),
+            port=int(values.data.get("POSTGRES_PORT", "5432")),
         ).unicode_string()
     {%- if cookiecutter.use_celery == "yes" %}
 
