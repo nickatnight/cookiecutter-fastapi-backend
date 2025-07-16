@@ -5,7 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 {%- if cookiecutter.use_celery == "yes" %}
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend{%- endif %}
-
+{%- if cookiecutter.use_sentry == "yes" %}
+import sentry_sdk{%- endif %}
 from src.api import routes
 {%- if cookiecutter.use_celery == "yes" %}
 from src.api.deps import get_redis_client{%- endif %}
@@ -37,6 +38,15 @@ def on_startup() -> None:
     {%- if cookiecutter.use_celery == "yes" %}
     redis_client = get_redis_client()
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache"){%- endif %}
+    {%- if cookiecutter.use_sentry == "yes" %}
+    if settings.SENTRY_DSN:
+        sentry_sdk.init(
+            dsn=settings.SENTRY_DSN,
+            # Add data like request headers and IP for users, if applicable;
+            # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+            send_default_pii=True,
+        )
+    {%- endif %}
     logger.info("FastAPI app running...")
 
 

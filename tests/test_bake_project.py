@@ -25,6 +25,8 @@ SUPPORTED_COMBINATIONS = [
     {"py_version": "3.9"},
     {"py_version": "3.10"},
     {"py_version": "3.11"},
+    {"sentry": "no"},
+    {"sentry": "yes"},
 ]
 PATTERN = r"{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)

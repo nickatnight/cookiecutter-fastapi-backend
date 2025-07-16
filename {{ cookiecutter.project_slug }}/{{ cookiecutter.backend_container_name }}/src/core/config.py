@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     REDIS_PORT: str = Field(default="")
     REDIS_URL: Optional[str] = None
     {%- endif %}
+    {%- if cookiecutter.use_sentry == "yes" %}
+    SENTRY_DSN: str = Field(default="")
+    {%- endif %}
     DB_POOL_SIZE: int = Field(default=83)
     WEB_CONCURRENCY: int = Field(default=9)
     MAX_OVERFLOW: int = Field(default=64)

@@ -59,6 +59,7 @@ cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend")
 * :seedling: **Celery** [Asynchronous](https://docs.celeryq.dev/en/stable/getting-started/introduction.html) task or job queue
 * :inbox_tray: **Continuous Integration/Deployment** Modular [GitHub Actions](https://github.com/features/actions) to lint, test, and deploy to your favorite platform. Automatically includes [Codecov](https://about.codecov.io/) reporting.
 * :leftwards_arrow_with_hook: **pre-commit** [Git hooks](https://pre-commit.com/) to maintain code quality using modern tooling (ruff, black, isort)
+* :rocket: **Sentry** Application monitoring and error tracking. You can sign up for free at [sentry.io](https://sentry.io/). Default `no`
 
 ## Input Variables
 The generator (cookiecutter) will ask you for some data, you might want to have at hand before generating the project.
