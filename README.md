@@ -20,20 +20,24 @@
 Supported PaaS's:
 - Render
 - Platform.sh (Coming soon)
-- Porter (Coming soon)
 - Fly.io (Coming soon)
 - DigitalOcean (Coming soon)
 
 ## Quickstart
 Install the latest Cookiecutter if you haven't installed it yet (this requires Cookiecutter 1.4.0 or higher):
 ```sh
-pip install cookiecutter
+# pipx is strongly recommended.
+$ pipx install cookiecutter
+
+# If pipx is not an option,
+# you can install cookiecutter in your Python user directory.
+$ python -m pip install --user cookiecutter
 ```
 
 Generate project from GitHub template:
 
 ```sh
-$ cookiecutter gh:nickatnight/cookiecutter-fastapi-backend.git
+$ pipx run cookiecutter gh:nickatnight/cookiecutter-fastapi-backend
 ```
 
 Or from Python code:
@@ -41,7 +45,7 @@ Or from Python code:
 ```python
 from cookiecutter.main import cookiecutter
 
-cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend.git")
+cookiecutter("gh:nickatnight/cookiecutter-fastapi-backend")
 ```
 
 ## Features
