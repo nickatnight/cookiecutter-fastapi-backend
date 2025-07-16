@@ -7,6 +7,7 @@ from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend{%- endif %}
 {%- if cookiecutter.use_sentry == "yes" %}
 import sentry_sdk{%- endif %}
+
 from src.api import routes
 {%- if cookiecutter.use_celery == "yes" %}
 from src.api.deps import get_redis_client{%- endif %}
