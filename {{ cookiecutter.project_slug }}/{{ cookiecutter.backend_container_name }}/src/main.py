@@ -1,7 +1,6 @@
 import logging
-
-{%- if cookiecutter.use_sentry == "yes" %}import sentry_sdk{%- endif %}
-
+{% if cookiecutter.use_sentry == "yes" %}
+import sentry_sdk{% endif %}
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 {%- if cookiecutter.use_celery == "yes" %}
