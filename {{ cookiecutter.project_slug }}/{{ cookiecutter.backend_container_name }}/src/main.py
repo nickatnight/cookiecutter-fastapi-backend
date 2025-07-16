@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 {%- if cookiecutter.use_celery == "yes" %}
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend{%- endif %}
-{%- if cookiecutter.use_sentry == "yes" %}
+{%- if cookiecutter.use_sentry == "yes" -%}
 import sentry_sdk{%- endif %}
 
 from src.api import routes
