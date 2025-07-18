@@ -9,18 +9,18 @@ requires-python = ">={{ cookiecutter.py_version }}"
 readme = "README.md"
 dependencies = [
     "alembic==1.13.2",
-    "sqlalchemy==2.0.34",
+    "sqlalchemy==2.0.41",
     "psycopg[binary]==3.1.13",
-    "fastapi==0.114.0",
-    "pydantic-settings==2.4.0",
-    "sqlmodel==0.0.21",
+    "fastapi==0.116.1",
+    "pydantic-settings==2.10.1",
+    "sqlmodel==0.0.24",
     {%- if cookiecutter.use_celery == "yes" %}
     "redis==4.6.0",
     "fastapi-cache2[redis]==0.2.2",
     "celery[beat]==5.2.7",{%- endif %}
-    "uvicorn[standard]==0.23.2",
+    "uvicorn[standard]==0.35.0",
     "PyYAML==6.0.1",
-    "httpx==0.25.0",
+    "httpx==0.28.1",
     "gunicorn==23.0.0",
     {%- if cookiecutter.use_sentry == "yes" %}
     "sentry-sdk[fastapi]==2.33.0",{%- endif %}

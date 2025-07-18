@@ -33,10 +33,13 @@ if "{{ cookiecutter.deployments }}" == "none":
     for p in DEPLOYMENT_FILES:
         remove_file(p)
 
+    remove_file("bin/provision-app.sh")
+
 
 if "{{ cookiecutter.deployments }}" == "render":
     print("Removing digitalocean deployment file(s)...")
     remove_file("digitalocean.yaml")
+    remove_file("bin/provision-app.sh")
 
 
 if "{{ cookiecutter.deployments }}" == "digitalocean":
