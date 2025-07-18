@@ -19,6 +19,7 @@ jobs:
     uses: ./.github/workflows/test.yml
 
   create-release:
+    if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
     needs: [lint, tests]

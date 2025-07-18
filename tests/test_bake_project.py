@@ -20,6 +20,7 @@ if sys.platform.startswith("win"):
 SUPPORTED_COMBINATIONS = [
     {"deployments": "none"},
     {"deployments": "render"},
+    {"deployments": "digitalocean"},
     {"use_celery": "no"},
     {"use_celery": "yes"},
     {"py_version": "3.9"},

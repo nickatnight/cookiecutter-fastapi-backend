@@ -36,8 +36,6 @@ services:
         type: SECRET
       - key: POSTGRES_PORT
         value: ${POSTGRES_PORT}
-      - key: POSTGRES_URL
-        value: ${POSTGRES_URL}
         type: SECRET
       {%- if cookiecutter.use_celery == "yes" %}
       - key: REDIS_URL
@@ -85,8 +83,6 @@ services:
         type: SECRET
       - key: POSTGRES_PORT
         value: ${POSTGRES_PORT}
-      - key: POSTGRES_URL
-        value: ${POSTGRES_URL}
         type: SECRET
       - key: REDIS_URL
         value: ${REDIS_URL}
