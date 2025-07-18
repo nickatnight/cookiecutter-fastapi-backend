@@ -24,7 +24,7 @@ Provision the app using the provided script ``bin/provision-app.sh``.
 This creates app based on the spec file ``digitalocean.yaml`` at the root of the project. The services will get created, but
 will fail deployment, which is expected. They fail because we've deployed the app from the CLI without any of the environment variables.
 
-Ensure the following variables are in the Apps Environment Variables:
+Ensure the following variables are in the Apps Environment Variables, and in your GitHub repository secrets:
 
 - ``POSTGRES_USER``
 - ``POSTGRES_PASSWORD``
@@ -32,6 +32,8 @@ Ensure the following variables are in the Apps Environment Variables:
 - ``POSTGRES_HOST``
 - ``POSTGRES_PORT``
 
-They can be found in the database settings within your Apps deployment.
+.. note::
+
+   The environment variables are injected into the ``deploy-app`` step in the GitHub Actions workflow.
 
 Once saved, the deployment for the app will get re-triggered, and the services will be deployed successfully. Now, any merges into your main branch will trigger a deployment.

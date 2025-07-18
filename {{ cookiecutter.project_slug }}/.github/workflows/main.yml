@@ -42,7 +42,11 @@ jobs:
        uses: digitalocean/app_action/deploy@v2
        {% raw %}env:
          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-         POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+         POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+         POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+         POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+         POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+         POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
        with:
          app_spec_location: digitalocean.yaml
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}{% endraw %}
