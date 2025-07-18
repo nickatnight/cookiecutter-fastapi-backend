@@ -13,5 +13,5 @@
     "use_sentry": ["no", "yes"],
     "github_username": "change.me",
 
-    "deployments": ["none", "render"]
+    "deployments": ["none", "render", "digitalocean"]
 }

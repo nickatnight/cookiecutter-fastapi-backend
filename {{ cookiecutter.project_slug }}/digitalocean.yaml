@@ -1,0 +1,105 @@
+name: {{ cookiecutter.project_slug }}-app
+region: nyc
+services:
+  - name: {{ cookiecutter.backend_container_name }}
+    source_dir: /{{ cookiecutter.backend_container_name }}
+    github:
+      repo: {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+      branch: main
+    dockerfile_path: {{ cookiecutter.backend_container_name }}/Dockerfile
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 8000
+    run_command: gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+    routes:
+      - path: /
+    envs:
+      - key: ENV
+        value: production
+      - key: PROJECT_NAME
+        value: {{ cookiecutter.project_slug }}
+      - key: VERSION
+        value: v1
+      - key: DEBUG
+        value: "False"
+      - key: POSTGRES_USER
+        value: ${POSTGRES_USER}
+        type: SECRET
+      - key: POSTGRES_PASSWORD
+        value: ${POSTGRES_PASSWORD}
+        type: SECRET
+      - key: POSTGRES_DB
+        value: ${POSTGRES_DB}
+        type: SECRET
+      - key: POSTGRES_HOST
+        value: ${POSTGRES_HOST}
+        type: SECRET
+      - key: POSTGRES_PORT
+        value: ${POSTGRES_PORT}
+        type: SECRET
+      {%- if cookiecutter.use_celery == "yes" %}
+      - key: REDIS_URL
+        value: ${REDIS_URL}
+        type: SECRET
+      {%- endif %}
+    health_check:
+      http_path: /v1/ping
+      initial_delay_seconds: 30
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+
+{%- if cookiecutter.use_celery == "yes" %}
+  - name: celery-worker
+    source_dir: /{{ cookiecutter.backend_container_name }}
+    github:
+      repo: {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+      branch: main
+    dockerfile_path: {{ cookiecutter.backend_container_name }}/Dockerfile
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    run_command: celery --app=src worker --loglevel=info
+    envs:
+      - key: ENV
+        value: production
+      - key: PROJECT_NAME
+        value: {{ cookiecutter.project_slug }}
+      - key: VERSION
+        value: v1
+      - key: DEBUG
+        value: "False"
+      - key: POSTGRES_USER
+        value: ${POSTGRES_USER}
+        type: SECRET
+      - key: POSTGRES_PASSWORD
+        value: ${POSTGRES_PASSWORD}
+        type: SECRET
+      - key: POSTGRES_DB
+        value: ${POSTGRES_DB}
+        type: SECRET
+      - key: POSTGRES_HOST
+        value: ${POSTGRES_HOST}
+        type: SECRET
+      - key: POSTGRES_PORT
+        value: ${POSTGRES_PORT}
+        type: SECRET
+      - key: REDIS_URL
+        value: ${REDIS_URL}
+        type: SECRET
+{%- endif %}
+
+databases:
+  - name: {{ cookiecutter.project_slug }}-db
+    engine: PG
+    version: "15"
+    production: false
+    cluster_name: {{ cookiecutter.project_slug }}-db-cluster
+
+{%- if cookiecutter.use_celery == "yes" %}
+  - name: {{ cookiecutter.project_slug }}-redis
+    engine: REDIS
+    version: "7"
+    production: false
+    cluster_name: {{ cookiecutter.project_slug }}-redis-cluster
+{%- endif %}

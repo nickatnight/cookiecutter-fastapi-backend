@@ -10,6 +10,7 @@ CELERY_FILE_PATHS = [
 ]
 DEPLOYMENT_FILES = [
     "render.yaml",
+    "digitalocean.yaml",
 ]
 
 
@@ -31,6 +32,17 @@ if "{{ cookiecutter.deployments }}" == "none":
     print("Removing deployment files...")
     for p in DEPLOYMENT_FILES:
         remove_file(p)
+
+
+if "{{ cookiecutter.deployments }}" == "render":
+    print("Removing digitalocean deployment file(s)...")
+    remove_file("digitalocean.yaml")
+
+
+if "{{ cookiecutter.deployments }}" == "digitalocean":
+    print("Removing render deployment file(s)...")
+    remove_file("render.yaml")
+
 
 if "{{ cookiecutter.use_celery }}" == "no":
     print("Removing celery files...")

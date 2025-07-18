@@ -16,6 +16,7 @@ jobs:
     uses: ./.github/workflows/unit-tests.yml
 
   create-release:
+    if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -27,8 +28,26 @@ jobs:
       - name: Create Release
         id: create_release
         uses: nickatnight/releases-action@v5
-        if: startsWith(github.ref, 'refs/tags/')
         {% raw %}env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
     {% raw %}outputs:
       ReleaseTag: ${{ steps.create_release.outputs.release_tag }}{% endraw %}
+  {%- if cookiecutter.deployments == "digitalocean" %}
+  deploy-app:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout repository
+       uses: actions/checkout@v4
+     - name: Deploy the app
+       uses: digitalocean/app_action/deploy@v2
+       {% raw %}env:
+         DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+         POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+         POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+         POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+         POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+         POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+       with:
+         app_spec_location: digitalocean.yaml
+         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}{% endraw %}
+  {%- endif %}

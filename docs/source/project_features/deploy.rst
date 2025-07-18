@@ -7,5 +7,6 @@ Deployments for this project are meant to be painless, and to be achieved in a f
     :maxdepth: 1
     :caption: Deployments
 
+    deployments/digitalocean
     deployments/render
     deployments/platformsh
