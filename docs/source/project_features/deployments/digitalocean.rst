@@ -1,7 +1,7 @@
 DigitalOcean
 ============
 
-There a couple of house keeping steps to take before deploying to DigitalOcean. You can
+There are a couple of house keeping steps to take before deploying to DigitalOcean. You can
 read more about the steps `here <https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-github-actions/#prerequisites>`_.
 
 .. note::
