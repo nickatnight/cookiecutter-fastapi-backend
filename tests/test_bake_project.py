@@ -5,6 +5,7 @@ from typing import Dict, List
 
 import pytest
 from binaryornot.check import is_binary
+from cookiecutter.exceptions import FailedHookException
 
 try:
     import sh
@@ -21,13 +22,17 @@ SUPPORTED_COMBINATIONS = [
     {"deployments": "none"},
     {"deployments": "render"},
     {"deployments": "digitalocean"},
-    {"use_celery": "no"},
-    {"use_celery": "yes"},
+    {"use_celery": "no", "periodic_tasks": "no"},
+    {"use_celery": "yes", "periodic_tasks": "no"},
+    {"use_celery": "yes", "periodic_tasks": "yes"},
     {"py_version": "3.9"},
     {"py_version": "3.10"},
     {"py_version": "3.11"},
     {"use_sentry": "no"},
     {"use_sentry": "yes"},
+]
+UNSUPPORTED_COMBINATIONS = [
+    {"use_celery": "no", "periodic_tasks": "yes"},
 ]
 PATTERN = r"{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)
@@ -86,6 +91,27 @@ def test_project_generation(cookies, context, context_override) -> None:
     paths = build_files_list(str(result.project_path))
     assert paths
     check_paths(paths)
+
+
+@pytest.mark.parametrize("slug", ["project slug", "Project_Slug"])
+def test_invalid_slug(cookies, context, slug):
+    """Invalid slug should fail pre-generation hook."""
+    context.update({"project_slug": slug})
+
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code != 0
+    assert isinstance(result.exception, FailedHookException)
+
+
+@pytest.mark.parametrize("invalid_context", UNSUPPORTED_COMBINATIONS)
+def test_error_if_incompatible(cookies, context, invalid_context):
+    """It should not generate project an incompatible combination is selected."""
+    context.update(invalid_context)
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code != 0
+    assert isinstance(result.exception, FailedHookException)
 
 
 @pytest.mark.parametrize("context_override", SUPPORTED_COMBINATIONS, ids=_fixture_id)
