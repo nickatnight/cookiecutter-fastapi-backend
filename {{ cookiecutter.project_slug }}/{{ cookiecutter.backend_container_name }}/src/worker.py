@@ -17,9 +17,9 @@ celery_app.autodiscover_tasks(["src.core.tasks"], related_name="tasks", force=Tr
 # BEAT
 celery_app.conf.beat_schedule = {
     # Executes every 3rd minute
-    'hello-every-third-minute': {
-        'task': 'src.core.tasks.hello_world_task',
-        'schedule': crontab(minute="*/3"),
+    "hello-every-third-minute": {
+        "task": "src.core.tasks.hello_world_task",
+        "schedule": crontab(minute="*/3"),
     },
 }
 {%- endif %}
