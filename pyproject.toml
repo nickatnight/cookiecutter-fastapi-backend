@@ -1,6 +1,6 @@
 [project]
 name = "cookiecutter-fastapi-backend"
-version = "2.4.1"
+version = "2.5.0"
 description = "Cookiecutter template to build and deploy fastapi backends..batteries included"
 authors = [{ name = "nickatnight", email = "nialexanderke@proton.me" }]
 requires-python = ">=3.9"
