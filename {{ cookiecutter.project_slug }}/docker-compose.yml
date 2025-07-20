@@ -48,9 +48,7 @@ services:
 {%- if cookiecutter.use_celery == "yes" %}
   redis:
     restart: always
-    image: redis:latest
-    ports:
-      - "6479:6379"
+    image: redis:7-alpine
     volumes:
       - redis-data:/data
 
@@ -63,7 +61,8 @@ services:
     depends_on:
       - {{ cookiecutter.backend_container_name }}
       - redis
-
+{%- endif %}
+{%- if cookiecutter.periodic_tasks == "yes" %}
   beat:
     restart: always
     build: ./{{ cookiecutter.backend_container_name }}

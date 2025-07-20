@@ -10,8 +10,17 @@
     "db_container_name": "db",
     "backend_container_name": "backend",
     "use_celery": ["no", "yes"],
+    "periodic_tasks": ["no", "yes"],
     "use_sentry": ["no", "yes"],
     "github_username": "change.me",
 
-    "deployments": ["none", "render", "digitalocean"]
+    "deployments": ["none", "render", "digitalocean"],
+
+    "__prompts__": {
+        "use_celery": "Do you want to enable Celery for background tasks?",
+        "periodic_tasks": "Do you want to enable Celery Beat for periodic tasks (requires Celery)?",
+        "use_sentry": "Do you want to enable Sentry for error tracking?",
+        "github_username": "What is your GitHub username?",
+        "deployments": "Do you want to enable deployment to a platform-as-a-service (PaaS) provider?"
+    }
 }
