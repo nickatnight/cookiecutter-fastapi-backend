@@ -5,8 +5,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.api import routes
-{%- if cookiecutter.use_celery == "yes" %}
-from src.api.deps import get_redis_client{%- endif %}
 from src.core.config import settings
 from src.db.session import add_postgresql_extension
 
