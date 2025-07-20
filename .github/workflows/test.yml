@@ -48,8 +48,10 @@ jobs:
             args: ""
           - name: Deployments[render], Example Api, py3.11, & celery[yes]
             args: "deployments='render' py_version=3.11 use_celery='yes'"
-          - name: Deployments[render], Example Api, py3.9, celery[yes], & sentry[yes]
-            args: "deployments='render' py_version=3.9 use_celery='yes' use_sentry='yes'"
+          - name: Deployments[digitalocean], Example Api, py3.9, celery[yes], & sentry[yes]
+            args: "deployments='digitalocean' py_version=3.9 use_celery='yes' use_sentry='yes'"
+          - name: Deployments[render], Example Api, py3.10, celery[yes], beat[yes], & sentry[no]
+            args: "deployments='digitalocean' py_version=3.9 use_celery='yes' periodic_tasks='yes' use_sentry='no'"
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
     env:

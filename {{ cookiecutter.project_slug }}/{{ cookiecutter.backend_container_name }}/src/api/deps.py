@@ -1,3 +1,5 @@
+from typing import cast
+
 from redis import Redis
 
 from src.core.config import settings
@@ -14,4 +16,4 @@ def get_redis_client() -> Redis:
         encoding="utf8",
         decode_responses=True,
     )
-    return redis
+    return cast(Redis, redis)

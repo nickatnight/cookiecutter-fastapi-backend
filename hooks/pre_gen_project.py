@@ -15,3 +15,13 @@ if not re.match(MODULE_REGEX, module_name):
 
     # Exit to cancel project
     sys.exit(1)
+
+
+if (
+    "{{ cookiecutter.use_celery}}" == "no"
+    and "{{ cookiecutter.periodic_tasks}}" == "yes"
+):
+    print(
+        "ERROR: Celery is not enabled, but periodic tasks are requested. Please enable Celery."
+    )
+    sys.exit(1)

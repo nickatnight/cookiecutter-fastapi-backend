@@ -14,10 +14,12 @@ dependencies = [
     "fastapi==0.116.1",
     "pydantic-settings==2.10.1",
     "sqlmodel==0.0.24",
-    {%- if cookiecutter.use_celery == "yes" %}
-    "redis==4.6.0",
-    "fastapi-cache2[redis]==0.2.2",
-    "celery[beat]==5.2.7",{%- endif %}
+    {%- if cookiecutter.use_celery == "yes" and cookiecutter.periodic_tasks == "yes" %}
+    "redis==6.2.0",
+    "celery[beat,redis]==5.2.7",
+    {%- elif cookiecutter.use_celery == "yes" %}
+    "redis==6.2.0",
+    "celery[redis]==5.2.7",{%- endif %}
     "uvicorn[standard]==0.35.0",
     "PyYAML==6.0.1",
     "httpx==0.28.1",
