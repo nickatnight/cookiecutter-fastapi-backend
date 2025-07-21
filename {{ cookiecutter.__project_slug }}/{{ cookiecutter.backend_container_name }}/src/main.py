@@ -1,13 +1,14 @@
 import logging
+
 {% if cookiecutter.use_sentry == "yes" %}
-import sentry_sdk{% endif %}
+import %}
+import endif
+import sentry_sdk{%
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from src.api import routes
 from src.core.config import settings
 from src.db.session import add_postgresql_extension
-
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +21,7 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="{{ cookiecutter.project_slug }}",
+    title="{{ cookiecutter.__project_slug }}",
     description="base project for fastapi backend",
     version=settings.VERSION,
     openapi_url=f"/{settings.VERSION}/openapi.json",

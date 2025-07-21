@@ -1,10 +1,10 @@
-name: {{ cookiecutter.project_slug }}-app
+name: {{ cookiecutter.__project_slug }}-app
 region: nyc
 services:
   - name: {{ cookiecutter.backend_container_name }}
     source_dir: /{{ cookiecutter.backend_container_name }}
     github:
-      repo: {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+      repo: {{ cookiecutter.github_username }}/{{ cookiecutter.__project_slug }}
       branch: main
     dockerfile_path: {{ cookiecutter.backend_container_name }}/Dockerfile
     instance_count: 1
@@ -17,7 +17,7 @@ services:
       - key: ENV
         value: production
       - key: PROJECT_NAME
-        value: {{ cookiecutter.project_slug }}
+        value: {{ cookiecutter.__project_slug }}
       - key: VERSION
         value: v1
       - key: DEBUG
@@ -54,7 +54,7 @@ services:
   - name: celery-worker
     source_dir: /{{ cookiecutter.backend_container_name }}
     github:
-      repo: {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+      repo: {{ cookiecutter.github_username }}/{{ cookiecutter.__project_slug }}
       branch: main
     dockerfile_path: {{ cookiecutter.backend_container_name }}/Dockerfile
     instance_count: 1
@@ -64,7 +64,7 @@ services:
       - key: ENV
         value: production
       - key: PROJECT_NAME
-        value: {{ cookiecutter.project_slug }}
+        value: {{ cookiecutter.__project_slug }}
       - key: VERSION
         value: v1
       - key: DEBUG
@@ -90,16 +90,16 @@ services:
 {%- endif %}
 
 databases:
-  - name: {{ cookiecutter.project_slug }}-db
+  - name: {{ cookiecutter.__project_slug }}-db
     engine: PG
     version: "15"
     production: false
-    cluster_name: {{ cookiecutter.project_slug }}-db-cluster
+    cluster_name: {{ cookiecutter.__project_slug }}-db-cluster
 
 {%- if cookiecutter.use_celery == "yes" %}
-  - name: {{ cookiecutter.project_slug }}-redis
+  - name: {{ cookiecutter.__project_slug }}-redis
     engine: REDIS
     version: "7"
     production: false
-    cluster_name: {{ cookiecutter.project_slug }}-redis-cluster
+    cluster_name: {{ cookiecutter.__project_slug }}-redis-cluster
 {%- endif %}
