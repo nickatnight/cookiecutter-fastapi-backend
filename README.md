@@ -67,8 +67,6 @@ The generator (cookiecutter) will ask you for some data, you might want to have 
 The input variables, with their default values (some auto generated) are:
 
 * `project_name`: The name of the project
-* `__project_slug`: The development friendly name of the project. By default, based on the project name
-* `__project_slug_db`: The database friendly name of the project. By default, based on the project name
 * `author_email`: The authors email...for maintainer info in `pyproject.toml`
 * `py_version`: The version of Python to install. Options are `3.9`, `3.10`, and `3.11`
 * `db_container_name`: The name of the database container. Default `db`
