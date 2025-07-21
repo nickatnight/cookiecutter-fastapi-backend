@@ -3,7 +3,7 @@ import sys
 
 MODULE_REGEX = r"^[-a-zA-Z][-a-zA-Z0-9]+$"
 
-module_name = "{{ cookiecutter.project_slug}}"
+module_name = "{{ cookiecutter.__project_slug}}"
 python_version = "{{ cookiecutter.py_version}}"
 
 

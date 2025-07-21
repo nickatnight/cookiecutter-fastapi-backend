@@ -1,12 +1,12 @@
 <p align="center">
-    <a href="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions">
-        <img alt="GitHub Actions status" src="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions/workflows/main.yml/badge.svg">
+    <a href="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.__project_slug }}/actions">
+        <img alt="GitHub Actions status" src="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.__project_slug }}/actions/workflows/main.yml/badge.svg">
     </a>
-    <a href="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/releases"><img alt="Release Status" src="https://img.shields.io/github/v/release/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"></a>
+    <a href="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.__project_slug }}/releases"><img alt="Release Status" src="https://img.shields.io/github/v/release/{{ cookiecutter.github_username }}/{{ cookiecutter.__project_slug }}"></a>
 </p>
 
 
-# {{ cookiecutter.project_slug }}
+# {{ cookiecutter.__project_slug }}
 
 ## Usage
 1. `make up`

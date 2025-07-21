@@ -20,7 +20,7 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="{{ cookiecutter.project_slug }}",
+    title="{{ cookiecutter.__project_slug }}",
     description="base project for fastapi backend",
     version=settings.VERSION,
     openapi_url=f"/{settings.VERSION}/openapi.json",

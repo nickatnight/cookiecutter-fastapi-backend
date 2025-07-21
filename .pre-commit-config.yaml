@@ -1,4 +1,4 @@
-exclude: "{{ cookiecutter.project_slug }}"
+exclude: "{{ cookiecutter.__project_slug }}"
 default_language_version:
     python: python3
 

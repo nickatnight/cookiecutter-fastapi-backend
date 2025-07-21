@@ -1,5 +1,5 @@
 [project]
-name = "{{ cookiecutter.project_slug }}"
+name = "{{ cookiecutter.__project_slug }}"
 version = "0.1.0"
 description = "Base project for building fastapi backends"
 maintainers = [

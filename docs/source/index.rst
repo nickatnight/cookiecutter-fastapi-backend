@@ -32,6 +32,7 @@ Documentation Conventions
     project_features/alembic
     project_features/celery
     project_features/ci_cd
+    project_features/common
     project_features/sqlmodel
     project_features/deploy
 

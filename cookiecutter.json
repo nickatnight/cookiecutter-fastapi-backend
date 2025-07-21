@@ -1,7 +1,7 @@
 {
     "project_name": "FastAPI Backend",
-    "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
-    "project_slug_db": "{{ cookiecutter.project_name|lower|replace(' ', '') }}",
+    "__project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+    "__project_slug_db": "{{ cookiecutter.project_name|lower|replace(' ', '') }}",
 
     "author_email": "change.me@gmail.com",
 

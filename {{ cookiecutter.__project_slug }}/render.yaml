@@ -1,7 +1,7 @@
 services:
   # A Docker web service
   - type: web
-    name: {{ cookiecutter.project_slug }}
+    name: {{ cookiecutter.__project_slug }}
     runtime: docker
     plan: free
     # Trigger a deploy only if the linked branch's CI checks pass
@@ -22,7 +22,7 @@ services:
       # PostgreSQL service
       - key: POSTGRES_URL
         fromDatabase:
-          name: {{ cookiecutter.project_slug_db }}db
+          name: {{ cookiecutter.__project_slug_db }}db
           property: connectionString
 {%- if cookiecutter.use_celery == "yes" %}
       - key: REDIS_URL
@@ -45,7 +45,7 @@ services:
         value: '10000'
       - key: POSTGRES_URL
         fromDatabase:
-          name: {{ cookiecutter.project_slug_db }}db
+          name: {{ cookiecutter.__project_slug_db }}db
           property: connectionString
       - key: REDIS_URL
         fromService:
@@ -60,7 +60,7 @@ services:
     ipAllowList: [] # only allow internal connections
 {%- endif %}
 databases:
-  - name: {{ cookiecutter.project_slug_db }}db
+  - name: {{ cookiecutter.__project_slug_db }}db
     plan: free
     postgresMajorVersion: '15'
     ipAllowList: [] # Only allow internal connections

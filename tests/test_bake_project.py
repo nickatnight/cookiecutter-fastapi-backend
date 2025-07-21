@@ -42,8 +42,8 @@ RE_OBJ = re.compile(PATTERN)
 def context() -> Dict:
     return {
         "project_name": "Goblet of Fire",
-        "project_slug": "goblet-of-fire",
-        "project_slug_db": "gobletoffire",
+        "__project_slug": "goblet-of-fire",
+        "__project_slug_db": "gobletoffire",
         "author_email": "harry@hogwarts.com",
         "py_version": "3.10",
         "db_container_name": "db",
@@ -85,7 +85,7 @@ def test_project_generation(cookies, context, context_override) -> None:
     result = cookies.bake(extra_context={**context, **context_override})
     assert result.exit_code == 0
     assert result.exception is None
-    assert result.project_path.name == context["project_slug"]
+    assert result.project_path.name == context["__project_slug"]
     assert result.project_path.is_dir()
 
     paths = build_files_list(str(result.project_path))
@@ -96,7 +96,7 @@ def test_project_generation(cookies, context, context_override) -> None:
 @pytest.mark.parametrize("slug", ["project slug", "Project_Slug"])
 def test_invalid_slug(cookies, context, slug):
     """Invalid slug should fail pre-generation hook."""
-    context.update({"project_slug": slug})
+    context.update({"__project_slug": slug})
 
     result = cookies.bake(extra_context=context)
 
